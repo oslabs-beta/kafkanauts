@@ -6,7 +6,16 @@ const { spawn } = require('child_process')
 // Any directories you will be adding code/files into, need to be added to this array so webpack will pick them up
 const defaultInclude = path.resolve(__dirname, 'src')
 
+//const mode = process.env.NODE_ENV;
+
 module.exports = {
+  mode: process.env.NODE_ENV, 
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/',
+    filename: 'bundle.js',
+  },
   module: {
     rules: [
       {
@@ -46,6 +55,11 @@ module.exports = {
       chunks: false,
       children: false
     },
+    historyApiFallback: true,
+    hot: true,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    },
     before() {
       spawn(
         'electron',
@@ -55,5 +69,8 @@ module.exports = {
       .on('close', code => process.exit(0))
       .on('error', spawnError => console.error(spawnError))
     }
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   }
 }
