@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//const apiRouter = require('./routes/api');
+const prometheusRouter = require('./routes/prometheusRouter');
 
 
 app.use(cors());
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 //   );
 // }
 
-//app.use('/api', apiRouter);
+app.use('/api', prometheusRouter);
 
 app.use((req, res) => res.sendStatus(404));
 
