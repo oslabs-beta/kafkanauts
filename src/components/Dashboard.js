@@ -1,7 +1,13 @@
 import React from "react";
+import GenericMetric from "./GeneralMetric";
 
 const Dashboard = () => {
-  return <div>This is where the Dashboard will be.</div>;
+  return (
+    <React.Fragment>
+      <h2>Kafka Monitor Dashboard</h2>
+      <GenericMetric />
+    </React.Fragment>
+  );
 };
 
 export default Dashboard;

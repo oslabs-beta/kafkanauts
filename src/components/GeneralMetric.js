@@ -1,16 +1,17 @@
 import React from "react";
+import SpecificMetric from "./SpecificMetric";
 
-/*
-what will this component need to create dupilcates component structure with relevant 
-data to display 
-*/
+const metricNames = ["Partition", "Producer", "Topic", "Consumer", "In/Out"];
 
 const GeneralMetric = () => {
   return (
     <div>
-      <h3>Partition Metrics</h3>
-      <h5>Total Partition Count: ##</h5>
-      <h5>Offline Partition Count: ##</h5>
+      {metricNames.map((name) => (
+        <React.Fragment>
+          <h4>{name} metrics: </h4>
+          <SpecificMetric metricName={name} />
+        </React.Fragment>
+      ))}
     </div>
   );
 };
