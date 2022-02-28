@@ -1,3 +1,4 @@
+const axios = require('axios');
 const topicsController = {};
 
 topicsController.totalTopicCount = async (req, res, next) => {

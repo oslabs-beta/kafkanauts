@@ -6,8 +6,11 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const prometheusRouter = require('./routes/prometheusRouter');
-
+const consumerRouter = require('./routes/consumerRouter');
+const partitionRouter = require('./routes/partitionRouter');
+const producerRouter = require('./routes/producerRouter');
+const topicRouter = require('./routes/topicsRouter');
+const promPortRouter = require('./routes/promPortRouter');
 
 app.use(cors());
 app.use(express.json());
@@ -19,8 +22,12 @@ app.use(express.urlencoded({ extended: true }));
 //     res.status(200).sendFile(path.join(__dirname, '../public/index.html'))
 //   );
 // }
+app.use('/api/prom-port', promPortRouter)
+app.use('/api/consumer', consumerRouter);
+app.use('/api/partition', partitionRouter);
+app.use('/api/producer', producerRouter);
+app.use('/api/topic', topicRouter);
 
-app.use('/api', prometheusRouter);
 
 app.use((req, res) => res.sendStatus(404));
 
