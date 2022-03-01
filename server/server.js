@@ -4,13 +4,13 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
-const consumerRouter = require('./routes/consumerRouter');
-const partitionRouter = require('./routes/partitionRouter');
-const producerRouter = require('./routes/producerRouter');
-const topicRouter = require('./routes/topicsRouter');
-const promPortRouter = require('./routes/promPortRouter');
+const consumerRouter = require('./routers/consumerRouter.js');
+const partitionRouter = require('./routers/partitionRouter.js');
+const producerRouter = require('./routers/producerRouter.js');
+const topicRouter = require('./routers/topicsRouter.js');
+const promPortRouter = require('./routers/promPortRouter.js');
 
 app.use(cors());
 app.use(express.json());
@@ -32,14 +32,7 @@ app.use('/api/topic', topicRouter);
 app.use((req, res) => res.sendStatus(404));
 
 app.use((err, req, res, next) => {
-  const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
-    status: 400,
-    message: { err: 'An error occurred ' },
-  };
-  const errorObj = Object.assign(defaultErr, err);
-  console.log(errorObj);
-  return res.status(errorObj.status).json(errorObj.message);
+  return res.status(err.status ?? 500).json(err.message ?? 'Internal Server Error');
 });
 
 app.listen(PORT, () => {
