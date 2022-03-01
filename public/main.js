@@ -5,6 +5,8 @@ const isDev = require('electron-is-dev')
 
 require('@electron/remote/main').initialize()
 
+const env = process.env.NODE_ENV || 'development';
+
 function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({

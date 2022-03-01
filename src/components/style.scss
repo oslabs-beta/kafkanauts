@@ -1,0 +1,46 @@
+$light-blue: #e3f2fd;
+$button-blue: #007bff;
+$lt-prim: lighten(#007bff, 45%);
+
+html, body, #root{
+  background-image: linear-gradient($lt-prim, lighten($button-blue, 20%));
+  height: 100%;
+  background-attachment: fixed;
+}
+
+input{
+    margin: 10px;
+}
+
+p{
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+h1{
+  text-align: center;
+  margin: 1em;
+}
+
+h2{
+  text-align: center;
+  margin: 1em;
+}
+
+#home-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+  button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.user-input{
+width: 40vw;
+min-width: 300px;
+}
