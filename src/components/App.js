@@ -1,7 +1,11 @@
+import React from "react";
+import Dashboard from "./Dashboard";
+
 function App() {
   return (
-    <div>Hello World
-    </div>
+    <React.Fragment>
+      <Dashboard />
+    </React.Fragment>
   );
 }
 
