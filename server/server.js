@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 const consumerRouter = require('./routers/consumerRouter.js');
 const partitionRouter = require('./routers/partitionRouter.js');
