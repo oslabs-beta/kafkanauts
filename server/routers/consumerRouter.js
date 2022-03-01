@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const consumerController = require('../controllers/consumerController');
+const consumerController = require('../controllers/consumerController.js');
 
 
 router.get('/consumer', (req, res) => {

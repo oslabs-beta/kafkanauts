@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require('electron')
 
 const path = require('path')
 const isDev = require('electron-is-dev')
-
+require('../server/server.js')
 require('@electron/remote/main').initialize()
 
 function createWindow() {
