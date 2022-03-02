@@ -1,34 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const SpecificMetric = ({ metricName }) => {
+  const baseURL = 'https://jsonplaceholder.typicode.com/posts/1';
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
   return (
-    <React.Fragment>
+    <>
       {(() => {
         switch (metricName) {
-          case "Partition":
+          case 'Partition':
             return (
               <ul>
-                <li>Total Partition Count: </li>
-                <li>Offline Partition Count: </li>
+                <li>Total Partition Count: {post.title}</li>
+                <li>Offline Partition Count: {post.body}</li>
               </ul>
             );
-          case "Producer":
+          case 'Producer':
             return (
               <ul>
                 <li>Total Producer Requests: </li>
                 <li>Total failed producer requests: </li>
               </ul>
             );
-          case "Topic":
+          case 'Topic':
             return (
               <ul>
                 <li>Total Topic Count: </li>
                 <li>Total Topic Metrics: </li>
               </ul>
             );
-          case "Consumer":
+          case 'Consumer':
             return <p>Coming Soon!!!</p>;
-          case "In/Out":
+          case 'In/Out':
             return (
               <ul>
                 <li>Total Bytes In: KBs</li>
@@ -39,7 +49,7 @@ const SpecificMetric = ({ metricName }) => {
             return <h6>Loading...</h6>;
         }
       })(metricName)}
-    </React.Fragment>
+    </>
   );
 };
 
