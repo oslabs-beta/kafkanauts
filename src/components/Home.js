@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Home() {
+const Home = () => {
 
-  const [userInput, setUserInput] = useState({
+  const navigate = useNavigate();
+
+  const [state, setState] = useState({
     port: '',
     shellName: '',
   });
 
 
   const handleOnChange = e => {
-    setUserInput({...userInput, [e.target.name]: e.target.value})
+    setState({...state, [e.target.name]: e.target.value});
+    //console.log(state);
   }
 
   const handleSubmit = e => {
+    //console.log('You clicked handleSubmit!')
     e.preventDefault();
+    navigate('/dashboard');
     
-    axios.post('/api', {
-      port: userInput.port,
-      shellName: userInput.shellName
-    })
-    .then((res) => {
-      console.log(res);
-      sessionStorage.setItem('port', userInput.port);
-      sessionStorage.setItem('shellName', userInput.shellName);
-      window.location.href = '/dashboard';
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    // axios.post('/api/user', {
+    //   port: state.port,
+    //   shellName: state.shellName
+    // })
+    // .then((res) => {
+    //   console.log(res);
+    //   sessionStorage.setItem('port', state.port);
+    //   sessionStorage.setItem('shellName', state.shellName);
+    //   navigate('/dashboard');
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
   }
 
   return (
@@ -47,6 +53,7 @@ function Home() {
           </input>
         </label>
         <label>
+          <br />
           Shell Name:
           <input
           className='form-control user-input'
@@ -55,9 +62,9 @@ function Home() {
           onChange={handleOnChange}
           required>
           </input>
-          <input>
-          </input>
         </label>
+        <br />
+        <br />
         <button
           className='btn btn-primary'
           type='submit'
@@ -65,6 +72,15 @@ function Home() {
         >Submit
         </button>
       </form>
+      {/* <br />
+      <p>Want to create an online account to keep track of all your shells?</p>
+      <br />
+      <button
+        className='btn btn-primary'
+        type='submit'
+        onClick={() => navigate('/signup')}
+      >Click here to create an account!
+      </button> */}
     </div>
   );
 
