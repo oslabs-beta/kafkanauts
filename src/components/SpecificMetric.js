@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const client = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com/posts/1',
+});
+
 const SpecificMetric = ({ metricName }) => {
-  const baseURL = 'https://jsonplaceholder.typicode.com/posts/1';
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    axios.get(baseURL).then((response) => {
+    axios.get(client.baseURL).then((response) => {
       setPost(response.data);
     });
   }, []);
