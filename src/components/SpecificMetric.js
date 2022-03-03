@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/posts/1',
+  baseURL: '/api',
 });
 
 const SpecificMetric = ({ metricName }) => {
-  const [post, setPost] = useState(null);
+  const [metrics, setMetrics] = useState({});
 
   useEffect(() => {
-    axios.get(client.baseURL).then((response) => {
-      setPost(response.data);
-    });
+    (async function getMetrics() {
+      const response = await client.get('/topics');
+      console.log(response.data);
+      setMetrics(response.data);
+    })();
   }, []);
 
   return (
@@ -21,8 +23,8 @@ const SpecificMetric = ({ metricName }) => {
           case 'Partition':
             return (
               <ul>
-                <li>Total Partition Count: {post.title}</li>
-                <li>Offline Partition Count: {post.body}</li>
+                <li>Total Partition Count: </li>
+                <li>Offline Partition Count: </li>
               </ul>
             );
           case 'Producer':
