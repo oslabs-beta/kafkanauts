@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { validate } = require('../controllers/promPortController.js')
+const { savePortToElectronStore } = require('../controllers/promPortController.js')
 
-router.post('/', validate, (req, res) => {
+router.post('/', savePortToElectronStore, (req, res) => {
   return res.status(200).json('okay');
 });
 
