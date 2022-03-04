@@ -7,10 +7,10 @@ const GeneralMetric = () => {
   return (
     <div>
       {metricNames.map((name) => (
-        <>
+        <React.Fragment key={name}>
           <h4>{name} metrics: </h4>
           <SpecificMetric metricName={name} />
-        </>
+        </React.Fragment>
       ))}
     </div>
   );
