@@ -3,19 +3,31 @@ const partitionController = {};
 
 partitionController.totalPartitionCount = async (req, res, next) => {
   try {
-    (`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globalpartitioncount`)
+    const { port } = res.locals;
+    const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globalpartitioncount`);
+    res.locals.totalPartitionCount = result;
+    return next();
+  } catch(e) {
+    return next(e);
   }
 }
 
 partitionController.offlinePartitionCount = async (req, res, next) => {
-    
+  try {
+    const { port } = res.locals;
+    const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_offlinepartitionscount`);
+    res.locals.offlinePartitionCount = result;
+    return next();
+  } catch(e) {
+    return next(e);
+  }
 }
 
 partitionController.underReplicated = async (req, res, next) => {
   try {
     const { port } = res.locals;
     const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_cluster_partition_underreplicated`);
-    res.locals.totalPartitionCount = result;
+    res.locals.underReplicated = result;
     return next();
   } catch (err) {
     return next(err);
