@@ -21,7 +21,7 @@ const Home = () => {
     //console.log('You clicked handleSubmit!')
     e.preventDefault();
     
-    axios.post('http://localhost8080/api/prom-port', {
+    axios.post('http://localhost:8080/api/prom-port', {
       port: state.port,
       shellName: state.shellName
     })
