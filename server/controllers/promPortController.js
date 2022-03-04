@@ -1,3 +1,4 @@
+const  axios  = require('axios');
 const ElectronStore = require('electron-store');
 const schema = {
   port: {
@@ -10,13 +11,25 @@ const schema = {
 const db = new ElectronStore({schema});
 
 module.exports = {
-  savePortToElectronStore(req, res, next) {
-    const { port, shellName } = req.body;
+  async isPromPortUp(req, res, next) {
+    const { port } = req.body;
     // https://stackoverflow.com/questions/12968093/regex-to-validate-port-number#comment89586361_12968117
     const convertStringToNum = Number(port);
     if (!Number.isInteger(convertStringToNum) || convertStringToNum < 0 || convertStringToNum > 65535) {
       return res.status(400).json('Expected an integer from 0 to 65535.');
     }
+    try {
+      const { data } = await axios.get(`http://localhost:${port}/api/v1/query?query=up`);
+      if (data.status === 'success') {
+        return next();
+      }
+      return res.status(404).json(`Prometheus doesn't seem to be running on port ${port}!`)
+    } catch (e) {
+      return next(e);
+    }
+  },
+  savePortToElectronStore(req, res, next) {
+    const { port, shellName } = req.body;
     db.set('port', port);
     db.set('shellName', shellName);
     return next();
