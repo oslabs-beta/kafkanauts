@@ -45,7 +45,7 @@ topicsController.totalTopicMetrics = async (req, res, next) => {
     return next(e);
   }
   /**
-   * examples of each axios call is in the image links to the right
+   * examples of each axios call are in the image links to the right
    */
 }
 
