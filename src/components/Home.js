@@ -20,21 +20,18 @@ const Home = () => {
   const handleSubmit = e => {
     //console.log('You clicked handleSubmit!')
     e.preventDefault();
-    navigate('/dashboard');
     
-    // axios.post('/api/user', {
-    //   port: state.port,
-    //   shellName: state.shellName
-    // })
-    // .then((res) => {
-    //   console.log(res);
-    //   sessionStorage.setItem('port', state.port);
-    //   sessionStorage.setItem('shellName', state.shellName);
-    //   navigate('/dashboard');
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+    axios.post('http://localhost:8080/api/prom-port', {
+      port: state.port,
+      shellName: state.shellName
+    })
+    .then((res) => {
+      console.log(res);
+      navigate('/dashboard');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   return (
