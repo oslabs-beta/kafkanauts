@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Home = () => {
-
   const navigate = useNavigate();
 
   const [state, setState] = useState({
@@ -11,62 +10,66 @@ const Home = () => {
     shellName: '',
   });
 
-
-  const handleOnChange = e => {
-    setState({...state, [e.target.name]: e.target.value});
+  const handleOnChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
     //console.log(state);
-  }
+  };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     //console.log('You clicked handleSubmit!')
     e.preventDefault();
-    
-    axios.post('http://localhost:8080/api/prom-port', {
-      port: state.port,
-      shellName: state.shellName
-    })
-    .then((res) => {
-      console.log(res);
-      navigate('/dashboard');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+
+    axios
+      .post('http://localhost:8080/api/prom-port', {
+        port: state.port,
+        shellName: state.shellName,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate('/dashboard');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
-    <div className='home-page'>
+    <div className="home-page">
       <h1>Akorn: Your Metrics in a Nutshell</h1>
-      <h2>Enter your Prometheus port and a name for your new metrics shell to get started!</h2>
-      <form id='userInput-form'>
+      <h2>
+        Enter your Prometheus port and a name for your new metrics shell to get
+        started!
+      </h2>
+      <form id="userInput-form">
         <label>
           Prometheus Port:
-          <input 
-          className='form-control user-input'
-          type='text'
-          name='port'
-          onChange={handleOnChange}
-          required>
-          </input>
+          <input
+            className="form-control user-input"
+            type="text"
+            name="port"
+            onChange={handleOnChange}
+            required
+          ></input>
         </label>
         <label>
           <br />
           Shell Name:
           <input
-          className='form-control user-input'
-          type='text'
-          name='shellName'
-          onChange={handleOnChange}
-          required>
-          </input>
+            className="form-control user-input"
+            type="text"
+            name="shellName"
+            onChange={handleOnChange}
+            required
+          ></input>
         </label>
         <br />
         <br />
         <button
-          className='btn btn-primary'
-          type='submit'
+          className="btn btn-primary"
+          type="submit"
           onClick={handleSubmit}
-        >Submit
+        >
+          Submit
         </button>
       </form>
       {/* <br />
@@ -80,7 +83,6 @@ const Home = () => {
       </button> */}
     </div>
   );
-
-}
+};
 
 export default Home;

@@ -12,7 +12,6 @@ const producerRouter = require('./routers/producerRouter.js');
 const topicRouter = require('./routers/topicsRouter.js');
 const promPortRouter = require('./routers/promPortRouter.js');
 
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,18 +22,18 @@ app.use(express.urlencoded({ extended: true }));
 //     res.status(200).sendFile(path.join(__dirname, '../public/index.html'))
 //   );
 // }
-app.use('/api/prom-port', promPortRouter)
+app.use('/api/prom-port', promPortRouter);
 app.use('/api/consumer', consumerRouter);
 app.use('/api/partition', partitionRouter);
 app.use('/api/producer', producerRouter);
 app.use('/api/topic', topicRouter);
 
-
-
 app.use((req, res) => res.sendStatus(404));
 
 app.use((err, req, res, next) => {
-  return res.status(err.status ?? 500).json(err.message ?? 'Internal Server Error');
+  return res
+    .status(err.status ?? 500)
+    .json(err.message ?? 'Internal Server Error');
 });
 
 app.listen(PORT, () => {
