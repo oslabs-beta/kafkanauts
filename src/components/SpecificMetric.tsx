@@ -17,39 +17,41 @@ const SpecificMetric = ({ metricName }) => {
     kafka_server_brokertopicmetrics_totalproducerequests_total: -Infinity,
   });
 
-  useEffect(async () => {
-    try {
-      const metricsRequests = [
-        client.get('/partition/total-count'),
-        client.get('/partition/offline-count'),
-        // client.get('/partition/under-replicated'),
-        client.get('/producer/total-request-count'),
-        client.get('/producer/total-failed-count'),
-        client.get('/topic/total-count'),
-      ];
-      const metricsResponses = await Promise.all(metricsRequests);
-      const metricsResponsesParse = metricsResponses.reduce((acc, curr) => {
-        const { data } = curr;
-        acc[data[0].metric.__name__] = data[0].value[1];
-        return acc;
-      }, {});
+  useEffect(() => {
+    (async function () {
+      try {
+        const metricsRequests = [
+          client.get('/partition/total-count'),
+          client.get('/partition/offline-count'),
+          // client.get('/partition/under-replicated'),
+          client.get('/producer/total-request-count'),
+          client.get('/producer/total-failed-count'),
+          client.get('/topic/total-count'),
+        ];
+        const metricsResponses = await Promise.all(metricsRequests);
+        const metricsResponsesParse = metricsResponses.reduce((acc, curr) => {
+          const { data } = curr;
+          acc[data[0].metric.__name__] = data[0].value[1];
+          return acc;
+        }, {});
 
-      const { data } = await client.get('/topic/metrics');
-      const byteMetrics = data.reduce((acc, curr) => {
-        const index = curr[0];
-        acc[index.metric.__name__] = index.value[1];
-        return acc;
-      }, {});
+        const { data } = await client.get('/topic/metrics');
+        const byteMetrics = data.reduce((acc, curr) => {
+          const index = curr[0];
+          acc[index.metric.__name__] = index.value[1];
+          return acc;
+        }, {});
 
-      setMetrics({ ...byteMetrics, ...metricsResponsesParse });
-    } catch (e) {
-      return <p>Error in retrieving metrics</p>;
-    }
-  }, []);
+        setMetrics({ ...byteMetrics, ...metricsResponsesParse });
+      } catch (e) {
+        return <p>Error in retrieving metrics</p>;
+      }
+    })()
+  })
 
   return (
     <>
-      {(() => {
+      {((metricName) => {
         switch (metricName) {
           case 'Partition':
             return (

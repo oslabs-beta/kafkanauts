@@ -9,7 +9,7 @@ const defaultInclude = path.resolve(__dirname, 'src')
 //const mode = process.env.NODE_ENV;
 
 module.exports = {
-  mode: process.env.NODE_ENV, 
+  mode: process.env.NODE_ENV,
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -66,8 +66,8 @@ module.exports = {
         ['.'],
         { shell: true, env: process.env, stdio: 'inherit' }
       )
-      .on('close', code => process.exit(0))
-      .on('error', spawnError => console.error(spawnError))
+        .on('close', code => process.exit(0))
+        .on('error', spawnError => console.error(spawnError))
     }
   },
   resolve: {
