@@ -1,4 +1,4 @@
-const  axios  = require('axios');
+const axios = require('axios');
 const ElectronStore = require('electron-store');
 const schema = {
   port: {
@@ -9,8 +9,7 @@ const schema = {
   }
 }
 const db = new ElectronStore({schema});
-
-module.exports = {
+const promPortController = {
   async isPromPortUp(req, res, next) {
     const { port } = req.body;
     // https://stackoverflow.com/questions/12968093/regex-to-validate-port-number#comment89586361_12968117
@@ -41,3 +40,4 @@ module.exports = {
     return next();
   }
 }
+export default promPortController;

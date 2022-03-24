@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <h1>Akorn: Your Metrics in a Nutshell</h1>
+      <h1>Kafka Monitor: Your Metrics in a Nutshell</h1>
       <h2>
         Enter your Prometheus port and a name for your new metrics shell to get
         started!

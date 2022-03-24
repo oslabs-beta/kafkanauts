@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-    "target": "es2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "es6", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "jsx": "react", /* Specify what JSX code is generated. */
     "module": "commonjs", /* Specify what module code is generated. */
     "sourceMap": true, /* Create source map files for emitted JavaScript files. */
