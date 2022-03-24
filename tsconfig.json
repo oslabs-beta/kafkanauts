@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    "strict": false,
+    "module": "commonjs",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "target": "es2019",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "moduleResolution": "node"
+  }
+  // "include": ["src"]
+}
