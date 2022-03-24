@@ -1,21 +1,14 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
-    "strict": false,
-    "module": "commonjs",
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "allowJs": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
-    "target": "es2019",
-    "outDir": "./dist",
-    "rootDir": ".",
-    "moduleResolution": "node"
+    "target": "es2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "jsx": "react", /* Specify what JSX code is generated. */
+    "module": "commonjs", /* Specify what module code is generated. */
+    "sourceMap": true, /* Create source map files for emitted JavaScript files. */
+    "outDir": "./public", /* Specify an output folder for all emitted files. */
+    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
+    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+    "strict": false, /* Enable all strict type-checking options. */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
   }
-  // "include": ["src"]
 }
