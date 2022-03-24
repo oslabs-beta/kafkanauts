@@ -4,7 +4,7 @@ require('electron-reload')(path.join(__dirname, '..'), {
   electron: path.join(__dirname, '..', 'node_modules', '.bin', 'electron')
 });
 const isDev = require('electron-is-dev')
-require('../server/server.js')
+require('./server/server')
 require('@electron/remote/main').initialize()
 
 function createWindow() {

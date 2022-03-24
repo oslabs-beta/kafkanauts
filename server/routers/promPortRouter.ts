@@ -1,8 +1,8 @@
 import express from 'express';
-import { isPromPortUp, savePortToElectronStore } from '../controllers/promPortController.js';
+import promPortController from '../controllers/promPortController';
 const router = express.Router();
 
-router.post('/', isPromPortUp, savePortToElectronStore, (req: any, res: any) => {
+router.post('/', promPortController.isPromPortUp, promPortController.savePortToElectronStore, (req: any, res: any) => {
   return res.status(200).json({status: 'success'});
 });
 
