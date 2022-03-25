@@ -1,7 +1,7 @@
-import express from 'express';
+import { Request, Response, NextFunction } from 'express';
 const axios = require('axios');
 const partitionController = {
-  async totalPartitionCount (req, res, next) {
+  async totalPartitionCount(req: Request, res: Response, next: NextFunction) {
     try {
       const { port } = res.locals;
       const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globalpartitioncount`);

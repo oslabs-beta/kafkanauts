@@ -1,8 +1,9 @@
-import express from 'express';
+import { Router, Request, Response } from 'express';
 import promPortController from '../controllers/promPortController';
-const router = express.Router();
 
-router.post('/', promPortController.isPromPortUp, promPortController.savePortToElectronStore, (req: any, res: any) => {
+const router: Router = Router();
+
+router.post('/', promPortController.isPromPortUp, promPortController.savePortToElectronStore, (req: Request, res: Response) => {
   return res.status(200).json({status: 'success'});
 });
 

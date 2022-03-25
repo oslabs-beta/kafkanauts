@@ -1,6 +1,6 @@
 const axios = require('axios');
 const producerController = {
-  async totalProducerRequests(req, res, next){
+  async totalProducerRequests(req, res, next) {
     try {
       const { port } = res.locals;
       const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_totalproducerequests_total`);
