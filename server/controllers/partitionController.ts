@@ -1,18 +1,24 @@
+// import * as express from 'express';
 import { Request, Response, NextFunction } from 'express';
-const axios = require('axios');
-const partitionController = {
-  async totalPartitionCount(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { port } = res.locals;
-      const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globalpartitioncount`);
-      res.locals.totalPartitionCount = result;
-      return next();
-    } catch(e) {
-      return next(e);
-    }
-  },
+import axios from 'axios';
+// const axios = require('axios');
 
-  async offlinePartitionCount(req, res, next) {
+
+
+const partitionController = {
+  //Metrics for total partitions
+  async totalPartitionCount(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { port } = res.locals;
+    const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globalpartitioncount`);
+    res.locals.totalPartitionCount = result;
+    return next();
+  } catch(e) {
+    return next(e);
+  }
+},
+  //Metrics for total offline partitions
+  async offlinePartitionCount(req: Request, res: Response, next: NextFunction) {
     try {
       const { port } = res.locals;
       const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_offlinepartitionscount`);
@@ -22,8 +28,8 @@ const partitionController = {
       return next(e);
     }
   },
-
-  async underReplicated(req, res, next) {
+  //Metrics for under replicated partitions
+  async underReplicated(req: Request, res: Response, next: NextFunction) {
     try {
       const { port } = res.locals;
       const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_cluster_partition_underreplicated`);
