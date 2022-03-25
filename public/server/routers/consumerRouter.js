@@ -6,4 +6,3 @@ router.get('/consumer', (req, res) => {
     return res.status(200).json(res.locals /*.whatever*/);
 });
 exports.default = router;
-//# sourceMappingURL=consumerRouter.js.map

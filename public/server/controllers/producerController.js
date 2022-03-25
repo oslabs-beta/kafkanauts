@@ -64,4 +64,3 @@ const producerController = {
 //   }
 // }
 exports.default = producerController;
-//# sourceMappingURL=producerController.js.map

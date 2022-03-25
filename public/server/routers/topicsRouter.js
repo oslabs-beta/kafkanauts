@@ -14,4 +14,3 @@ router.get('/metrics', promPortController_1.default.getSavedPortFromElectronStor
     return res.status(200).json(res.locals.totalTopicMetrics);
 });
 exports.default = router;
-//# sourceMappingURL=topicsRouter.js.map

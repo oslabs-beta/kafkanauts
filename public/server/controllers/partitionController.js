@@ -89,4 +89,3 @@ const partitionController = {
 //   }
 // }
 exports.default = partitionController;
-//# sourceMappingURL=partitionController.js.map

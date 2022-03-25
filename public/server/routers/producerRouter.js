@@ -14,4 +14,3 @@ router.get('/total-failed-count', promPortController_1.default.getSavedPortFromE
     return res.status(200).json(res.locals.totalFailedProducerRequests);
 });
 exports.default = router;
-//# sourceMappingURL=producerRouter.js.map

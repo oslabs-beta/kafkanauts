@@ -2,15 +2,15 @@ import { Request, Response, NextFunction } from 'express';
 import axios from 'axios';
 import ElectronStore from 'electron-store';
 
-const schema = {
+const schema:any = {
   port: {
-      type: 'string',
+    type: 'string',
   },
   shellName: {
-      type: 'string',
+    type: 'string',
   }
-};
-const db = new ElectronStore({ schema });
+}
+const db = new ElectronStore({schema});
 const promPortController = {
   async isPromPortUp(req: Request, res: Response, next: NextFunction) {
     const { port } = req.body;

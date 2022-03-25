@@ -17,4 +17,3 @@ router.get('/under-replicated', promPortController_1.default.getSavedPortFromEle
     return res.status(200).json(res.locals.underReplicated);
 });
 exports.default = router;
-//# sourceMappingURL=partitionRouter.js.map
