@@ -8,14 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios = require('axios');
+const axios_1 = __importDefault(require("axios"));
+// const axios = require('axios');
 const partitionController = {
+    //Metrics for total partitions
     totalPartitionCount(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { port } = res.locals;
-                const { data: { data: { result } } } = yield axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globalpartitioncount`);
+                const { data: { data: { result } } } = yield axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globalpartitioncount`);
                 res.locals.totalPartitionCount = result;
                 return next();
             }
@@ -24,11 +29,12 @@ const partitionController = {
             }
         });
     },
+    //Metrics for total offline partitions
     offlinePartitionCount(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { port } = res.locals;
-                const { data: { data: { result } } } = yield axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_offlinepartitionscount`);
+                const { data: { data: { result } } } = yield axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_offlinepartitionscount`);
                 res.locals.offlinePartitionCount = result;
                 return next();
             }
@@ -37,11 +43,12 @@ const partitionController = {
             }
         });
     },
+    //Metrics for under replicated partitions
     underReplicated(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { port } = res.locals;
-                const { data: { data: { result } } } = yield axios.get(`http://localhost:${port}/api/v1/query?query=kafka_cluster_partition_underreplicated`);
+                const { data: { data: { result } } } = yield axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_cluster_partition_underreplicated`);
                 res.locals.underReplicated = result;
                 return next();
             }
