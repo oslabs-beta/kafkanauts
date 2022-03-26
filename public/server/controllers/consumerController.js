@@ -19,4 +19,3 @@ const consumerController = {
 // consumerController.getConsumerData = async (req, res, next) => {
 // }
 exports.default = consumerController;
-//# sourceMappingURL=consumerController.js.map

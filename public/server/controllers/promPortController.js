@@ -8,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios = require('axios');
-const ElectronStore = require('electron-store');
+const axios_1 = __importDefault(require("axios"));
+const electron_store_1 = __importDefault(require("electron-store"));
+//import consumerController from './consumerController';
 const schema = {
     port: {
         type: 'string',
@@ -19,7 +23,8 @@ const schema = {
         type: 'string',
     }
 };
-const db = new ElectronStore({ schema });
+const db = new electron_store_1.default({ schema });
+//çconsole.log("electronStore DB", db);
 const promPortController = {
     isPromPortUp(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -30,7 +35,7 @@ const promPortController = {
                 return res.status(400).json({ error: 'Expected an integer from 0 to 65535.' });
             }
             try {
-                const { data } = yield axios.get(`http://localhost:${port}/api/v1/query?query=up`);
+                const { data } = yield axios_1.default.get(`http://localhost:${port}/api/v1/query?query=up`);
                 if (data.status === 'success') {
                     return next();
                 }
@@ -54,4 +59,3 @@ const promPortController = {
     }
 };
 exports.default = promPortController;
-//# sourceMappingURL=promPortController.js.map

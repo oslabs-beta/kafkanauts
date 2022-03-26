@@ -10,4 +10,3 @@ router.post('/', promPortController_1.default.isPromPortUp, promPortController_1
     return res.status(200).json({ status: 'success' });
 });
 exports.default = router;
-//# sourceMappingURL=promPortRouter.js.map

@@ -11,4 +11,3 @@ const Dashboard = () => {
         react_1.default.createElement(GeneralMetric_1.default, null)));
 };
 exports.default = Dashboard;
-//# sourceMappingURL=Dashboard.js.map

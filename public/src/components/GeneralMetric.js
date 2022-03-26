@@ -14,4 +14,3 @@ const GeneralMetric = () => {
         react_1.default.createElement(SpecificMetric_1.default, { metricName: name }))))));
 };
 exports.default = GeneralMetric;
-//# sourceMappingURL=GeneralMetric.js.map

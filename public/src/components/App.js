@@ -15,4 +15,3 @@ function App() {
                 react_1.default.createElement(react_router_dom_1.Route, { path: "/dashboard", element: react_1.default.createElement(Dashboard_1.default, null) })))));
 }
 exports.default = App;
-//# sourceMappingURL=App.js.map

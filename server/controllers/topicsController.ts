@@ -1,6 +1,8 @@
-const axios = require('axios');
+import { Request, Response, NextFunction } from 'express';
+import axios from 'axios';
+
 const topicsController = {
-  async totalTopicCount (req, res, next) {
+  async totalTopicCount (req: Request, res: Response, next: NextFunction) {
     try {
       const { port } = res.locals;
       const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globaltopiccount`);
@@ -11,7 +13,7 @@ const topicsController = {
     }
   },
 
-  async totalTopicMetrics(req, res, next) {
+  async totalTopicMetrics(req: Request, res: Response, next: NextFunction) {
     try {
       const { port } = res.locals;
       const topicMetrics = [

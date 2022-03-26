@@ -8,14 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios = require('axios');
+const axios_1 = __importDefault(require("axios"));
 const topicsController = {
     totalTopicCount(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { port } = res.locals;
-                const { data: { data: { result } } } = yield axios.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globaltopiccount`);
+                const { data: { data: { result } } } = yield axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globaltopiccount`);
                 res.locals.totalTopicCount = result; //also contains producer requests for EACH topic
                 return next();
             }
@@ -29,9 +32,9 @@ const topicsController = {
             try {
                 const { port } = res.locals;
                 const topicMetrics = [
-                    axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesin_total`),
-                    axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesout_total`),
-                    axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesrejected_total`), //example: https://i.imgur.com/RH40ocK.png
+                    axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesin_total`),
+                    axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesout_total`),
+                    axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesrejected_total`), //example: https://i.imgur.com/RH40ocK.png
                     // axios.get(`http://localhost:${port}/api/v1/query?query=`), // put another relevant query here
                 ];
                 const axiosGetAll = yield Promise.all(topicMetrics);
@@ -73,4 +76,3 @@ const topicsController = {
 //   }
 // }
 exports.default = topicsController;
-//# sourceMappingURL=topicsController.js.map
