@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+const express_1 = require("express");
 const partitionController_1 = __importDefault(require("../controllers/partitionController"));
 const promPortController_1 = __importDefault(require("../controllers/promPortController"));
-const router = express_1.default.Router();
+const router = (0, express_1.Router)();
 router.get('/total-count', promPortController_1.default.getSavedPortFromElectronStore, partitionController_1.default.totalPartitionCount, (req, res) => {
     return res.status(200).json(res.locals.totalPartitionCount);
 });
@@ -17,4 +17,3 @@ router.get('/under-replicated', promPortController_1.default.getSavedPortFromEle
     return res.status(200).json(res.locals.underReplicated);
 });
 exports.default = router;
-//# sourceMappingURL=partitionRouter.js.map

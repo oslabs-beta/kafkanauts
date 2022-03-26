@@ -71,4 +71,3 @@ const Home = () => {
             react_1.default.createElement("button", { className: "btn btn-primary", type: "submit", onClick: handleSubmit }, "Submit"))));
 };
 exports.default = Home;
-//# sourceMappingURL=Home.js.map
