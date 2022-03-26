@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { AnyAaaaRecord, AnyARecord } from 'dns';
 
 const client = axios.create({
   baseURL: 'http://localhost:8080/api/',
 });
 
-const SpecificMetric = ({ metricName }) => {
+const SpecificMetric = ({ metricName } : {metricName: any}) => {
   const [metrics, setMetrics] = useState({
     kafka_server_brokertopicmetrics_bytesin_total: -Infinity,
     kafka_server_brokertopicmetrics_bytesout_total: -Infinity,
@@ -29,14 +30,14 @@ const SpecificMetric = ({ metricName }) => {
           client.get('/topic/total-count'),
         ];
         const metricsResponses = await Promise.all(metricsRequests);
-        const metricsResponsesParse = metricsResponses.reduce((acc, curr) => {
+        const metricsResponsesParse = metricsResponses.reduce((acc:any, curr:any) => {
           const { data } = curr;
           acc[data[0].metric.__name__] = data[0].value[1];
           return acc;
         }, {});
 
         const { data } = await client.get('/topic/metrics');
-        const byteMetrics = data.reduce((acc, curr) => {
+        const byteMetrics = data.reduce((acc:any, curr:any) => {
           const index = curr[0];
           acc[index.metric.__name__] = index.value[1];
           return acc;

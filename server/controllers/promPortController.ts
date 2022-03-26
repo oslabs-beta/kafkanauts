@@ -8,6 +8,7 @@ const schema = {
     type: 'string',
   }
 }
+
 const db = new ElectronStore({schema});
 const promPortController = {
   async isPromPortUp(req, res, next) {

@@ -10,12 +10,12 @@ const Home = () => {
     shellName: '',
   });
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e:any) => {
     setState({ ...state, [e.target.name]: e.target.value });
     //console.log(state);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     //console.log('You clicked handleSubmit!')
     e.preventDefault();
 
