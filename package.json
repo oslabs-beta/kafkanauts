@@ -30,6 +30,7 @@
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
+    "start:dev": "concurrently -k \"npm start\" \"nodemon public/server/server.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

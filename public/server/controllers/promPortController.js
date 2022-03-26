@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const electron_store_1 = __importDefault(require("electron-store"));
+//import consumerController from './consumerController';
 const schema = {
     port: {
         type: 'string',
@@ -23,6 +24,7 @@ const schema = {
     }
 };
 const db = new electron_store_1.default({ schema });
+//çconsole.log("electronStore DB", db);
 const promPortController = {
     isPromPortUp(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
