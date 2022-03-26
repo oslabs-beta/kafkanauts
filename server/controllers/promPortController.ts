@@ -11,6 +11,7 @@ const schema:any = {
     type: 'string',
   }
 }
+
 const db = new ElectronStore({schema});
 //çconsole.log("electronStore DB", db);
 const promPortController = {
