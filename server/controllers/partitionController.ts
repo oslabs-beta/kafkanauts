@@ -1,6 +1,7 @@
 // import * as express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import axios from 'axios';
+import { PartitionController } from '../../types';
 // const axios = require('axios');
 
 

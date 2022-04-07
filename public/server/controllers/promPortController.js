@@ -19,7 +19,7 @@ const schema = {
     port: {
         type: 'string',
     },
-    shellName: {
+    nickname: {
         type: 'string',
     }
 };
@@ -47,9 +47,9 @@ const promPortController = {
         });
     },
     savePortToElectronStore(req, res, next) {
-        const { port, shellName } = req.body;
+        const { port, nickname } = req.body;
         db.set('port', port);
-        db.set('shellName', shellName);
+        db.set('nickname', nickname);
         return next();
     },
     getSavedPortFromElectronStore(req, res, next) {

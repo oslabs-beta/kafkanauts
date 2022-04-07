@@ -1,13 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 import axios from 'axios';
 import ElectronStore from 'electron-store';
+import React from 'react';
 //import consumerController from './consumerController';
 
 const schema:any = {
   port: {
     type: 'string',
   },
-  shellName: {
+  nickname: {
     type: 'string',
   }
 }
@@ -33,9 +34,9 @@ const promPortController = {
     }
   },
   savePortToElectronStore(req: Request, res: Response, next: NextFunction) {
-    const { port, shellName } = req.body;
+    const { port, nickname } = req.body;
     db.set('port', port);
-    db.set('shellName', shellName);
+    db.set('nickname', nickname);
     return next();
   },
   

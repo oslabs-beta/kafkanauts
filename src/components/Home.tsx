@@ -1,28 +1,38 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Port, Nickname } from '../../types';
+//import { StringDecoder } from 'string_decoder';
 
-const Home = () => {
+interface HomeState {
+  port: Port,
+  nickname: Nickname,
+  //setState: React.Dispatch<React.SetStateAction<State>>;
+}
+
+
+const Home: React.FC = () => {
+
+  const [ input, setInput ] = useState<HomeState>({
+    port: null,
+    nickname: null
+  })
+
   const navigate = useNavigate();
 
-  const [state, setState] = useState({
-    port: '',
-    shellName: '',
-  });
-
-  const handleOnChange = (e:any) => {
-    setState({ ...state, [e.target.name]: e.target.value });
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value });
     //console.log(state);
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
     //console.log('You clicked handleSubmit!')
     e.preventDefault();
 
     axios
       .post('http://localhost:8080/api/prom-port', {
-        port: state.port,
-        shellName: state.shellName,
+        port: input.port,
+        nickname: input.nickname,
       })
       .then((res) => {
         console.log(res);
@@ -32,6 +42,7 @@ const Home = () => {
         console.log(err);
       });
   };
+
 
   return (
     <div className="home-page">
@@ -53,11 +64,11 @@ const Home = () => {
         </label>
         <label>
           <br />
-          Shell Name:
+          Nickname:
           <input
             className="form-control user-input"
             type="text"
-            name="shellName"
+            name="nickname"
             onChange={handleOnChange}
             required
           ></input>

@@ -2,7 +2,16 @@ import partitionRouter from './routers/partitionRouter';
 import producerRouter from './routers/producerRouter';
 import topicRouter from './routers/topicsRouter';
 import promPortRouter from './routers/promPortRouter';
-const express = require('express');
+import consumerRouter from './routers/consumerRouter';
+// import { partitionController } from './controllers/partitionController';
+// import { producerController } from './controllers/producerController';
+// import { promPortController } from './controllers/promPortController';
+// import { topicsController } from './controllers/topicsController';
+// import { consumerController } from './controllers/consumerController';
+import express, { Request, Response, NextFunction } from 'express';
+import { ServerError } from '../types';
+
+
 const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
@@ -23,18 +32,26 @@ app.use(express.urlencoded({ extended: true }));
 //   );
 // }
 app.use('/api/prom-port', promPortRouter);
-// app.use('/api/consumer', consumerRouter);
+app.use('/api/consumer', consumerRouter);
 app.use('/api/partition', partitionRouter);
 app.use('/api/producer', producerRouter);
 app.use('/api/topic', topicRouter);
 
-app.use((req, res) => res.sendStatus(404));
 
-app.use((err, req, res, next) => {
-  return res
-    .status(err.status ?? 500)
-    .json(err.message ?? 'Internal Server Error');
-});
+//app.use((req, res) => res.sendStatus(404));
+
+//global error handler
+app.use('/', (err: ServerError, req: Request, res: Response, next: NextFunction) => {
+  const defaultError = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred'},
+  };
+
+  const errorObj = Object.assign({}, defaultError, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+})
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}...`);
