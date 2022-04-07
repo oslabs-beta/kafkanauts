@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { AnyAaaaRecord, AnyARecord } from 'dns';
+import DarkMode from "../chart_components/DarkMode";
+
 
 const client = axios.create({
   baseURL: 'http://localhost:8080/api/',
@@ -102,6 +103,7 @@ const SpecificMetric = ({ metricName } : {metricName: any}) => {
                   Total Bytes Rejected:{' '}
                   {metrics.kafka_server_brokertopicmetrics_bytesrejected_total} KBs
                 </li>
+                <li><DarkMode /></li>
               </ul>
             );
           default:
