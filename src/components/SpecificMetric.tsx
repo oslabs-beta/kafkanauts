@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { AnyAaaaRecord, AnyARecord } from 'dns';
 
 const client = axios.create({
   baseURL: 'http://localhost:8080/api/',

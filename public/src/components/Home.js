@@ -30,13 +30,13 @@ const react_1 = __importStar(require("react"));
 const react_router_dom_1 = require("react-router-dom");
 const axios_1 = __importDefault(require("axios"));
 const Home = () => {
-    const navigate = (0, react_router_dom_1.useNavigate)();
-    const [state, setState] = (0, react_1.useState)({
-        port: '',
-        shellName: '',
+    const [input, setInput] = (0, react_1.useState)({
+        port: null,
+        nickname: null
     });
+    const navigate = (0, react_router_dom_1.useNavigate)();
     const handleOnChange = (e) => {
-        setState(Object.assign(Object.assign({}, state), { [e.target.name]: e.target.value }));
+        setInput(Object.assign(Object.assign({}, input), { [e.target.name]: e.target.value }));
         //console.log(state);
     };
     const handleSubmit = (e) => {
@@ -44,8 +44,8 @@ const Home = () => {
         e.preventDefault();
         axios_1.default
             .post('http://localhost:8080/api/prom-port', {
-            port: state.port,
-            shellName: state.shellName,
+            port: input.port,
+            nickname: input.nickname,
         })
             .then((res) => {
             console.log(res);
@@ -55,6 +55,32 @@ const Home = () => {
             console.log(err);
         });
     };
+    // const Home = () => {
+    //   const navigate = useNavigate();
+    //   const [state, setState] = useState({
+    //     port: '',
+    //     shellName: '',
+    //   });
+    //   const handleOnChange = (e:any) => {
+    //     setState({ ...state, [e.target.name]: e.target.value });
+    //     //console.log(state);
+    //   };
+    //   const handleSubmit = (e:any) => {
+    //     //console.log('You clicked handleSubmit!')
+    //     e.preventDefault();
+    //     axios
+    //       .post('http://localhost:8080/api/prom-port', {
+    //         port: state.port,
+    //         shellName: state.shellName,
+    //       })
+    //       .then((res) => {
+    //         console.log(res);
+    //         navigate('/dashboard');
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   };
     return (react_1.default.createElement("div", { className: "home-page" },
         react_1.default.createElement("h1", null, "Kafka Monitor: Your Metrics in a Nutshell"),
         react_1.default.createElement("h2", null, "Enter your Prometheus port and a name for your new metrics shell to get started!"),
@@ -65,7 +91,7 @@ const Home = () => {
             react_1.default.createElement("label", null,
                 react_1.default.createElement("br", null),
                 "Shell Name:",
-                react_1.default.createElement("input", { className: "form-control user-input", type: "text", name: "shellName", onChange: handleOnChange, required: true })),
+                react_1.default.createElement("input", { className: "form-control user-input", type: "text", name: "nickname", onChange: handleOnChange, required: true })),
             react_1.default.createElement("br", null),
             react_1.default.createElement("br", null),
             react_1.default.createElement("button", { className: "btn btn-primary", type: "submit", onClick: handleSubmit }, "Submit"))));

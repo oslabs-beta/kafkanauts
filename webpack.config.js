@@ -10,7 +10,7 @@ const defaultInclude = path.resolve(__dirname, 'src');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './src/index.js',
+  entry: './src/components/App.tsx',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
@@ -24,9 +24,15 @@ module.exports = {
         include: defaultInclude,
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         use: [{ loader: 'babel-loader' }],
         include: defaultInclude,
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: ['ts-loader'],
       },
       {
         test: /\.(jpe?g|png|gif)$/,
@@ -38,6 +44,7 @@ module.exports = {
         use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
         include: defaultInclude,
       },
+
     ],
   },
   target: 'electron-renderer',
@@ -59,6 +66,7 @@ module.exports = {
     hot: true,
     proxy: {
       '/api': 'http://localhost:3000',
+      secure: false
     },
     before() {
       spawn('electron', ['.'], { shell: true, env: process.env, stdio: 'inherit' })
@@ -67,6 +75,6 @@ module.exports = {
     },
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };
