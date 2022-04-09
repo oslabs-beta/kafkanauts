@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DarkMode from "../chart_components/DarkMode";
+import RealTimeChart from "../chart_components/RealTimeChart";
 
 
 const client = axios.create({
   baseURL: 'http://localhost:8080/api/',
 });
 
+
+//create another state to store the array and control
+//implement Que to store the data? of Array?
 const SpecificMetric = ({ metricName } : {metricName: any}) => {
   const [metrics, setMetrics] = useState({
     kafka_server_brokertopicmetrics_bytesin_total: -Infinity,
@@ -18,6 +21,8 @@ const SpecificMetric = ({ metricName } : {metricName: any}) => {
     kafka_server_brokertopicmetrics_failedproducerequests_total: -Infinity,
     kafka_server_brokertopicmetrics_totalproducerequests_total: -Infinity,
   });
+
+  // console.log('this is metrics1', metrics.kafka_server_brokertopicmetrics_totalproducerequests_total);
 
   useEffect(() => {
     (async function () {
@@ -49,7 +54,7 @@ const SpecificMetric = ({ metricName } : {metricName: any}) => {
         return <p>Error in retrieving metrics</p>;
       }
     })()
-  })
+  }, [])
 
   return (
     <>
@@ -103,7 +108,7 @@ const SpecificMetric = ({ metricName } : {metricName: any}) => {
                   Total Bytes Rejected:{' '}
                   {metrics.kafka_server_brokertopicmetrics_bytesrejected_total} KBs
                 </li>
-                <li><DarkMode /></li>
+                <li><RealTimeChart metrics={metrics}/></li>
               </ul>
             );
           default:
