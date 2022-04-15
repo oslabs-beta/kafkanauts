@@ -60,4 +60,3 @@ export interface ServerError {
   status?: number;
   message: { err: string };
 };
-
