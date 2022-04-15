@@ -57,7 +57,7 @@ const SpecificMetric = ({ metricName }: { metricName: any }) => {
     })()
   }, [])
 
-  console.log("test", metrics.kafka_controller_kafkacontroller_globalpartitioncount)
+  // console.log("test", metrics.kafka_controller_kafkacontroller_globalpartitioncount)
 
   return (
     <>
