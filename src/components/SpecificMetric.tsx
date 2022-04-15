@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RealTimeChart from "../chart_components/RealTimeChart";
-
+import './SpecificMetric.css'
 
 const client = axios.create({
   baseURL: 'http://localhost:8080/api/',
@@ -10,7 +10,7 @@ const client = axios.create({
 
 //create another state to store the array and control
 //implement Que to store the data? of Array?
-const SpecificMetric = ({ metricName } : {metricName: any}) => {
+const SpecificMetric = ({ metricName }: { metricName: any }) => {
   const [metrics, setMetrics] = useState({
     kafka_server_brokertopicmetrics_bytesin_total: -Infinity,
     kafka_server_brokertopicmetrics_bytesout_total: -Infinity,
@@ -36,14 +36,15 @@ const SpecificMetric = ({ metricName } : {metricName: any}) => {
           client.get('/topic/total-count'),
         ];
         const metricsResponses = await Promise.all(metricsRequests);
-        const metricsResponsesParse = metricsResponses.reduce((acc:any, curr:any) => {
+        const metricsResponsesParse = metricsResponses.reduce((acc: any, curr: any) => {
           const { data } = curr;
           acc[data[0].metric.__name__] = data[0].value[1];
           return acc;
         }, {});
 
         const { data } = await client.get('/topic/metrics');
-        const byteMetrics = data.reduce((acc:any, curr:any) => {
+
+        const byteMetrics = data.reduce((acc: any, curr: any) => {
           const index = curr[0];
           acc[index.metric.__name__] = index.value[1];
           return acc;
@@ -56,22 +57,32 @@ const SpecificMetric = ({ metricName } : {metricName: any}) => {
     })()
   }, [])
 
+  console.log("test", metrics.kafka_controller_kafkacontroller_globalpartitioncount)
+
   return (
     <>
       {((metricName) => {
         switch (metricName) {
           case 'Partition':
             return (
-              <ul>
-                <li>
-                  Total Partition Count:{' '}
-                  {metrics.kafka_controller_kafkacontroller_globalpartitioncount}
-                </li>
-                <li>
-                  Offline Partition Count:{' '}
-                  {metrics.kafka_controller_kafkacontroller_offlinepartitionscount}
-                </li>
-              </ul>
+
+              <div className='container'>
+                <div>
+                  <div>Total Partition Count:{' '}</div>
+                  <div className={metrics.kafka_controller_kafkacontroller_globalpartitioncount <= 0 ? 'rectangle-red' : 'rectangle-green'} >
+                    {metrics.kafka_controller_kafkacontroller_globalpartitioncount}
+                  </div>
+                </div>
+                <div>
+                  <div>Offline Partition Count:{' '}</div>
+                  <div style={{display: "grid"}}>
+                  <div className={metrics.kafka_controller_kafkacontroller_offlinepartitionscount <= 0 ? 'rectangle-red' : 'rectangle-green'} style={{position: "relative"}}>
+                    {metrics.kafka_controller_kafkacontroller_offlinepartitionscount}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             );
           case 'Producer':
             return (
@@ -108,7 +119,7 @@ const SpecificMetric = ({ metricName } : {metricName: any}) => {
                   Total Bytes Rejected:{' '}
                   {metrics.kafka_server_brokertopicmetrics_bytesrejected_total} KBs
                 </li>
-                <li><RealTimeChart metrics={metrics}/></li>
+                <li><RealTimeChart metrics={metrics} /></li>
               </ul>
             );
           default:

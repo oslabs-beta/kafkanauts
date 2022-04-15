@@ -25,7 +25,6 @@ export default function DarkMode(props) {
 
   type MyDatum = { primary: Date, secondary: number }
   
-
   const data = [
     {
       data: [
