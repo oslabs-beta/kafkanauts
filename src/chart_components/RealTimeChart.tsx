@@ -3,7 +3,7 @@ import ResizableBox from "../ResizableBox";
 import React from "react";
 import { AxisOptions, Chart } from "react-charts";
 
-export default function DarkMode(props) {
+export default function DarkMode(props): JSX.Element {
   // const { data, randomizeData } = useDemoConfig({
   //   series: 10,
   //   dataType: "time",

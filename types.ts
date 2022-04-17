@@ -60,3 +60,10 @@ export interface ServerError {
   status?: number;
   message: { err: string };
 };
+
+export interface Queries {
+  queryKey: string,
+  queryFn: () => Promise<any>,
+  refetchInterval: number,
+  refetchIntervalInBackground: boolean
+}
