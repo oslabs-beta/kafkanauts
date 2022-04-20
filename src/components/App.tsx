@@ -4,8 +4,8 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import Dashboard from './Dashboard';
 import Home from './Home';
 // import './style.scss';
-import './app.scss';
-import 'bootstrap/dist/css/bootstrap.css';
+import '../scss/App.scss';
+// import 'bootstrap/dist/css/bootstrap.css';
 
 
 const queryClient = new QueryClient()
