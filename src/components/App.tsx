@@ -3,10 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import Dashboard from './Dashboard';
 import Home from './Home';
-// import './style.scss';
 import '../scss/App.scss';
-// import 'bootstrap/dist/css/bootstrap.css';
-
 
 const queryClient = new QueryClient()
 
