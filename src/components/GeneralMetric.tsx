@@ -5,6 +5,8 @@ import PartitionData from '../chart_components/PartitionData';
 import InOutData from '../chart_components/InOutData';
 import ProducerData from '../chart_components/ProducerData';
 import TopicData from '../chart_components/TopicData';
+import ZookeeperData from '../chart_components/ZookeeperData';
+import ConsumerData from '../chart_components/ConsumerData';
 import { Queries } from '../../types'
 
 const axiosClient = axios.create({
@@ -19,13 +21,16 @@ const GeneralMetric = () => {
     '/producer/total-failed-count',
     '/topic/total-count',
     '/topic/metrics',
+    '/consumer/consumer-lag',
+    //'/consumer/consumer-total-time',
+    '/zookeeper/avg-latency',
     // add endpoint here and destructure result from the invocation of "useQueries" function below
   ]
 
   const queries: Queries[] = endpoints.map(endpoint => ({
     queryKey: endpoint,
     queryFn: () => axiosClient.get(endpoint).then(res => res.data),
-    refetchInterval: 2000,
+    refetchInterval: 1000,
     refetchIntervalInBackground: true,
   }))
 
@@ -36,6 +41,9 @@ const GeneralMetric = () => {
     producerTotalFailCount,
     topicTotalCount,
     topicMetrics,
+    consumerLag,
+    //consumerTotalTime,
+    avgLatency,
     // destructure result here
   ] = useQueries(queries)
 
@@ -46,6 +54,8 @@ const GeneralMetric = () => {
       <ProducerData producerTotalReqCount={producerTotalReqCount} producerTotalFailCount={producerTotalFailCount}/>
       <TopicData topicTotalCount={topicTotalCount}/>
       <InOutData topicMetrics={topicMetrics}/>
+      <ConsumerData consumerLag={consumerLag} />
+      <ZookeeperData avgLatency={avgLatency} />
     </>
   )
 };
