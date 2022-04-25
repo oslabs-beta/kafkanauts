@@ -12,9 +12,10 @@ export type Port = number;
 
 export type Nickname = string;
 
-export interface State {
-  port: Port; 
-  nickname?: Nickname;
+export type Time = string;
+
+export interface timeState {
+  time: Time;
 };
 
 export type EventHandlers = {
@@ -22,12 +23,12 @@ export type EventHandlers = {
   onClick: (e: React.ChangeEventHandler<HTMLInputElement>) => void
 }
 
-export interface QueryProps extends State {
-  query: string;
-  port: Port; 
-  nickname: Nickname;
-  handleOnClick(query: string, port: Port): void;
-};
+// export interface QueryProps extends State {
+//   query: string;
+//   port: Port; 
+//   nickname: Nickname;
+//   handleOnClick(query: string, port: Port): void;
+// };
 
 
 export interface ProducerController {
@@ -48,6 +49,7 @@ export interface PromPortController {
   isPromPortUp: RequestHandler;
   savePortToElectronStore: RequestHandler;
   getSavedPortFromElectronStore: RequestHandler;
+  getSavedStartTimeFromElectronStore: RequestHandler;
 };
 
 export interface PartitionController {

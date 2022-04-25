@@ -14,12 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const electron_store_1 = __importDefault(require("electron-store"));
+//import React from 'react';
 //import consumerController from './consumerController';
 const schema = {
     port: {
         type: 'string',
     },
     nickname: {
+        type: 'string',
+    },
+    time: {
         type: 'string',
     }
 };
@@ -47,14 +51,43 @@ const promPortController = {
         });
     },
     savePortToElectronStore(req, res, next) {
-        const { port, nickname } = req.body;
+        const { port, nickname, time } = req.body;
         db.set('port', port);
         db.set('nickname', nickname);
+        db.set('time', time);
         return next();
     },
     getSavedPortFromElectronStore(req, res, next) {
         const port = db.get('port');
         res.locals.port = port;
+        return next();
+    },
+    getSavedStartTimeFromElectronStore(req, res, next) {
+        const time = db.get('time');
+        res.locals.time = time;
+        return next();
+    },
+    getSavedIntervalFromElectronStore(req, res, next) {
+        res.locals.interval = 60;
+        const endTime = res.locals.time;
+        console.log(`endTime: ${endTime}`);
+        // let startTime = new Date();
+        // console.log(`startTime: ${startTime}`);
+        let difference = new Date().getTime() - new Date(endTime).getTime();
+        console.log('DIFFERENCE', difference);
+        if (difference < 60000) {
+            res.locals.interval = 1;
+        }
+        if (difference > 60000 && difference < 300000) {
+            res.locals.interval = 60;
+        }
+        if (difference > 360000 && difference < 7200000) {
+            res.locals.interval = 300;
+        }
+        if (difference > 14400000) {
+            res.locals.interval = 1800;
+        }
+        //return res.locals.interval;
         return next();
     }
 };
