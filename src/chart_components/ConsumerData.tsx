@@ -1,14 +1,17 @@
 import React from 'react'
 
-export default function ConsumerData({ consumerLag }): JSX.Element {
+export default function ConsumerData({ consumerLag, consumerTotalTime }): JSX.Element {
 
-  const dataObj = consumerLag.data;
-  let consumerLagMetric;
+  const dataObjArr = [ consumerLag.data, consumerTotalTime.data ];
 
-  for (let prop in dataObj) {
-    if (dataObj.hasOwnProperty(prop)) {
-      //let lastIdx = data
-      consumerLagMetric = dataObj[prop].values[0][1];
+  
+  let consumerMetrics = [];
+
+  for (let i = 0; i < dataObjArr.length; i += 1) {
+    for (let prop in dataObjArr[i]) {
+      if (dataObjArr[i].hasOwnProperty(prop)) {
+        consumerMetrics.push(dataObjArr[i][prop].values[0][1]);
+      }
     }
   }
 
@@ -17,9 +20,9 @@ export default function ConsumerData({ consumerLag }): JSX.Element {
     consumerLag.isLoading ? 
     <>Loading</> : 
     <ul>
-      <li>Consumer Lag: {consumerLagMetric} </li>
+      <li>Consumer Lag: {consumerMetrics[0]} </li>
       {/* <li><RealTimeChart metrics={metrics} /></li> */}
-      {/* <li>Consumer Total Time: {consumerTotalTime.data[0].value[1]} </li> */}
+      <li>Consumer Total Time: {consumerMetrics[1]} </li>
       {/* <li><RealTimeChart metrics={metrics} /></li> */}
     </ul>
   );

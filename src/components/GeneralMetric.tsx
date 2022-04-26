@@ -22,7 +22,7 @@ const GeneralMetric = () => {
     '/topic/total-count',
     '/topic/metrics',
     '/consumer/consumer-lag',
-    //'/consumer/consumer-total-time',
+    '/consumer/consumer-total-time',
     '/zookeeper/avg-latency',
     // add endpoint here and destructure result from the invocation of "useQueries" function below
   ]
@@ -42,7 +42,7 @@ const GeneralMetric = () => {
     topicTotalCount,
     topicMetrics,
     consumerLag,
-    //consumerTotalTime,
+    consumerTotalTime,
     avgLatency,
     // destructure result here
   ] = useQueries(queries)
@@ -54,7 +54,7 @@ const GeneralMetric = () => {
       <ProducerData producerTotalReqCount={producerTotalReqCount} producerTotalFailCount={producerTotalFailCount}/>
       <TopicData topicTotalCount={topicTotalCount}/>
       <InOutData topicMetrics={topicMetrics}/>
-      <ConsumerData consumerLag={consumerLag} />
+      <ConsumerData consumerLag={consumerLag} consumerTotalTime={consumerTotalTime} />
       <ZookeeperData avgLatency={avgLatency} />
     </>
   )

@@ -24,7 +24,7 @@ const GeneralMetric = () => {
         '/topic/total-count',
         '/topic/metrics',
         '/consumer/consumer-lag',
-        //'/consumer/consumer-total-time',
+        '/consumer/consumer-total-time',
         '/zookeeper/avg-latency',
         // add endpoint here and destructure result from the invocation of "useQueries" function below
     ];
@@ -34,9 +34,7 @@ const GeneralMetric = () => {
         refetchInterval: 1000,
         refetchIntervalInBackground: true,
     }));
-    const [partitionTotalCount, partitionOfflineCount, producerTotalReqCount, producerTotalFailCount, topicTotalCount, topicMetrics, consumerLag, 
-    //consumerTotalTime,
-    avgLatency,
+    const [partitionTotalCount, partitionOfflineCount, producerTotalReqCount, producerTotalFailCount, topicTotalCount, topicMetrics, consumerLag, consumerTotalTime, avgLatency,
     // destructure result here
     ] = (0, react_query_1.useQueries)(queries);
     return (react_1.default.createElement(react_1.default.Fragment, null,
@@ -44,7 +42,7 @@ const GeneralMetric = () => {
         react_1.default.createElement(ProducerData_1.default, { producerTotalReqCount: producerTotalReqCount, producerTotalFailCount: producerTotalFailCount }),
         react_1.default.createElement(TopicData_1.default, { topicTotalCount: topicTotalCount }),
         react_1.default.createElement(InOutData_1.default, { topicMetrics: topicMetrics }),
-        react_1.default.createElement(ConsumerData_1.default, { consumerLag: consumerLag }),
+        react_1.default.createElement(ConsumerData_1.default, { consumerLag: consumerLag, consumerTotalTime: consumerTotalTime }),
         react_1.default.createElement(ZookeeperData_1.default, { avgLatency: avgLatency })));
 };
 exports.default = GeneralMetric;

@@ -4,11 +4,6 @@ import topicRouter from './routers/topicsRouter';
 import promPortRouter from './routers/promPortRouter';
 import consumerRouter from './routers/consumerRouter';
 import zookeeperRouter from './routers/zookeeperRouter';
-// import { partitionController } from './controllers/partitionController';
-// import { producerController } from './controllers/producerController';
-// import { promPortController } from './controllers/promPortController';
-// import { topicsController } from './controllers/topicsController';
-// import { consumerController } from './controllers/consumerController';
 import express, { Request, Response, NextFunction } from 'express';
 import { ServerError } from '../types';
 
