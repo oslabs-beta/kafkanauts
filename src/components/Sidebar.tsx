@@ -10,33 +10,6 @@ import { Link } from 'react-router-dom';
 const Sidebar = (props = {}) => {
   const location = useLocation();
   const { pathname } = location;
-  const [show, setShow] = useState(false);
-  const showClass = show ? "show" : "";
-
-  const onCollapse = () => setShow(!show);
-
-  const CollapsableNavItem = (props) => {
-    const { eventKey, title, icon, children = null } = props;
-    const defaultKey = pathname.indexOf(eventKey) !== -1 ? eventKey : "";
-
-    return (
-      <Accordion as={Nav.Item} defaultActiveKey={defaultKey}>
-        <Accordion.Item eventKey={eventKey}>
-          <Accordion.Button as={Nav.Link} className="d-flex justify-content-between align-items-center">
-            <span>
-              <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span>
-              <span className="sidebar-text">{title}</span>
-            </span>
-          </Accordion.Button>
-          <Accordion.Body className="multi-level">
-            <Nav className="flex-column">
-              {children}
-            </Nav>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-    );
-  };
 
   const NavItem = (props) => {
     const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
@@ -45,8 +18,7 @@ const Sidebar = (props = {}) => {
     const linkProps = external ? { href: link } : { as: Link, to: link };
 
     return (
-      <Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
-        {/* <Nav.Link {...linkProps} target={target} className={classNames}>
+      <Nav.Item className={navItemClassName}>
           <span>
             {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
             {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
@@ -56,7 +28,6 @@ const Sidebar = (props = {}) => {
           {badgeText ? (
             <Badge pill bg={badgeBg} text={badgeColor} className="badge-md notification-count ms-2">{badgeText}</Badge>
           ) : null}
-        </Nav.Link> */}
       </Nav.Item>
     );
   };
@@ -64,12 +35,12 @@ const Sidebar = (props = {}) => {
   return (
     <>
       <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none">
-        <Navbar.Toggle as={Button} aria-controls="main-navbar" onClick={onCollapse}>
+        <Navbar.Toggle as={Button} aria-controls="main-navbar" >
           <span className="navbar-toggler-icon" />
         </Navbar.Toggle>
       </Navbar>
-      <CSSTransition timeout={300} in={show} classNames="sidebar-transition">
-        <SimpleBar className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}>
+      <CSSTransition timeout={300} classNames="sidebar-transition">
+        <SimpleBar className={`collapse sidebar d-md-block bg-primary text-white`}>
           <div className="sidebar-inner px-4 pt-3">
             <div className="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
               <div className="d-flex align-items-center">
@@ -79,67 +50,19 @@ const Sidebar = (props = {}) => {
                   <h6>Hi, Jane</h6>
                 </div>
               </div>
-              <Nav.Link className="collapse-close d-md-none" onClick={onCollapse}>
+              <Nav.Link className="collapse-close d-md-none">
                 <FontAwesomeIcon icon={faTimes} />
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Volt React" />
-
+              <NavItem title="Kafka Monitor" />
+              <Dropdown.Divider className="my-3 border-white" />
               <NavItem title="Overview" icon={faChartPie} />
-              <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} />
-              <NavItem title="Transactions" icon={faHandHoldingUsd} />
-              <NavItem title="Settings" icon={faCog} />
-              <NavItem external title="Calendar" link="https://demo.themesberg.com/volt-pro-react/#/calendar" target="_blank" badgeText="Pro" icon={faCalendarAlt} />
-              <NavItem external title="Map" link="https://demo.themesberg.com/volt-pro-react/#/map" target="_blank" badgeText="Pro" icon={faMapPin} />
-
-              <CollapsableNavItem eventKey="tables/" title="Tables" icon={faTable}>
-                <NavItem title="Bootstrap Table" />
-              </CollapsableNavItem>
-
-              <CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
-                <NavItem title="Sign In" />
-                <NavItem title="Sign Up" />
-                <NavItem title="Forgot password" />
-                <NavItem title="Reset password" />
-                <NavItem title="Lock" />
-                <NavItem title="404 Not Found" />
-                <NavItem title="500 Server Error" />
-              </CollapsableNavItem>
-
-              <NavItem external title="Plugins" link="https://demo.themesberg.com/volt-pro-react/#/plugins/datatable" target="_blank" badgeText="Pro" icon={faChartPie} />
-
-              <Dropdown.Divider className="my-3 border-indigo" />
-
-              <CollapsableNavItem eventKey="documentation/" title="Getting Started" icon={faBook}>
-                <NavItem title="Overview" />
-                <NavItem title="Download" />
-                <NavItem title="Quick Start" />
-                <NavItem title="License" />
-                <NavItem title="Folder Structure" />
-                <NavItem title="Build Tools" />
-                <NavItem title="Changelog" />
-              </CollapsableNavItem>
-              <CollapsableNavItem eventKey="components/" title="Components" icon={faBoxOpen}>
-                <NavItem title="Accordion" />
-                <NavItem title="Alerts" />
-                <NavItem title="Badges" />
-                <NavItem external title="Widgets" link="https://demo.themesberg.com/volt-pro-react/#/components/widgets" target="_blank" badgeText="Pro" />
-                <NavItem title="Breadcrumbs" />
-                <NavItem title="Buttons" />
-                <NavItem title="Forms" />
-                <NavItem title="Modals" />
-                <NavItem title="Navbars" />
-                <NavItem title="Navs" />
-                <NavItem title="Pagination" />
-                <NavItem title="Popovers" />
-                <NavItem title="Progress" />
-                <NavItem title="Tables" />
-                <NavItem title="Tabs" />
-                <NavItem title="Toasts" />
-                <NavItem title="Tooltips" />
-              </CollapsableNavItem>
-              <NavItem external title="Themesberg" link="https://themesberg.com" target="_blank"m />
+              <NavItem title="Consumer" icon={faInbox} />
+              <NavItem title="Producer" icon={faHandHoldingUsd} />
+              <NavItem title="Topics" icon={faCog} />
+              <NavItem title="Zookeeper" icon={faCalendarAlt} />
+              <NavItem title="Map"icon={faMapPin} />
             </Nav>
           </div>
         </SimpleBar>
