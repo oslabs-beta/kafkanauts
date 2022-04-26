@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const topicsController_1 = __importDefault(require("../controllers/topicsController"));
 const promPortController_1 = __importDefault(require("../controllers/promPortController"));
-const router = express_1.Router();
+const router = (0, express_1.Router)();
 router.get('/total-count', promPortController_1.default.getSavedPortFromElectronStore, topicsController_1.default.totalTopicCount, (req, res) => {
     return res.status(200).json(res.locals.totalTopicCount);
 });

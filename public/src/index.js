@@ -6,5 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const react_dom_1 = require("react-dom");
 const App_1 = __importDefault(require("./components/App"));
-react_dom_1.render(react_1.default.createElement(react_1.default.StrictMode, null,
+// core styles
+require("./volt_scss/volt.scss");
+// vendor styles
+// import "react-datetime/css/react-datetime.css";
+(0, react_dom_1.render)(react_1.default.createElement(react_1.default.StrictMode, null,
     react_1.default.createElement(App_1.default, null)), document.getElementById('root'));
