@@ -36,45 +36,42 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="home-page">
-      <div className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
-        <Container>
-          <Row className="justify-content-center form-bg-image">
-            <Col xs={12} className="d-flex align-items-center justify-content-center">
-              <div className="bg-bgBlue shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                <div className="text-center text-md-center mb-4 mt-md-0">
-                  <h3 className="mb-0">Kafka Monitor: Your Metrics in a Nutshell</h3>
-                </div>
-                <Form className="mt-4">
-                  <Form.Group id="email" className="mb-4">
-                    <Form.Label>Enter Prometheus Port</Form.Label>
+    <div className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
+      <Container>
+        <Row className="justify-content-center">
+          <Col xs={12} className="d-flex align-items-center justify-content-center">
+            <div className="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+              <div className="text-center text-md-center mb-4 mt-md-0">
+                <h3 className="mb-0">Kafka Monitor</h3>
+                <h5>Your Metrics in a Nutshell</h5>
+              </div>
+              <Form className="mt-4">
+                <Form.Group id="port-name" className="mb-4">
+                  <Form.Label>Enter Prometheus Port</Form.Label>
+                  <InputGroup>
+                    <InputGroup.Text>
+                      <FontAwesomeIcon icon={faFileExport} />
+                    </InputGroup.Text>
+                    <Form.Control autoFocus required type="text" name="port" placeholder="9090" onChange={handleOnChange}/>
+                  </InputGroup>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Group id="nickname" className="mb-4">
+                    <Form.Label>Cluster Nickname</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>
-                      <FontAwesomeIcon icon={faFileExport} />
+                        <FontAwesomeIcon icon={faUserAstronaut} />
                       </InputGroup.Text>
-                      <Form.Control autoFocus required type="text" name="port" placeholder="9090" onChange={handleOnChange}/>
+                      <Form.Control type="text" name="nickname" placeholder="Aekorn" onChange={handleOnChange}/>
                     </InputGroup>
                   </Form.Group>
-                  <Form.Group>
-                    <Form.Group id="password" className="mb-4">
-                      <Form.Label>Cluster Nickname</Form.Label>
-                      <InputGroup>
-                        <InputGroup.Text>
-                          <FontAwesomeIcon icon={faUserAstronaut} />
-                        </InputGroup.Text>
-                        <Form.Control type="text" name="nickname" placeholder="Aekorn" onChange={handleOnChange}/>
-                      </InputGroup>
-                    </Form.Group>
-                  </Form.Group>
-                  <Button variant="primary" type="submit" className="w-100" onClick={handleSubmit}>
-                    Submit
-                  </Button>
-                </Form>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+                </Form.Group>
+                <Button variant="primary" type="submit" className="w-100 mt-2" onClick={handleSubmit}>Submit</Button>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
