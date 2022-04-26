@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Port, Nickname } from '../../types';
-//import { StringDecoder } from 'string_decoder';
 
 interface HomeState {
   port: Port,

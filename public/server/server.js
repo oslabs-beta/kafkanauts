@@ -17,7 +17,7 @@ const express_1 = __importDefault(require("express"));
 const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
-const app = (0, express_1.default)();
+const app = express_1.default();
 const PORT = process.env.PORT || 8080;
 // const consumerRouter = require('./routers/consumerRouter');
 app.use(cors());

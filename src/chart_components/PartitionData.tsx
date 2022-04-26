@@ -20,7 +20,7 @@ export default function PartitionData({partitionTotalCount, partitionOfflineCoun
         {
           partitionOfflineCount.isLoading ?
           <>Loading</> : 
-          <div className={partitionOfflineCount.data[0].value[1] >= 3 ? 'rectangle-red' : 'rectangle-green'} style={{position: "relative"}}>
+          <div className={partitionOfflineCount.data[0].value[1] >= 1 ? 'rectangle-red' : 'rectangle-green'} style={{position: "relative"}}>
             {partitionOfflineCount.data[0].value[1]}
           </div>
         }

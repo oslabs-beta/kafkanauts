@@ -34,8 +34,7 @@ const topicsController = {
                 const topicMetrics = [
                     axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesin_total`),
                     axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesout_total`),
-                    axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesrejected_total`), //example: https://i.imgur.com/RH40ocK.png
-                    // axios.get(`http://localhost:${port}/api/v1/query?query=`), // put another relevant query here
+                    axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_server_brokertopicmetrics_bytesrejected_total`),
                 ];
                 const axiosGetAll = yield Promise.all(topicMetrics);
                 const destructureResults = axiosGetAll.map(promResult => promResult.data.data.result);

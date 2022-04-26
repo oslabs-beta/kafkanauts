@@ -14,7 +14,6 @@ const schema:any = {
 }
 
 const db = new ElectronStore({schema});
-//çconsole.log("electronStore DB", db);
 const promPortController = {
   async isPromPortUp(req: Request, res: Response, next: NextFunction) {
     const { port } = req.body;

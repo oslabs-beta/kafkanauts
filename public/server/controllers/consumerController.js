@@ -26,7 +26,6 @@ const consumerController = {
             catch (e) {
                 return next(e);
             }
-            0;
         });
     }
 };
