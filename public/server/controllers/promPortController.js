@@ -28,7 +28,6 @@ const schema = {
     }
 };
 const db = new electron_store_1.default({ schema });
-//çconsole.log("electronStore DB", db);
 const promPortController = {
     isPromPortUp(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {

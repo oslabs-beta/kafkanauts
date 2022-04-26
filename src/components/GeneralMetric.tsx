@@ -47,7 +47,7 @@ const GeneralMetric = () => {
     // destructure result here
   ] = useQueries(queries)
 
-  
+ 
   return (
     <>
       <PartitionData partitionTotalCount={partitionTotalCount} partitionOfflineCount={partitionOfflineCount}/>
