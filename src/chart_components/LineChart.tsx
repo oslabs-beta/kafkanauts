@@ -3,23 +3,8 @@ import ResizableBox from "../ResizableBox";
 import React from "react";
 import { AxisOptions, Chart } from "react-charts";
 
-export default function DarkMode(props): JSX.Element {
-  // const { data, randomizeData } = useDemoConfig({
-  //   series: 10,
-  //   dataType: "time",
-  // });
-
-  // console.log('this is data', data)
-
-
-  // const { randomizeData } = useDemoConfig({
-  //   series: 10,
-  //   dataType: "time",
-  // });
-
-  // kafka_server_brokertopicmetrics_bytesin_total
-  // kafka_server_brokertopicmetrics_bytesout_total
-  // kafka_server_brokertopicmetrics_bytesrejected_total
+export default function LineChart({ metrics, title }): JSX.Element {
+  console.log('metrics: ', metrics)
 
   const date = new Date();
 

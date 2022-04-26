@@ -36,7 +36,7 @@ const Home = () => {
     });
     const navigate = (0, react_router_dom_1.useNavigate)();
     const handleOnChange = (e) => {
-        setInput(Object.assign(Object.assign({}, input), { [e.target.name]: e.target.value }));
+        setInput(Object.assign(Object.assign({}, input), { [e.currentTarget.name]: e.currentTarget.value }));
         //console.log(state);
     };
     const handleSubmit = (e) => {
@@ -55,32 +55,6 @@ const Home = () => {
             console.log(err);
         });
     };
-    // const Home = () => {
-    //   const navigate = useNavigate();
-    //   const [state, setState] = useState({
-    //     port: '',
-    //     shellName: '',
-    //   });
-    //   const handleOnChange = (e:any) => {
-    //     setState({ ...state, [e.target.name]: e.target.value });
-    //     //console.log(state);
-    //   };
-    //   const handleSubmit = (e:any) => {
-    //     //console.log('You clicked handleSubmit!')
-    //     e.preventDefault();
-    //     axios
-    //       .post('http://localhost:8080/api/prom-port', {
-    //         port: state.port,
-    //         shellName: state.shellName,
-    //       })
-    //       .then((res) => {
-    //         console.log(res);
-    //         navigate('/dashboard');
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   };
     return (react_1.default.createElement("div", { className: "home-page" },
         react_1.default.createElement("h1", null, "Kafka Monitor: Your Metrics in a Nutshell"),
         react_1.default.createElement("h2", null, "Enter your Prometheus port and a name for your new metrics shell to get started!"),
@@ -90,7 +64,7 @@ const Home = () => {
                 react_1.default.createElement("input", { className: "form-control user-input", type: "text", name: "port", onChange: handleOnChange, required: true })),
             react_1.default.createElement("label", null,
                 react_1.default.createElement("br", null),
-                "Shell Name:",
+                "Nickname:",
                 react_1.default.createElement("input", { className: "form-control user-input", type: "text", name: "nickname", onChange: handleOnChange, required: true })),
             react_1.default.createElement("br", null),
             react_1.default.createElement("br", null),
