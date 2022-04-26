@@ -14,19 +14,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const consumerController = {
-    getConsumerTotalTime(req, res, next) {
+    // async consumerTotalTime (req: Request, res: Response, next: NextFunction) {
+    //   try {
+    //     const { port, time, interval } = res.locals;
+    //     const { data: { data: { result } } } = await axios.get(`http://localhost:${port}/api/v1/query_range?query=kafka_network_requestmetrics_totaltimems{request="FetchConsumer"}&start=${time}&end=${new Date().toISOString}&step=${interval}`);
+    //     //kafka_network_requestmetrics_totaltimems{request="FetchConsumer"}&start=${new Date().setDate(date.getDate() - 1).toISOString()}&end=${new Date().toISOString()}&step=${interval.toString()}s
+    //     res.locals.consumerTotalTime = result;
+    //     return next();
+    //   } catch(e) {
+    //     return next(e);
+    //   }
+    // },
+    consumerLag(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { port } = res.locals;
-                const { data: { data: { result } } } = yield axios_1.default.get(`http://localhost:${port}/api/v1/query_range?query=kafka_network_requestmetrics_totaltimems{request="FetchConsumer"}`);
-                //kafka_network_requestmetrics_totaltimems{request="FetchConsumer"}&start=${new Date().setDate(date.getDate() - 1).toISOString()}&end=${new Date().toISOString()}&step=${interval.toString()}s
-                res.locals.consumerTotalTime = result;
+                const { port, interval } = res.locals;
+                const url = `http://localhost:${port}/api/v1/query_range?query=kafka_server_delayedfetchmetrics_expirespersec_fetchertype_consumer&start=${new Date().toISOString()}&end=${new Date().toISOString()}&step=${interval}s`;
+                console.log('url: ', url);
+                const { data: { data: { result } } } = yield axios_1.default.get(url);
+                res.locals.consumerLag = result;
                 return next();
             }
             catch (e) {
                 return next(e);
             }
-            0;
         });
     }
 };

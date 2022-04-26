@@ -3,6 +3,7 @@ import producerRouter from './routers/producerRouter';
 import topicRouter from './routers/topicsRouter';
 import promPortRouter from './routers/promPortRouter';
 import consumerRouter from './routers/consumerRouter';
+import zookeeperRouter from './routers/zookeeperRouter';
 // import { partitionController } from './controllers/partitionController';
 // import { producerController } from './controllers/producerController';
 // import { promPortController } from './controllers/promPortController';
@@ -36,12 +37,13 @@ app.use('/api/consumer', consumerRouter);
 app.use('/api/partition', partitionRouter);
 app.use('/api/producer', producerRouter);
 app.use('/api/topic', topicRouter);
+app.use('/api/zookeeper', zookeeperRouter);
 
 
-//app.use((req, res) => res.sendStatus(404));
+app.use((req, res) => res.sendStatus(404));
 
 //global error handler
-app.use('/', (err: ServerError, req: Request, res: Response, next: NextFunction) => {
+app.use((err: ServerError, req: Request, res: Response, next: NextFunction) => {
   const defaultError = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
