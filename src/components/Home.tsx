@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Port, Nickname } from '../../types';
+import { Port, Nickname, Time } from '../../types';
 
 interface HomeState {
   port: Port,
   nickname: Nickname,
-  //setState: React.Dispatch<React.SetStateAction<State>>;
+  time: Time,
 }
 
 
@@ -14,7 +14,8 @@ const Home: React.FC = () => {
 
   const [ input, setInput ] = useState<HomeState>({
     port: null,
-    nickname: null
+    nickname: null,
+    time: null,
   })
 
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const Home: React.FC = () => {
       .post('http://localhost:8080/api/prom-port', {
         port: input.port,
         nickname: input.nickname,
+        time: new Date().toISOString(),
       })
       .then((res) => {
         console.log(res);

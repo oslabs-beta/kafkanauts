@@ -16,7 +16,8 @@ const axios_1 = __importDefault(require("axios"));
 const Home = () => {
     const [input, setInput] = react_1.useState({
         port: null,
-        nickname: null
+        nickname: null,
+        time: null,
     });
     const navigate = react_router_dom_1.useNavigate();
     const handleOnChange = (e) => {
@@ -30,6 +31,7 @@ const Home = () => {
             .post('http://localhost:8080/api/prom-port', {
             port: input.port,
             nickname: input.nickname,
+            time: new Date().toISOString(),
         })
             .then((res) => {
             console.log(res);
