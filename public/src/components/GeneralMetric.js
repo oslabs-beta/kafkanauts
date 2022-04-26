@@ -26,7 +26,6 @@ const GeneralMetric = () => {
         '/consumer/consumer-lag',
         //'/consumer/consumer-total-time',
         '/zookeeper/avg-latency',
-        // add endpoint here and destructure result from the invocation of "useQueries" function below
     ];
     const queries = endpoints.map(endpoint => ({
         queryKey: endpoint,
@@ -36,9 +35,7 @@ const GeneralMetric = () => {
     }));
     const [partitionTotalCount, partitionOfflineCount, producerTotalReqCount, producerTotalFailCount, topicTotalCount, topicMetrics, consumerLag, 
     //consumerTotalTime,
-    avgLatency,
-    // destructure result here
-    ] = (0, react_query_1.useQueries)(queries);
+    avgLatency,] = react_query_1.useQueries(queries);
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(PartitionData_1.default, { partitionTotalCount: partitionTotalCount, partitionOfflineCount: partitionOfflineCount }),
         react_1.default.createElement(ProducerData_1.default, { producerTotalReqCount: producerTotalReqCount, producerTotalFailCount: producerTotalFailCount }),
