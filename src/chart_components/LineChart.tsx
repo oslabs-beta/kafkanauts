@@ -1,17 +1,23 @@
 import ResizableBox from "../ResizableBox";
-// import useDemoConfig from "../useDemoConfig";
-import React from "react";
+import React, { useState } from "react";
 import { AxisOptions, Chart } from "react-charts";
 
 export default function LineChart({ metrics, title }): JSX.Element {
   console.log('metrics: ', metrics)
-
+  const [lineData, setLineData] = useState([])
   const date = new Date();
 
   type MyDatum = { primary: Date, secondary: number }
-  
-  const data = [
+  const data = []
+  metrics.data.bytesIn.forEach(([topicName, bytes]) => {
+    data.push({
+      label: topicName,
+      data: []
+    })
+  })
+  const data1 = [
     {
+      label: "Topic 1",
       data: [
         {
           primary: new Date(date.getTime() + 10000),
@@ -22,9 +28,9 @@ export default function LineChart({ metrics, title }): JSX.Element {
           secondary: 99.4
         },
       ],
-      label: "Total Bytes Out"
     },
     {
+      label: "Topic 2",
       data: [
         {
           primary: new Date(date.getTime() + 10000),
@@ -35,9 +41,9 @@ export default function LineChart({ metrics, title }): JSX.Element {
           secondary: 52.4
         },
       ],
-      label: "Total Bytes In"
     },
     {
+      label: "Total Bytes Rejected",
       data: [
         {
           primary: new Date(date.getTime() + 10000),
@@ -48,7 +54,6 @@ export default function LineChart({ metrics, title }): JSX.Element {
           secondary: 81.4
         },
       ],
-      label: "Total Bytes Rejected"
     }
   ]
 
@@ -107,7 +112,6 @@ export default function LineChart({ metrics, title }): JSX.Element {
               data,
               primaryAxis,
               secondaryAxes,
-
               dark: true,
             }}
           />
