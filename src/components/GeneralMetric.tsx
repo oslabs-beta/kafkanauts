@@ -30,7 +30,7 @@ const GeneralMetric = () => {
   const queries: Queries[] = endpoints.map(endpoint => ({
     queryKey: endpoint,
     queryFn: () => axiosClient.get(endpoint).then(res => res.data),
-    refetchInterval: 1000,
+    refetchInterval: 2000,
     refetchIntervalInBackground: true,
   }))
 
@@ -53,7 +53,7 @@ const GeneralMetric = () => {
       <PartitionData partitionTotalCount={partitionTotalCount} partitionOfflineCount={partitionOfflineCount}/>
       <ProducerData producerTotalReqCount={producerTotalReqCount} producerTotalFailCount={producerTotalFailCount}/>
       <TopicData topicTotalCount={topicTotalCount}/>
-      <InOutData topicMetrics={topicMetrics}/>
+      {topicMetrics.isLoading ? <>Loading</> : <InOutData topicMetrics={topicMetrics.data}/>}
       <ConsumerData consumerLag={consumerLag} />
       <ZookeeperData avgLatency={avgLatency} />
     </>
