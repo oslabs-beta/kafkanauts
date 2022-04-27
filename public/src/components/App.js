@@ -8,7 +8,6 @@ const react_router_dom_1 = require("react-router-dom");
 const react_query_1 = require("react-query");
 const Dashboard_1 = __importDefault(require("./Dashboard"));
 const Home_1 = __importDefault(require("./Home"));
-// import '../scss/App.scss';
 const queryClient = new react_query_1.QueryClient();
 function App() {
     return (react_1.default.createElement(react_query_1.QueryClientProvider, { client: queryClient },
