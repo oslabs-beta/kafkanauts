@@ -51,7 +51,6 @@ const GeneralMetric = () => {
 
   return (
     <>
-      {/* {topicMetrics.isLoading ? <>Loading</> : <InOutData topicMetrics={topicMetrics.data} />} */}
       <PartitionData
         partitionTotalCount={partitionTotalCount}
         partitionOfflineCount={partitionOfflineCount}
@@ -60,13 +59,10 @@ const GeneralMetric = () => {
         producerTotalReqCount={producerTotalReqCount}
         producerTotalFailCount={producerTotalFailCount}
       />
-      <TopicData topicTotalCount={topicTotalCount} />
+      {topicTotalCount.isLoading ? <>Loading</> : <TopicData topicTotalCount={topicTotalCount} />}
       <InOutData topicMetrics={topicMetrics} />
       <ConsumerData consumerLag={consumerLag} />
       <ZookeeperData avgLatency={avgLatency} />
-      <Col xs={12} sm={6} xl={4} className='mb-4'>
-        <CounterWidget category='Revenue' title='Test Widget' value='999' percentage={28.4} />
-      </Col>
     </>
   );
 };

@@ -2,14 +2,13 @@ import React from 'react';
 import GenericMetric from './GeneralMetric';
 import Sidebar from './Sidebar';
 import { Col, Row, Container } from '@themesberg/react-bootstrap';
-import CounterWidget from './Widgets';
 
 const Dashboard = () => {
 
   return (
-    <Container fluid>
+    <Container>
       <Row className='row flex-nowrap'>
-        <Col>
+        <Col xs={4}>
           <Sidebar />
         </Col>
         <Col>
