@@ -7,10 +7,10 @@ const express_1 = require("express");
 const producerController_1 = __importDefault(require("../controllers/producerController"));
 const promPortController_1 = __importDefault(require("../controllers/promPortController"));
 const router = (0, express_1.Router)();
-router.get('/total-request-count', promPortController_1.default.getSavedPortFromElectronStore, producerController_1.default.totalProducerRequests, (req, res) => {
-    return res.status(200).json(res.locals.totalProducerRequests); //also contains producer requests for EACH topic
-});
 router.get('/total-failed-count', promPortController_1.default.getSavedPortFromElectronStore, producerController_1.default.totalFailedProducerRequests, (req, res) => {
     return res.status(200).json(res.locals.totalFailedProducerRequests);
+});
+router.get('/producerMetrics', promPortController_1.default.getSavedPortFromElectronStore, producerController_1.default.totalProducerMetrics, (req, res) => {
+    return res.status(200).json(res.locals.totalProducerMetrics);
 });
 exports.default = router;

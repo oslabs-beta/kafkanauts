@@ -19,8 +19,8 @@ const GeneralMetric = () => {
     const endpoints = [
         '/partition/total-count',
         '/partition/offline-count',
-        '/producer/total-request-count',
         '/producer/total-failed-count',
+        '/producer/producerMetrics',
         '/topic/total-count',
         '/topic/metrics',
         '/consumer/consumer-lag',
@@ -34,14 +34,14 @@ const GeneralMetric = () => {
         refetchInterval: 1000,
         refetchIntervalInBackground: true,
     }));
-    const [partitionTotalCount, partitionOfflineCount, producerTotalReqCount, producerTotalFailCount, topicTotalCount, topicMetrics, consumerLag, 
+    const [partitionTotalCount, partitionOfflineCount, producerTotalFailCount, producerMetrics, topicTotalCount, topicMetrics, consumerLag, 
     //consumerTotalTime,
     avgLatency,
     // destructure result here
     ] = (0, react_query_1.useQueries)(queries);
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(PartitionData_1.default, { partitionTotalCount: partitionTotalCount, partitionOfflineCount: partitionOfflineCount }),
-        react_1.default.createElement(ProducerData_1.default, { producerTotalReqCount: producerTotalReqCount, producerTotalFailCount: producerTotalFailCount }),
+        react_1.default.createElement(ProducerData_1.default, { producerTotalFailCount: producerTotalFailCount, producerMetrics: producerMetrics }),
         react_1.default.createElement(TopicData_1.default, { topicTotalCount: topicTotalCount }),
         react_1.default.createElement(InOutData_1.default, { topicMetrics: topicMetrics }),
         react_1.default.createElement(ConsumerData_1.default, { consumerLag: consumerLag }),

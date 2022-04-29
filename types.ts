@@ -34,6 +34,7 @@ export type EventHandlers = {
 export interface ProducerController {
   totalProducerRequests: RequestHandler;
   totalFailedProducerRequests: RequestHandler;
+  totalProducerMetrics: RequestHandler;
 };
 
 export interface ConsumerController {
