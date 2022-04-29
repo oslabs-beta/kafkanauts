@@ -4,7 +4,7 @@ import { AxisOptions, Chart } from "react-charts";
 
 export default function RealTimeChart(props): JSX.Element {
 
-  const date = new Date();
+  // const date = new Date();
 
   type MyDatum = { primary: Date, secondary: number }
 
@@ -12,8 +12,9 @@ export default function RealTimeChart(props): JSX.Element {
 
   //create a new set of data because React Charts needs to know when data is changed
   useEffect(() => {
-    setData(props.metrics.map(e => Object.assign({}, e)))
-  }, [props])
+    setData([...props.metrics])
+    // setData(props.metrics.map(e => Object.assign({}, e)))
+  }, [props.metrics])
   
 
   const primaryAxis = React.useMemo(
@@ -33,9 +34,6 @@ export default function RealTimeChart(props): JSX.Element {
   )
 
   return (
-    <>
-      <br />
-      <br />
       <ResizableBox
         style={{
           background: "rgba(0, 27, 45, 0.9)",
@@ -44,7 +42,7 @@ export default function RealTimeChart(props): JSX.Element {
         }}
       >
         <div style={{ width: "100%", height: "100%" }}>
-          {data.length > 0 ?  <Chart
+          {data.length > 0 ? <Chart
             
             options={{
               data,
@@ -57,6 +55,5 @@ export default function RealTimeChart(props): JSX.Element {
          
         </div>
       </ResizableBox>
-    </>
   );
 }

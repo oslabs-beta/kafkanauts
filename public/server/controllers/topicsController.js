@@ -19,6 +19,21 @@ const topicsController = {
             try {
                 const { port } = res.locals;
                 const { data: { data: { result } } } = yield axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globaltopiccount`);
+<<<<<<< HEAD
+                // const [{ metric: instance, job }, { value: [ unixTime, numOfTopics ] }] = result;
+                // console.log(instance, job, unixTime, numOfTopics)
+                // const topicCountFormatted = {
+                //   instance,
+                //   job,
+                //   time: unixTime * 1000,
+                //   data: {
+                //     numOfTopics// this is still a string, but there's no real need to change it into a number
+                //   }
+                // }
+                // // console.log('fgfdgfdg', instance, job, unixTime)
+                // console.log('topicCountFormatted: ', topicCountFormatted)
+=======
+>>>>>>> dev
                 res.locals.totalTopicCount = result; //also contains producer requests for EACH topic
                 return next();
             }
@@ -39,7 +54,40 @@ const topicsController = {
                 ];
                 const axiosGetAll = yield Promise.all(topicMetrics);
                 const destructureResults = axiosGetAll.map(promResult => promResult.data.data.result);
+<<<<<<< HEAD
+                const [[{ metric: { instance, job }, value: [unixTime] }], , [{ value: [, bytesRejected] }]] = destructureResults;
+                const bytesMetricsFormatted = {
+                    instance,
+                    job,
+                    time: unixTime * 1000,
+                    data: {
+                        totalBytesIn: 0,
+                        totalBytesOut: 0,
+                        bytesIn: [],
+                        bytesOut: [],
+                        bytesRejected: Number(bytesRejected),
+                    }
+                };
+                destructureResults[0].forEach(el => {
+                    if ('topic' in el.metric) {
+                        bytesMetricsFormatted.data.bytesIn.push([el.metric.topic, Number(el.value[1])]);
+                    }
+                    else {
+                        bytesMetricsFormatted.data.totalBytesIn = Number(el.value[1]);
+                    }
+                });
+                destructureResults[1].forEach(el => {
+                    if ('topic' in el.metric) {
+                        bytesMetricsFormatted.data.bytesOut.push([el.metric.topic, Number(el.value[1])]);
+                    }
+                    else {
+                        bytesMetricsFormatted.data.totalBytesOut = Number(el.value[1]);
+                    }
+                });
+                res.locals.totalTopicMetrics = bytesMetricsFormatted;
+=======
                 res.locals.totalTopicMetrics = destructureResults; // this should be an array of arrays
+>>>>>>> dev
                 return next();
             }
             catch (e) {
@@ -48,6 +96,8 @@ const topicsController = {
         });
     }
 };
+<<<<<<< HEAD
+=======
 // topicsController.totalTopicCount = async (req, res, next) => {
 //   try {
 //     const { port } = res.locals;
@@ -75,4 +125,5 @@ const topicsController = {
 //     return next(e);
 //   }
 // }
+>>>>>>> dev
 exports.default = topicsController;

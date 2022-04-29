@@ -23,7 +23,7 @@ export default function ConsumerData({ consumerLag }): JSX.Element {
   useEffect(() => {
     if (consumerLag.data) {
       for (let i = 0; i < consumerLag.data.length; i++) {
-        console.log("this is consumerLag", consumerLag.data[0].values[0][1])
+        // console.log("this is consumerLag", consumerLag.data[0].values[0][1])
         if (chartData[i].data.length === 10) {
           chartData[i].data.shift()
         }

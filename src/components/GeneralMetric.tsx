@@ -17,8 +17,8 @@ const GeneralMetric = () => {
   const endpoints: string[] = [
     '/partition/total-count',
     '/partition/offline-count',
+    '/producer/total-request-count',
     '/producer/total-failed-count',
-    '/producer/producerMetrics',
     '/topic/total-count',
     '/topic/metrics',
     '/consumer/consumer-lag',
@@ -37,8 +37,8 @@ const GeneralMetric = () => {
   const [
     partitionTotalCount,
     partitionOfflineCount,
+    producerTotalReqCount,
     producerTotalFailCount,
-    producerMetrics,
     topicTotalCount,
     topicMetrics,
     consumerLag,
@@ -51,9 +51,9 @@ const GeneralMetric = () => {
   return (
     <>
       <PartitionData partitionTotalCount={partitionTotalCount} partitionOfflineCount={partitionOfflineCount}/>
-      <ProducerData producerTotalFailCount={producerTotalFailCount} producerMetrics={producerMetrics}/>
+      {/* <ProducerData producerTotalReqCount={producerTotalReqCount} producerTotalFailCount={producerTotalFailCount}/> */}
       <TopicData topicTotalCount={topicTotalCount}/>
-      <InOutData topicMetrics={topicMetrics}/>
+      {topicMetrics.isLoading ? <>Loading</> : <InOutData topicMetrics={topicMetrics.data}/>}
       <ConsumerData consumerLag={consumerLag} />
       <ZookeeperData avgLatency={avgLatency} />
     </>

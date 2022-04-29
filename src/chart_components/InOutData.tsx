@@ -1,50 +1,93 @@
 import React, { useState, useEffect } from 'react'
 import RealTimeChart from './RealTimeChart'
 
-export default function InOutData({ topicMetrics }): JSX.Element {
-
-
-  //setting the first element in array to 0
-  //change label based on what you want the new labels to be
-  const [chartData, setChartData] = useState([
-    { data: [{primary: new Date(new Date().getTime()),secondary:0}], label: "Total Bytes Out" },
-    { data: [{primary: new Date(new Date().getTime()),secondary:0}], label: "Total Bytes In" },
-    { data: [{primary: new Date(new Date().getTime()),secondary:0}], label: "Total Bytes Rejected" }]);
-
-
-    //push element into chartData - and shift it after it reaches 10 length.
-    //Data comes in the form of a string so needs to be parsed to a number
+export default function InOutData({ topicMetrics, /*topicTotalCount*/ }): JSX.Element {
+  // console.log('topicTotalCount', topicTotalCount)
+  const [inData, setInData] = useState([]);
+  const [outData, setOutData] = useState([]);
+  // console.log('topicMetrics: ', topicMetrics)
   useEffect(() => {
-    if (topicMetrics.data) {
-      for (let i = 0; i < topicMetrics.data.length; i++) {
-        if (chartData[i].data.length === 10) {
-          chartData[i].data.shift()
-        }
-        chartData[i].data.push(
-          {
-            primary: new Date(topicMetrics.data[i][0].value[0] * 1000),
-            secondary: parseInt(topicMetrics.data[i][0].value[1])
+    setInData(prev => {
+      const shallowCopyOfInData = [...prev]
+      for (let i = 0; i < topicMetrics.data.bytesIn.length; i++) {
+        const [topicName, bytes] = topicMetrics.data.bytesIn[i]
+        const dateOfMetric = new Date(topicMetrics.time)
+        const indexOfTopic = prev.findIndex(el => el.label === topicName)
+        if (indexOfTopic < 0) {
+          // if topic line doesnt exist in graph, then push the new line into "inData"
+          // console.log('inside new Line: ', i, topicName)
+          const newLine = {
+            label: topicName,
+            data: [
+              {
+                primary: dateOfMetric,
+                secondary: bytes,
+              }
+            ],
           }
-        )
+          shallowCopyOfInData.push(newLine)
+        } else {
+          // if topic line already exists in graph, then just push new data point into "inData"
+          const dataPoint = {
+            primary: dateOfMetric,
+            secondary: bytes,
+          }
+          shallowCopyOfInData[indexOfTopic].data.push(dataPoint)
+  
+          if (shallowCopyOfInData[indexOfTopic].data.length > 10) {
+            shallowCopyOfInData[indexOfTopic].data.shift()
+          }
+        }
       }
-      setChartData(chartData)
-    }
-  }, [topicMetrics.data]);
+      // console.log('bytesIn: ', shallowCopyOfInData)
+      return shallowCopyOfInData
+    })
+
+    setOutData(prev => {
+      const shallowCopyOfOutData = [...prev]
+      for (let i = 0; i < topicMetrics.data.bytesOut.length; i++) {
+        const [topicName, bytes] = topicMetrics.data.bytesOut[i]
+        const dateOfMetric = new Date(topicMetrics.time)
+        const indexOfTopic = prev.findIndex(el => el.label === topicName)
+        if (indexOfTopic < 0) {
+          // if topic line doesnt exist in graph, then push the new line into "inData"
+          // console.log('inside new Line: ', i, topicName)
+          const newLine = {
+            label: topicName,
+            data: [
+              {
+                primary: dateOfMetric,
+                secondary: bytes,
+              }
+            ],
+          }
+          shallowCopyOfOutData.push(newLine)
+        } else {
+          // if topic line already exists in graph, then just push new data point into "inData"
+          const dataPoint = {
+            primary: dateOfMetric,
+            secondary: bytes,
+          }
+          shallowCopyOfOutData[indexOfTopic].data.push(dataPoint)
+  
+          if (shallowCopyOfOutData[indexOfTopic].data.length > 10) {
+            shallowCopyOfOutData[indexOfTopic].data.shift()
+          }
+        }
+      }
+      // console.log('bytesOut: ', shallowCopyOfOutData)
+      return shallowCopyOfOutData
+    })
+  }, [topicMetrics]);
 
 
   return (
-    topicMetrics.isLoading ?
-      <>Loading</> :
-      <ul>
-        <li>Total Bytes In: {topicMetrics.data[0][0].value[1] / 1000} KBs</li>
-        <li>
-          Total Bytes Out: {topicMetrics.data[1][0].value[1] / 1000} KBs
-        </li>
-        <li>
-          Total Bytes Rejected:{' '}
-          {topicMetrics.data[2][0].value[1]} KBs
-        </li>
-        <li><RealTimeChart metrics={chartData} /></li>
-      </ul>
+    <ul>
+      <li>Bytes In Graph <RealTimeChart metrics={inData}/></li>
+      <li>Bytes Out Graph <RealTimeChart metrics={outData}/></li>
+      <li>Total Bytes In: {(topicMetrics.data.totalBytesIn/1000).toLocaleString()} KBs</li>
+      <li>Total Bytes Out: {(topicMetrics.data.totalBytesOut/1000).toLocaleString()} KBs</li>
+      <li>Total Bytes Rejected: {(topicMetrics.data.bytesRejected/1000).toLocaleString()} KBs</li>
+    </ul>
   );
 }
