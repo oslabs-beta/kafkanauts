@@ -13,12 +13,15 @@ const Sidebar = (props = {}) => {
 
   const NavItem = (props) => {
     const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
+    // console.log( title, link, external, target, icon, image, badgeText, badgeBg, badgeColor)
     const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
     const navItemClassName = link === pathname ? "active" : "";
     const linkProps = external ? { href: link } : { as: Link, to: link };
 
     return (
       <Nav.Item className={navItemClassName}>
+        <Nav.Link {...linkProps} target={target} className={classNames}>
+
           <span>
             {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
             {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
@@ -28,6 +31,8 @@ const Sidebar = (props = {}) => {
           {badgeText ? (
             <Badge pill bg={badgeBg} text={badgeColor} className="badge-md notification-count ms-2">{badgeText}</Badge>
           ) : null}
+        </Nav.Link>
+
       </Nav.Item>
     );
   };
@@ -55,14 +60,14 @@ const Sidebar = (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Kafka Monitor" />
+              <NavItem title="Kafka Monitor" link='/dashboard/overview'/>
               <Dropdown.Divider className="my-3 border-white" />
-              <NavItem title="Overview" icon={faChartPie} />
-              <NavItem title="Consumer" icon={faInbox} />
-              <NavItem title="Producer" icon={faHandHoldingUsd} />
-              <NavItem title="Topics" icon={faCog} />
-              <NavItem title="Zookeeper" icon={faCalendarAlt} />
-              <NavItem title="Map"icon={faMapPin} />
+              <NavItem title="Overview" icon={faChartPie} link='/dashboard/overview'/>
+              <NavItem title="Consumer" icon={faInbox} link='/dashboard/consumer' />
+              <NavItem title="Producer" icon={faHandHoldingUsd} link='/dashboard/producer' />
+              <NavItem title="Topics" icon={faCog} link='/dashboard/topic' />
+              <NavItem title="Zookeeper" icon={faCalendarAlt} link='/dashboard/zookeeper' />
+              <NavItem title="Map"icon={faMapPin} link='/dashboard/map' />
             </Nav>
           </div>
         </SimpleBar>

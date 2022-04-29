@@ -19,7 +19,7 @@ const consumerController = {
   async consumerLag (req: Request, res: Response, next: NextFunction) {
     try {
       const { port, interval } = res.locals;
-      const url = `http://localhost:${port}/api/v1/query_range?query=kafka_server_delayedfetchmetrics_expirespersec_fetchertype_consumer&start=${new Date().getTime()/1000}&end=${new Date().getTime()/1000}&step=${interval}s`;
+      const url = `http://localhost:${port}/api/v1/query_range?query=kafka_server_delayedfetchmetrics_expirespersec_fetchertype_consumer&start=${new Date().toISOString()}&end=${new Date().toISOString()}&step=${interval}s`;
       console.log('url: ', url)
       const { data: { data: { result } } } = await axios.get(url)
       res.locals.consumerLag = result;

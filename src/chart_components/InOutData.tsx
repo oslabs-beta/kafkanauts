@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import RealTimeChart from './RealTimeChart'
 
-export default function InOutData({ topicMetrics }): JSX.Element {
+export default function InOutData({ topicMetrics, /*topicTotalCount*/ }): JSX.Element {
+  // console.log('topicTotalCount', topicTotalCount)
   const [inData, setInData] = useState([]);
   const [outData, setOutData] = useState([]);
   // console.log('topicMetrics: ', topicMetrics)
