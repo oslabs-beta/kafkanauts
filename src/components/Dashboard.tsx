@@ -25,6 +25,7 @@ const Dashboard = () => {
     '/producer/total-request-count',
     '/producer/total-failed-count',
     // '/topic/total-count',
+    '/producer/producerMetrics',
     '/topic/metrics',
     '/consumer/consumer-lag',
     //'/consumer/consumer-total-time',
@@ -45,6 +46,7 @@ const Dashboard = () => {
     producerTotalReqCount,
     producerTotalFailCount,
     // topicTotalCount,
+    producerMetrics,
     topicMetrics,
     consumerLag,
     //consumerTotalTime,
@@ -73,8 +75,8 @@ const Dashboard = () => {
               producerTotalReqCount.isLoading && producerTotalFailCount.isLoading
               ? <>Loading</>
               : <ProducerData
-                  producerTotalReqCount={producerTotalReqCount}
                   producerTotalFailCount={producerTotalFailCount}
+                  producerMetrics={producerMetrics}
               />
             }/>
 

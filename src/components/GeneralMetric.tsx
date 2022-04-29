@@ -51,7 +51,7 @@ const GeneralMetric = () => {
   return (
     <>
       <PartitionData partitionTotalCount={partitionTotalCount} partitionOfflineCount={partitionOfflineCount}/>
-      <ProducerData producerTotalReqCount={producerTotalReqCount} producerTotalFailCount={producerTotalFailCount}/>
+      {/* <ProducerData producerTotalReqCount={producerTotalReqCount} producerTotalFailCount={producerTotalFailCount}/> */}
       <TopicData topicTotalCount={topicTotalCount}/>
       {topicMetrics.isLoading ? <>Loading</> : <InOutData topicMetrics={topicMetrics.data}/>}
       <ConsumerData consumerLag={consumerLag} />
