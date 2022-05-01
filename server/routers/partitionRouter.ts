@@ -12,8 +12,16 @@ router.get('/offline-count', promPortController.getSavedPortFromElectronStore, p
   return res.status(200).json(res.locals.offlinePartitionCount);
 });
 
-router.get('/under-replicated', promPortController.getSavedPortFromElectronStore, partitionController.underReplicated, (req: Request, res: Response) => {
-  return res.status(200).json(res.locals.underReplicated);
+router.get('/under-replicated', promPortController.getSavedPortFromElectronStore, partitionController.underreplicated, (req: Request, res: Response) => {
+  return res.status(200).json(res.locals.underreplicated);
+});
+
+router.get('/active-controller', promPortController.getSavedPortFromElectronStore, partitionController.activeControllerCount, (req: Request, res: Response) => {
+  return res.status(200).json(res.locals.activeControllerCount);
+});
+
+router.get('/request-latency', promPortController.getSavedPortFromElectronStore, partitionController.requestLatency, (req: Request, res: Response) => {
+  return res.status(200).json(res.locals.requestLatency);
 });
 
 export default router;

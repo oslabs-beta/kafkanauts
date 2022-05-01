@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import RealTimeChart from './RealTimeChart'
 
-export default function InOutData({ topicMetrics, /*topicTotalCount*/ }): JSX.Element {
-  // console.log('topicTotalCount', topicTotalCount)
+export default function InOutData({ topicMetrics, topicTotalCount }): JSX.Element {
   const [inData, setInData] = useState([]);
   const [outData, setOutData] = useState([]);
-  // console.log('topicMetrics: ', topicMetrics)
   useEffect(() => {
     setInData(prev => {
       const shallowCopyOfInData = [...prev]
@@ -15,7 +13,6 @@ export default function InOutData({ topicMetrics, /*topicTotalCount*/ }): JSX.El
         const indexOfTopic = prev.findIndex(el => el.label === topicName)
         if (indexOfTopic < 0) {
           // if topic line doesnt exist in graph, then push the new line into "inData"
-          // console.log('inside new Line: ', i, topicName)
           const newLine = {
             label: topicName,
             data: [
@@ -39,7 +36,6 @@ export default function InOutData({ topicMetrics, /*topicTotalCount*/ }): JSX.El
           }
         }
       }
-      // console.log('bytesIn: ', shallowCopyOfInData)
       return shallowCopyOfInData
     })
 
@@ -51,7 +47,6 @@ export default function InOutData({ topicMetrics, /*topicTotalCount*/ }): JSX.El
         const indexOfTopic = prev.findIndex(el => el.label === topicName)
         if (indexOfTopic < 0) {
           // if topic line doesnt exist in graph, then push the new line into "inData"
-          // console.log('inside new Line: ', i, topicName)
           const newLine = {
             label: topicName,
             data: [
@@ -75,7 +70,6 @@ export default function InOutData({ topicMetrics, /*topicTotalCount*/ }): JSX.El
           }
         }
       }
-      // console.log('bytesOut: ', shallowCopyOfOutData)
       return shallowCopyOfOutData
     })
   }, [topicMetrics]);
@@ -85,6 +79,7 @@ export default function InOutData({ topicMetrics, /*topicTotalCount*/ }): JSX.El
     <ul>
       <li>Bytes In Graph <RealTimeChart metrics={inData}/></li>
       <li>Bytes Out Graph <RealTimeChart metrics={outData}/></li>
+      <li>Total Topic Count: {topicTotalCount.data.numOfTopics}<br/>Instance: {topicTotalCount.instance}<br/>Job: {topicTotalCount.job}<br/></li>
       <li>Total Bytes In: {(topicMetrics.data.totalBytesIn/1000).toLocaleString()} KBs</li>
       <li>Total Bytes Out: {(topicMetrics.data.totalBytesOut/1000).toLocaleString()} KBs</li>
       <li>Total Bytes Rejected: {(topicMetrics.data.bytesRejected/1000).toLocaleString()} KBs</li>

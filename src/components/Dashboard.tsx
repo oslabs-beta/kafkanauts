@@ -22,9 +22,12 @@ const Dashboard = () => {
   const endpoints: string[] = [
     '/partition/total-count',
     '/partition/offline-count',
-    '/producer/total-request-count',
+    '/partition/under-replicated',
+    '/partition/active-controller',
+    '/partition/request-latency',
+    // '/producer/total-request-count',
     '/producer/total-failed-count',
-    // '/topic/total-count',
+    '/topic/total-count',
     '/producer/producerMetrics',
     '/topic/metrics',
     '/consumer/consumer-lag',
@@ -43,9 +46,12 @@ const Dashboard = () => {
   const [
     partitionTotalCount,
     partitionOfflineCount,
-    producerTotalReqCount,
+    partitionUnderreplicated,
+    partitionActiveController,
+    partitionReqLatency,
+    // producerTotalReqCount,
     producerTotalFailCount,
-    // topicTotalCount,
+    topicTotalCount,
     producerMetrics,
     topicMetrics,
     consumerLag,
@@ -63,16 +69,19 @@ const Dashboard = () => {
         <Col>
           <Routes>
             <Route path="/partition" element={
-              partitionTotalCount.isLoading && partitionOfflineCount.isLoading
+              partitionTotalCount.isLoading && partitionOfflineCount.isLoading && partitionUnderreplicated.isLoading && partitionActiveController.isLoading && partitionReqLatency.isLoading
               ? <>Loading</>
               : <PartitionData
-                  partitionTotalCount={partitionTotalCount}
-                  partitionOfflineCount={partitionOfflineCount}
+                  partitionTotalCount={partitionTotalCount.data}
+                  partitionOfflineCount={partitionOfflineCount.data}
+                  partitionUnderreplicated={partitionUnderreplicated.data}
+                  partitionActiveController={partitionActiveController.data}
+                  partitionReqLatency={partitionReqLatency.data}
               />
             }/>
 
             <Route path="/producer" element={
-              producerTotalReqCount.isLoading && producerTotalFailCount.isLoading
+              producerMetrics.isLoading && producerTotalFailCount.isLoading
               ? <>Loading</>
               : <ProducerData
                   producerTotalFailCount={producerTotalFailCount}
@@ -81,11 +90,11 @@ const Dashboard = () => {
             }/>
 
             <Route path="/topic" element={
-              topicMetrics.isLoading/* && topicTotalCount.isLoading*/
+              topicMetrics.isLoading && topicTotalCount.isLoading
               ? <>Loading</>
               : <InOutData
                   topicMetrics={topicMetrics.data}
-                  // topicTotalCount={topicTotalCount.data}
+                  topicTotalCount={topicTotalCount.data}
               />
             }/>
 
