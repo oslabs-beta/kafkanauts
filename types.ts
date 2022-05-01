@@ -46,6 +46,10 @@ export interface TopicsController {
   totalTopicMetrics: RequestHandler;
 };
 
+export interface overviewController {
+  overviewMetrics: RequestHandler;
+};
+
 export interface PromPortController {
   isPromPortUp: RequestHandler;
   savePortToElectronStore: RequestHandler;

@@ -10,6 +10,7 @@ import InOutData from '../chart_components/InOutData';
 import ProducerData from '../chart_components/ProducerData';
 import ZookeeperData from '../chart_components/ZookeeperData';
 import ConsumerData from '../chart_components/ConsumerData';
+import OverviewData from '../chart_components/OverviewData';
 // import TopicData from '../chart_components/TopicData';
 
 
@@ -33,13 +34,14 @@ const Dashboard = () => {
     '/consumer/consumer-lag',
     //'/consumer/consumer-total-time',
     '/zookeeper/avg-latency',
+    '/overview/overview-metrics',
     // add endpoint here and destructure result from the invocation of "useQueries" function below
   ]
 
   const queries: Queries[] = endpoints.map(endpoint => ({
     queryKey: endpoint,
     queryFn: () => axiosClient.get(endpoint).then(res => res.data),
-    refetchInterval: 1000,
+    refetchInterval: 2000,
     refetchIntervalInBackground: true,
   }))
 
@@ -57,6 +59,7 @@ const Dashboard = () => {
     consumerLag,
     //consumerTotalTime,
     avgLatency,
+    overviewMetrics,
     // destructure result here
   ] = useQueries(queries)
 
@@ -105,6 +108,13 @@ const Dashboard = () => {
                   consumerLag={consumerLag}
               />
             }/>
+            <Route path="/overview" element={
+              overviewMetrics.isLoading
+                ? <>Loading</>
+                : <OverviewData
+                overviewMetrics={overviewMetrics}
+                />
+            } />
 
             <Route path="/zookeeper" element={
               avgLatency.isLoading
