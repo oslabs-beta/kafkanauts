@@ -10,6 +10,7 @@ import InOutData from '../chart_components/InOutData';
 import ProducerData from '../chart_components/ProducerData';
 import ZookeeperData from '../chart_components/ZookeeperData';
 import ConsumerData from '../chart_components/ConsumerData';
+import OverviewData from '../chart_components/OverviewData';
 // import TopicData from '../chart_components/TopicData';
 
 
@@ -22,12 +23,13 @@ const Dashboard = () => {
   const endpoints: string[] = [
     '/partition/total-count',
     '/partition/offline-count',
-    '/producer/total-request-count',
+    // '/producer/total-request-count',
     '/producer/total-failed-count',
     // '/topic/total-count',
     '/producer/producerMetrics',
     '/topic/metrics',
     '/consumer/consumer-lag',
+    '/overview/overview-metrics',
     //'/consumer/consumer-total-time',
     '/zookeeper/avg-latency',
     // add endpoint here and destructure result from the invocation of "useQueries" function below
@@ -43,12 +45,13 @@ const Dashboard = () => {
   const [
     partitionTotalCount,
     partitionOfflineCount,
-    producerTotalReqCount,
+    // producerTotalReqCount,
     producerTotalFailCount,
     // topicTotalCount,
     producerMetrics,
     topicMetrics,
     consumerLag,
+    overviewMetrics,
     //consumerTotalTime,
     avgLatency,
     // destructure result here
@@ -64,46 +67,54 @@ const Dashboard = () => {
           <Routes>
             <Route path="/partition" element={
               partitionTotalCount.isLoading && partitionOfflineCount.isLoading
-              ? <>Loading</>
-              : <PartitionData
+                ? <>Loading</>
+                : <PartitionData
                   partitionTotalCount={partitionTotalCount}
                   partitionOfflineCount={partitionOfflineCount}
-              />
-            }/>
+                />
+            } />
 
             <Route path="/producer" element={
-              producerTotalReqCount.isLoading && producerTotalFailCount.isLoading
-              ? <>Loading</>
-              : <ProducerData
+              producerMetrics.isLoading && producerTotalFailCount.isLoading
+                ? <>Loading</>
+                : <ProducerData
                   producerTotalFailCount={producerTotalFailCount}
                   producerMetrics={producerMetrics}
-              />
-            }/>
+                />
+            } />
 
             <Route path="/topic" element={
               topicMetrics.isLoading/* && topicTotalCount.isLoading*/
-              ? <>Loading</>
-              : <InOutData
+                ? <>Loading</>
+                : <InOutData
                   topicMetrics={topicMetrics.data}
-                  // topicTotalCount={topicTotalCount.data}
-              />
-            }/>
+                // topicTotalCount={topicTotalCount.data}
+                />
+            } />
 
             <Route path="/consumer" element={
               consumerLag.isLoading
-              ? <>Loading</>
-              : <ConsumerData
+                ? <>Loading</>
+                : <ConsumerData
                   consumerLag={consumerLag}
-              />
-            }/>
+                />
+            } />
+
+            <Route path="/overview" element={
+              overviewMetrics.isLoading
+                ? <>Loading</>
+                : <OverviewData
+                overviewMetrics={overviewMetrics}
+                />
+            } />
 
             <Route path="/zookeeper" element={
               avgLatency.isLoading
-              ? <>Loading</>
-              : <ZookeeperData
+                ? <>Loading</>
+                : <ZookeeperData
                   avgLatency={avgLatency}
-              />
-            }/>
+                />
+            } />
           </Routes>
         </Col>
       </Row>

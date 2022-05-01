@@ -6,6 +6,7 @@ import topicRouter from './routers/topicsRouter';
 import promPortRouter from './routers/promPortRouter';
 import consumerRouter from './routers/consumerRouter';
 import zookeeperRouter from './routers/zookeeperRouter';
+import overviewRouter from './routers/overviewRouter';
 import { ServerError } from '../types';
 import 'dotenv/config';
 
@@ -28,6 +29,7 @@ app.use('/api/partition', partitionRouter);
 app.use('/api/producer', producerRouter);
 app.use('/api/topic', topicRouter);
 app.use('/api/zookeeper', zookeeperRouter);
+app.use('/api/overview', overviewRouter);
 
 app.use((req, res) => res.sendStatus(404));
 

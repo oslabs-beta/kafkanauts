@@ -17,8 +17,8 @@ const GeneralMetric = () => {
   const endpoints: string[] = [
     '/partition/total-count',
     '/partition/offline-count',
-    '/producer/total-request-count',
-    '/producer/total-failed-count',
+    // '/producer/total-request-count',
+    // '/producer/total-failed-count',
     '/topic/total-count',
     '/topic/metrics',
     '/consumer/consumer-lag',
@@ -37,8 +37,8 @@ const GeneralMetric = () => {
   const [
     partitionTotalCount,
     partitionOfflineCount,
-    producerTotalReqCount,
-    producerTotalFailCount,
+    // producerTotalReqCount,
+    // producerTotalFailCount,
     topicTotalCount,
     topicMetrics,
     consumerLag,

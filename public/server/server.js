@@ -11,6 +11,7 @@ const topicsRouter_1 = __importDefault(require("./routers/topicsRouter"));
 const promPortRouter_1 = __importDefault(require("./routers/promPortRouter"));
 const consumerRouter_1 = __importDefault(require("./routers/consumerRouter"));
 const zookeeperRouter_1 = __importDefault(require("./routers/zookeeperRouter"));
+const overviewRouter_1 = __importDefault(require("./routers/overviewRouter"));
 require("dotenv/config");
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8080;
@@ -29,6 +30,7 @@ app.use('/api/partition', partitionRouter_1.default);
 app.use('/api/producer', producerRouter_1.default);
 app.use('/api/topic', topicsRouter_1.default);
 app.use('/api/zookeeper', zookeeperRouter_1.default);
+app.use('/api/overview', overviewRouter_1.default);
 app.use((req, res) => res.sendStatus(404));
 //global error handler
 app.use((err, req, res, next) => {
