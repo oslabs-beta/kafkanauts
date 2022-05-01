@@ -26,7 +26,7 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
 
     useEffect(() => {
         if (overviewMetrics.data) {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 10 && i < overviewMetrics.data.length; i++) {
                 if (chartData[i].data.length === 10) {
                     chartData[i].data.shift()
                 }

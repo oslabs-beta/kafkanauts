@@ -13,7 +13,13 @@ router.get('/total-count', promPortController_1.default.getSavedPortFromElectron
 router.get('/offline-count', promPortController_1.default.getSavedPortFromElectronStore, partitionController_1.default.offlinePartitionCount, (req, res) => {
     return res.status(200).json(res.locals.offlinePartitionCount);
 });
-router.get('/under-replicated', promPortController_1.default.getSavedPortFromElectronStore, partitionController_1.default.underReplicated, (req, res) => {
-    return res.status(200).json(res.locals.underReplicated);
+router.get('/under-replicated', promPortController_1.default.getSavedPortFromElectronStore, partitionController_1.default.underreplicated, (req, res) => {
+    return res.status(200).json(res.locals.underreplicated);
+});
+router.get('/active-controller', promPortController_1.default.getSavedPortFromElectronStore, partitionController_1.default.activeControllerCount, (req, res) => {
+    return res.status(200).json(res.locals.activeControllerCount);
+});
+router.get('/request-latency', promPortController_1.default.getSavedPortFromElectronStore, partitionController_1.default.requestLatency, (req, res) => {
+    return res.status(200).json(res.locals.requestLatency);
 });
 exports.default = router;

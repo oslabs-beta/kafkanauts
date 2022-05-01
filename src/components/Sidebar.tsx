@@ -3,7 +3,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faHeartPulse } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -63,6 +63,7 @@ const Sidebar = (props = {}) => {
               <NavItem title="Kafka Monitor" link='/dashboard/overview'/>
               <Dropdown.Divider className="my-3 border-white" />
               <NavItem title="Overview" icon={faChartPie} link='/dashboard/overview'/>
+              <NavItem title="Partition" icon={faHeartPulse} link='/dashboard/partition' />
               <NavItem title="Consumer" icon={faInbox} link='/dashboard/consumer' />
               <NavItem title="Producer" icon={faHandHoldingUsd} link='/dashboard/producer' />
               <NavItem title="Topics" icon={faCog} link='/dashboard/topic' />

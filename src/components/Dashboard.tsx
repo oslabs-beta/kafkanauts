@@ -23,37 +23,43 @@ const Dashboard = () => {
   const endpoints: string[] = [
     '/partition/total-count',
     '/partition/offline-count',
+    '/partition/under-replicated',
+    '/partition/active-controller',
+    '/partition/request-latency',
     // '/producer/total-request-count',
     '/producer/total-failed-count',
-    // '/topic/total-count',
+    '/topic/total-count',
     '/producer/producerMetrics',
     '/topic/metrics',
     '/consumer/consumer-lag',
-    '/overview/overview-metrics',
     //'/consumer/consumer-total-time',
     '/zookeeper/avg-latency',
+    '/overview/overview-metrics',
     // add endpoint here and destructure result from the invocation of "useQueries" function below
   ]
 
   const queries: Queries[] = endpoints.map(endpoint => ({
     queryKey: endpoint,
     queryFn: () => axiosClient.get(endpoint).then(res => res.data),
-    refetchInterval: 1000,
+    refetchInterval: 2000,
     refetchIntervalInBackground: true,
   }))
 
   const [
     partitionTotalCount,
     partitionOfflineCount,
+    partitionUnderreplicated,
+    partitionActiveController,
+    partitionReqLatency,
     // producerTotalReqCount,
     producerTotalFailCount,
-    // topicTotalCount,
+    topicTotalCount,
     producerMetrics,
     topicMetrics,
     consumerLag,
-    overviewMetrics,
     //consumerTotalTime,
     avgLatency,
+    overviewMetrics,
     // destructure result here
   ] = useQueries(queries)
 
@@ -66,40 +72,42 @@ const Dashboard = () => {
         <Col>
           <Routes>
             <Route path="/partition" element={
-              partitionTotalCount.isLoading && partitionOfflineCount.isLoading
-                ? <>Loading</>
-                : <PartitionData
-                  partitionTotalCount={partitionTotalCount}
-                  partitionOfflineCount={partitionOfflineCount}
-                />
-            } />
+              partitionTotalCount.isLoading && partitionOfflineCount.isLoading && partitionUnderreplicated.isLoading && partitionActiveController.isLoading && partitionReqLatency.isLoading
+              ? <>Loading</>
+              : <PartitionData
+                  partitionTotalCount={partitionTotalCount.data}
+                  partitionOfflineCount={partitionOfflineCount.data}
+                  partitionUnderreplicated={partitionUnderreplicated.data}
+                  partitionActiveController={partitionActiveController.data}
+                  partitionReqLatency={partitionReqLatency.data}
+              />
+            }/>
 
             <Route path="/producer" element={
               producerMetrics.isLoading && producerTotalFailCount.isLoading
-                ? <>Loading</>
-                : <ProducerData
+              ? <>Loading</>
+              : <ProducerData
                   producerTotalFailCount={producerTotalFailCount}
                   producerMetrics={producerMetrics}
-                />
-            } />
+              />
+            }/>
 
             <Route path="/topic" element={
-              topicMetrics.isLoading/* && topicTotalCount.isLoading*/
-                ? <>Loading</>
-                : <InOutData
+              topicMetrics.isLoading && topicTotalCount.isLoading
+              ? <>Loading</>
+              : <InOutData
                   topicMetrics={topicMetrics.data}
-                // topicTotalCount={topicTotalCount.data}
-                />
-            } />
+                  topicTotalCount={topicTotalCount.data}
+              />
+            }/>
 
             <Route path="/consumer" element={
               consumerLag.isLoading
-                ? <>Loading</>
-                : <ConsumerData
+              ? <>Loading</>
+              : <ConsumerData
                   consumerLag={consumerLag}
-                />
-            } />
-
+              />
+            }/>
             <Route path="/overview" element={
               overviewMetrics.isLoading
                 ? <>Loading</>
@@ -110,11 +118,11 @@ const Dashboard = () => {
 
             <Route path="/zookeeper" element={
               avgLatency.isLoading
-                ? <>Loading</>
-                : <ZookeeperData
+              ? <>Loading</>
+              : <ZookeeperData
                   avgLatency={avgLatency}
-                />
-            } />
+              />
+            }/>
           </Routes>
         </Col>
       </Row>

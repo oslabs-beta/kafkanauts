@@ -19,19 +19,16 @@ const topicsController = {
             try {
                 const { port } = res.locals;
                 const { data: { data: { result } } } = yield axios_1.default.get(`http://localhost:${port}/api/v1/query?query=kafka_controller_kafkacontroller_globaltopiccount`);
-                // const [{ metric: instance, job }, { value: [ unixTime, numOfTopics ] }] = result;
-                // console.log(instance, job, unixTime, numOfTopics)
-                // const topicCountFormatted = {
-                //   instance,
-                //   job,
-                //   time: unixTime * 1000,
-                //   data: {
-                //     numOfTopics// this is still a string, but there's no real need to change it into a number
-                //   }
-                // }
-                // // console.log('fgfdgfdg', instance, job, unixTime)
-                // console.log('topicCountFormatted: ', topicCountFormatted)
-                res.locals.totalTopicCount = result; //also contains producer requests for EACH topic
+                const [{ metric: { instance, job }, value: [unixTime, numOfTopics] }] = result;
+                const topicCountFormatted = {
+                    instance,
+                    job,
+                    time: unixTime * 1000,
+                    data: {
+                        numOfTopics // this is still a string, but there's no need to change it into a number
+                    }
+                };
+                res.locals.totalTopicCount = topicCountFormatted;
                 return next();
             }
             catch (e) {
