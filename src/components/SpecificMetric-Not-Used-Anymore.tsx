@@ -23,7 +23,7 @@ const SpecificMetric = ({ metricName }: { metricName: string }) => {
   const endpoints: string[] = [
     '/partition/total-count',
     '/partition/offline-count',
-    '/producer/total-request-count',
+    // '/producer/total-request-count',
     '/producer/total-failed-count',
     '/topic/total-count',
     '/topic/metrics',
@@ -46,7 +46,7 @@ const SpecificMetric = ({ metricName }: { metricName: string }) => {
   const [
     partitionTotalCount,
     partitionOfflineCount,
-    producerTotalReqCount,
+    // producerTotalReqCount,
     producerTotalFailCount,
     topicTotalCount,
     topicMetrics,
