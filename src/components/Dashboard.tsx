@@ -41,7 +41,7 @@ const Dashboard = () => {
   const queries: Queries[] = endpoints.map(endpoint => ({
     queryKey: endpoint,
     queryFn: () => axiosClient.get(endpoint).then(res => res.data),
-    refetchInterval: 2000,
+    refetchInterval: 1000,
     refetchIntervalInBackground: true,
   }))
 
