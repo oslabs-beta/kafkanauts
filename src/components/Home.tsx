@@ -12,18 +12,20 @@ interface HomeState {
   port: Port,
   nickname: Nickname,
   time: Time,
+  portError: boolean
 }
 
 const Home: React.FC = () => {
   const [ input, setInput ] = useState<HomeState>({
     port: '',
-    nickname: null,
+    nickname: '',
     time: null,
+    portError: false,
   })
   const navigate = useNavigate();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value });
+    setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value, portError: false});
   };
 
   const handleSubmit = (e) => {
@@ -35,7 +37,13 @@ const Home: React.FC = () => {
         time: new Date().toISOString(),
       })
       .then((res) => { navigate('/dashboard') })
-      .catch((err) => { console.log(err) });
+      .catch((err) => {
+        setInput({
+          ...input,
+          portError: true
+        })
+        console.error(err);
+      });
   };
 
   return (
@@ -55,7 +63,7 @@ const Home: React.FC = () => {
                     <InputGroup.Text>
                       <FontAwesomeIcon icon={faFileExport} />
                     </InputGroup.Text>
-                    <Form.Control autoFocus required type="text" name="port" placeholder="9090" isInvalid={input.port.match(/(\d|^$)/) === null} onChange={handleOnChange}/>
+                    <Form.Control autoFocus required type="text" name="port" placeholder="9090" isInvalid={input.port.match(/^\d*$/) === null || input.portError} onChange={handleOnChange}/>
                     <Form.Control.Feedback type="invalid">
                       Please enter a valid Prometheus port.
                     </Form.Control.Feedback>
