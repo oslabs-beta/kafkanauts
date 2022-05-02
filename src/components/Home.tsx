@@ -16,7 +16,7 @@ interface HomeState {
 
 const Home: React.FC = () => {
   const [ input, setInput ] = useState<HomeState>({
-    port: null,
+    port: '',
     nickname: null,
     time: null,
   })
@@ -55,7 +55,10 @@ const Home: React.FC = () => {
                     <InputGroup.Text>
                       <FontAwesomeIcon icon={faFileExport} />
                     </InputGroup.Text>
-                    <Form.Control autoFocus required type="text" name="port" placeholder="9090" onChange={handleOnChange}/>
+                    <Form.Control autoFocus required type="text" name="port" placeholder="9090" isInvalid={input.port.match(/(\d|^$)/) === null} onChange={handleOnChange}/>
+                    <Form.Control.Feedback type="invalid">
+                      Please enter a valid Prometheus port.
+                    </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
                 <Form.Group>
@@ -69,7 +72,7 @@ const Home: React.FC = () => {
                     </InputGroup>
                   </Form.Group>
                 </Form.Group>
-                <Button variant="primary" type="submit" className="w-100 mt-2" disabled={input.port === null || input.port === ''}>Submit</Button>
+                <Button variant="primary" type="submit" className="w-100 mt-2" disabled={input.port === ''}>Submit</Button>
               </Form>
             </div>
           </Col>
