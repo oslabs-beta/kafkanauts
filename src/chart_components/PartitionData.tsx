@@ -60,12 +60,10 @@ console.log('underreplicatedArray: ', underreplicatedArray)
         </Card.Body>
       </Card>
       <br/>
-  
-    <div>
       {
         underreplicatedArray.length === 0 ? 'No underreplicated partitions' : underreplicatedComponents
       }
-    </div>
+      <br/>
       {
         partitionLatencyComponents
       }

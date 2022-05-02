@@ -12,21 +12,23 @@ interface HomeState {
   port: Port,
   nickname: Nickname,
   time: Time,
+  portError: boolean
 }
 
 const Home: React.FC = () => {
   const [ input, setInput ] = useState<HomeState>({
-    port: null,
-    nickname: null,
+    port: '',
+    nickname: '',
     time: null,
+    portError: false,
   })
   const navigate = useNavigate();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value });
+    setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value, portError: false});
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post('http://localhost:8080/api/prom-port', {
@@ -35,7 +37,13 @@ const Home: React.FC = () => {
         time: new Date().toISOString(),
       })
       .then((res) => { navigate('/dashboard') })
-      .catch((err) => { console.log(err) });
+      .catch((err) => {
+        setInput({
+          ...input,
+          portError: true
+        })
+        console.error(err);
+      });
   };
 
   return (
@@ -48,14 +56,17 @@ const Home: React.FC = () => {
                 <h3 className="mb-0">Kafka Monitor</h3>
                 <h5>Your Metrics in a Nutshell</h5>
               </div>
-              <Form className="mt-4">
+              <Form className="mt-4" onSubmit={handleSubmit}>
                 <Form.Group id="port-name" className="mb-4">
                   <Form.Label>Enter Prometheus Port</Form.Label>
                   <InputGroup>
                     <InputGroup.Text>
                       <FontAwesomeIcon icon={faFileExport} />
                     </InputGroup.Text>
-                    <Form.Control autoFocus required type="text" name="port" placeholder="9090" onChange={handleOnChange}/>
+                    <Form.Control autoFocus required type="text" name="port" placeholder="9090" isInvalid={input.port.match(/^\d*$/) === null || input.portError} onChange={handleOnChange}/>
+                    <Form.Control.Feedback type="invalid">
+                      Please enter a valid Prometheus port.
+                    </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
                 <Form.Group>
@@ -69,7 +80,7 @@ const Home: React.FC = () => {
                     </InputGroup>
                   </Form.Group>
                 </Form.Group>
-                <Button variant="primary" type="submit" className="w-100 mt-2" onClick={handleSubmit}>Submit</Button>
+                <Button variant="primary" type="submit" className="w-100 mt-2" disabled={input.port === ''}>Submit</Button>
               </Form>
             </div>
           </Col>

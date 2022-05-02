@@ -8,7 +8,7 @@ export type middlewareFunction = (
   next: express.NextFunction
 ) => void;
 
-export type Port = number;
+export type Port = string;
 
 export type Nickname = string;
 
