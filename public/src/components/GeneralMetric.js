@@ -6,14 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const axios_1 = __importDefault(require("axios"));
 const react_query_1 = require("react-query");
-const react_bootstrap_1 = require("@themesberg/react-bootstrap");
 const PartitionData_1 = __importDefault(require("../chart_components/PartitionData"));
 const InOutData_1 = __importDefault(require("../chart_components/InOutData"));
 const ProducerData_1 = __importDefault(require("../chart_components/ProducerData"));
 const TopicData_1 = __importDefault(require("../chart_components/TopicData"));
 const ZookeeperData_1 = __importDefault(require("../chart_components/ZookeeperData"));
 const ConsumerData_1 = __importDefault(require("../chart_components/ConsumerData"));
-const Widgets_1 = __importDefault(require("./Widgets"));
 const axiosClient = axios_1.default.create({
     baseURL: 'http://localhost:8080/api/',
 });
@@ -44,11 +42,9 @@ const GeneralMetric = () => {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(PartitionData_1.default, { partitionTotalCount: partitionTotalCount, partitionOfflineCount: partitionOfflineCount }),
         react_1.default.createElement(ProducerData_1.default, { producerTotalReqCount: producerTotalReqCount, producerTotalFailCount: producerTotalFailCount }),
-        react_1.default.createElement(TopicData_1.default, { topicTotalCount: topicTotalCount }),
+        topicTotalCount.isLoading ? react_1.default.createElement(react_1.default.Fragment, null, "Loading") : react_1.default.createElement(TopicData_1.default, { topicTotalCount: topicTotalCount }),
         react_1.default.createElement(InOutData_1.default, { topicMetrics: topicMetrics }),
         react_1.default.createElement(ConsumerData_1.default, { consumerLag: consumerLag }),
-        react_1.default.createElement(ZookeeperData_1.default, { avgLatency: avgLatency }),
-        react_1.default.createElement(react_bootstrap_1.Col, { xs: 12, sm: 6, xl: 4, className: 'mb-4' },
-            react_1.default.createElement(Widgets_1.default, { category: 'Revenue', title: 'Test Widget', value: '999', percentage: 28.4 }))));
+        react_1.default.createElement(ZookeeperData_1.default, { avgLatency: avgLatency })));
 };
 exports.default = GeneralMetric;
