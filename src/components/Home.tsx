@@ -26,7 +26,7 @@ const Home: React.FC = () => {
     setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post('http://localhost:8080/api/prom-port', {
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
                 <h3 className="mb-0">Kafka Monitor</h3>
                 <h5>Your Metrics in a Nutshell</h5>
               </div>
-              <Form className="mt-4">
+              <Form className="mt-4" onSubmit={handleSubmit}>
                 <Form.Group id="port-name" className="mb-4">
                   <Form.Label>Enter Prometheus Port</Form.Label>
                   <InputGroup>
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
                     </InputGroup>
                   </Form.Group>
                 </Form.Group>
-                <Button variant="primary" type="submit" className="w-100 mt-2" onClick={handleSubmit}>Submit</Button>
+                <Button variant="primary" type="submit" className="w-100 mt-2" disabled={input.port === null || input.port === ''}>Submit</Button>
               </Form>
             </div>
           </Col>
