@@ -15,16 +15,19 @@ export default function ConsumerData({ consumerLag }): JSX.Element {
 
   // console.log('this is consumerlag', consumerLag.data[0].values[1])
 
-
+  
+  const initialTime = new Date(new Date().getTime() - 100000)
   const [chartData, setChartData] = useState([
-    { data: [{primary: new Date(new Date().getTime()),secondary:0}], label: "Consumer Lag" },
+
+    
+    { data: [{primary: initialTime,secondary:0}], label: "Consumer Lag" },
   ]);
 
   useEffect(() => {
     if (consumerLag.data) {
+     
       for (let i = 0; i < consumerLag.data.length; i++) {
-        // console.log("this is consumerLag", consumerLag.data[0].values[0][1])
-        if (chartData[i].data.length === 10) {
+        if (chartData[i].data.length === 100 ) {
           chartData[i].data.shift()
         }
         chartData[i].data.push(
@@ -34,7 +37,7 @@ export default function ConsumerData({ consumerLag }): JSX.Element {
           }
         )
       }
-      setChartData(chartData)
+      setChartData([...chartData])  
     }
   }, [consumerLag.data]);
   

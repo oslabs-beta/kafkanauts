@@ -2,9 +2,12 @@ import React, {useState, useEffect } from 'react'
 import RealTimeChart from './RealTimeChart'
 
 export default function ProducerData({ producerTotalFailCount, producerMetrics }): JSX.Element {
+
+  const initialTime = new Date(new Date().getTime() - 100000)
+
   const [chartData, setChartData] = useState([
-    { data: [{primary: new Date(new Date().getTime()),secondary:0}], label: "Total Producer Requests" },
-    { data: [{primary: new Date(new Date().getTime()),secondary:0}], label: "Total Producer Time" }]);
+    { data: [{primary: initialTime,secondary:0}], label: "Total Producer Requests" },
+    { data: [{primary: initialTime,secondary:0}], label: "Total Producer Time" }]);
 
 
     useEffect(() => {
@@ -20,7 +23,7 @@ export default function ProducerData({ producerTotalFailCount, producerMetrics }
             }
           )
         }
-        setChartData(chartData)
+        setChartData([...chartData])
       }
     }, [producerMetrics.data]);
 
