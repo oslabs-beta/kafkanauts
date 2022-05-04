@@ -14,6 +14,7 @@ export default function RealTimeChart(props): JSX.Element {
   useEffect(() => {
     setData([...props.metrics])
     // setData(props.metrics.map(e => Object.assign({}, e)))
+    console.log(data)
   }, [props.metrics])
   
 
