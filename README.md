@@ -24,10 +24,10 @@
 * [Engineering Team](#kafkanauts-engineering-team)
 
 
-## 🚀 Installation and Demo
+## 🚀 Installation
 
 <br><p align="center">Kafkanauts requires a Kafka cluster configured with Kafka.js and Prometheus to pull advanced metrics</p></br>
-- To downlaod our application, please run the following commands in the respective order:
+* To downlaod our application, please run the following commands in the respective order:
 
 ```sh
 npm install
@@ -35,10 +35,8 @@ npm run build
 npm start
 
 ```
-<br>
- <p align="center">Enter the Prometheus port where your Kafka server is running</p>
- <p align="center">Browse displays for real-time metrics</p>
-</br> 
+* Enter the Prometheus port where your Kafka server is running.
+* Browse displays for real-time metrics.
 
 ## 🚀 Run Tests
 - To run the test suites, enter the following command:
