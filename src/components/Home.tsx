@@ -63,7 +63,7 @@ const Home: React.FC = () => {
                     <InputGroup.Text>
                       <FontAwesomeIcon icon={faFileExport} />
                     </InputGroup.Text>
-                    <Form.Control autoFocus required type="text" name="port" placeholder="9090" isInvalid={input.port.match(/^\d*$/) === null || input.portError} onChange={handleOnChange}/>
+                    <Form.Control autoFocus required type="text" name="port" title="port-field" placeholder="9090" isInvalid={input.port.match(/^\d*$/) === null || input.portError} onChange={handleOnChange}/>
                     <Form.Control.Feedback type="invalid">
                       Please enter a valid Prometheus port.
                     </Form.Control.Feedback>
@@ -76,11 +76,11 @@ const Home: React.FC = () => {
                       <InputGroup.Text>
                         <FontAwesomeIcon icon={faUserAstronaut} />
                       </InputGroup.Text>
-                      <Form.Control type="text" name="nickname" placeholder="Aekorn" onChange={handleOnChange}/>
+                      <Form.Control type="text" name="nickname" placeholder="Aekorn" title={'nickname-field'} onChange={handleOnChange}/>
                     </InputGroup>
                   </Form.Group>
                 </Form.Group>
-                <Button variant="primary" type="submit" className="w-100 mt-2" disabled={input.port === ''}>Submit</Button>
+                <Button variant="primary" type="submit" className="w-100 mt-2" title={'submit-button'} disabled={input.port === ''}>Submit</Button>
               </Form>
             </div>
           </Col>

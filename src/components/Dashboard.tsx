@@ -64,7 +64,7 @@ const Dashboard = () => {
   ] = useQueries(queries)
 
   return (
-    <Container>
+    <Container title={'dashboard'}>
       <Row className='row flex-nowrap'>
         <Col xs={4}>
           <Sidebar />

@@ -7,7 +7,7 @@ import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSi
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const Sidebar = (props = {}) => {
+const Sidebar = React.memo((props = {}) => {
   const location = useLocation();
   const { pathname } = location;
 
@@ -39,7 +39,7 @@ const Sidebar = (props = {}) => {
 
   return (
     <>
-      <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none">
+      <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none" title={'main-row'}>
         <Navbar.Toggle as={Button} aria-controls="main-navbar" >
           <span className="navbar-toggler-icon" />
         </Navbar.Toggle>
@@ -75,6 +75,6 @@ const Sidebar = (props = {}) => {
       </CSSTransition>
     </>
   );
-};
+});
 
 export default Sidebar;

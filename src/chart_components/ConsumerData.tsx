@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import RealTimeChart from './RealTimeChart'
 
 export default function ConsumerData({ consumerLag }): JSX.Element {
-
+  
   // const dataObj = consumerLag.data;
   // let consumerLagMetric;
 
@@ -46,7 +46,7 @@ export default function ConsumerData({ consumerLag }): JSX.Element {
     <>Loading</> : 
     <ul>
       {/* <li>Consumer Lag: {consumerLagMetric} </li> */}
-      <li><RealTimeChart metrics={chartData} /></li>
+      <li><RealTimeChart metrics={chartData} title={'consumer-graph'}/></li>
       {/* <li><RealTimeChart metrics={metrics} /></li> */}
       {/* <li>Consumer Total Time: {consumerTotalTime.data[0].value[1]} </li> */}
       {/* <li><RealTimeChart metrics={metrics} /></li> */}
