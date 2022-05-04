@@ -1,8 +1,27 @@
 import React, {useState, useEffect } from 'react'
+import { Col } from '@themesberg/react-bootstrap';
+import CounterWidget from '../components/Widget';
 import RealTimeChart from './RealTimeChart'
 
 export default function ProducerData({ producerTotalFailCount, producerMetrics }): JSX.Element {
 
+return (
+  producerTotalFailCount.isLoading ? (
+  <>Loading</>
+) : (
+  <Col xs={12} sm={6} xl={4} className='mb-4'>
+    <CounterWidget
+      category='Producer'
+      title='Total Failed Producer Requests'
+      value={producerTotalFailCount.data[0].value[1]}
+      percentage={0.0}
+    />
+  </Col>
+))
+
+
+
+/*
   const initialTime = new Date(new Date().getTime() - 100000)
 
   const [chartData, setChartData] = useState([
@@ -39,4 +58,5 @@ export default function ProducerData({ producerTotalFailCount, producerMetrics }
       <li><RealTimeChart metrics={chartData} /></li>
     </ul>
   );
+  */
 }
