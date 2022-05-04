@@ -20,7 +20,7 @@
 ## 🚀 Table of Contents
 
 * [Homepage](https://main.d2u7o0j59k7bmo.amplifyapp.com/)
-* [Installation and Demo](#installation-and-demo)
+* [Installation](#installation)
 * [Engineering Team](#kafkanauts-engineering-team)
 
 
