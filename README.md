@@ -15,8 +15,7 @@
 
 * [Homepage](https://main.d2u7o0j59k7bmo.amplifyapp.com/)
 * [Features](#features)
-* [Demo](#demo)
-* [Installation](#installation)
+* [Installation and Demo](#installation-and-demo)
 * [Engineering Team](#kafkanauts-engineering-team)
 
 ## 🚀 Features
@@ -24,10 +23,14 @@
 * ### Readable graphical displays for enhanced UI
 * ### A sample Kafka cluster to test out the app
 
-## 🚀 [Demo](demo URL goes here)
+## 🚀 Demo
+<br>
+ <p align="center">Enter the Prometheus port where your Kafka server is running </p>
+ <p align="center">
+</br>
 
-## 🚀 Installation and Usage
-- To downlaod our application, ple 
+## 🚀 Installation and Demo
+- To downlaod our application, please run the following commands in the respective order:
 
 ```sh
 npm install
@@ -35,8 +38,12 @@ npm run build
 npm start
 
 ```
+- Kafkanauts requires a Kafka cluster configured with Kafka.js and Prometheus to pull advanced metrics
+- Enter the port number for Prometheus
+- Browse displays for real-time metrics 
 
 ## 🚀 Run tests
+- To run the test suites, enter the following command:
 
 ```sh
 npm run test
