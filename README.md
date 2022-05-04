@@ -49,8 +49,10 @@ npm run test
 
 ## 🚀 Engineering Team
 
-👨‍🚀 [Vince Chin](https://github.com/Vince2c) 👩🏿‍🚀 [Vastille Dolcine](https://github.com/vdolcine) 
-👨‍🚀 [David Lee](https://github.com/davidlee7731) 👩‍🚀 [Jane Park](https://github.com/janesunpark)
+* 👨‍🚀 [Vince Chin](https://github.com/Vince2c) | vince.chin@kafkanauts.com
+* 👩🏿‍🚀 [Vastille Dolcine](https://github.com/vdolcine) | vastille.dolcine@kafkanauts.com
+* 👨‍🚀 [David Lee](https://github.com/davidlee7731) | david.lee@kafkanauts.com
+* 👩‍🚀 [Jane Park](https://github.com/janesunpark) | jane.park@kafkanauts.com
 
 * LinkedIn: [@LinkedIn username](https://linkedin.com/in/LinkedIn username)
 
