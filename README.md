@@ -20,8 +20,8 @@
 ## 🚀 Table of Contents
 
 * [Homepage](https://www.kafkanauts.com/)
-* [Installation](#installation-and-demo)
-* [Engineering Team](#kafkanauts-engineering-team)
+* [Installation](#installation)
+* [Engineering Team](#engineering-team)
 
 
 ## 🚀 Installation
