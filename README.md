@@ -11,25 +11,22 @@
 
 <h2 align="center"><strong>An open source, real-time monitoring tool for Apache Kafka</strong></h2>
 
+## 🚀 Features
+
+* #### Real-time metrics for improved analytics
+* #### Readable graphical displays for enhanced UI
+* #### A sample Kafka cluster to test out the app
+
 ## 🚀 Table of Contents
 
 * [Homepage](https://main.d2u7o0j59k7bmo.amplifyapp.com/)
-* [Features](#features)
 * [Installation and Demo](#installation-and-demo)
 * [Engineering Team](#kafkanauts-engineering-team)
 
-## 🚀 Features
-* ### Real-time metrics for improved analytics
-* ### Readable graphical displays for enhanced UI
-* ### A sample Kafka cluster to test out the app
-
-## 🚀 Demo
-<br>
- <p align="center">Enter the Prometheus port where your Kafka server is running </p>
- <p align="center">
-</br>
 
 ## 🚀 Installation and Demo
+
+<br><p align="center">Kafkanauts requires a Kafka cluster configured with Kafka.js and Prometheus to pull advanced metrics</p></br>
 - To downlaod our application, please run the following commands in the respective order:
 
 ```sh
@@ -38,11 +35,12 @@ npm run build
 npm start
 
 ```
-- Kafkanauts requires a Kafka cluster configured with Kafka.js and Prometheus to pull advanced metrics
-- Enter the port number for Prometheus
-- Browse displays for real-time metrics 
+<br>
+ <p align="center">Enter the Prometheus port where your Kafka server is running</p>
+ <p align="center">Browse displays for real-time metrics</p>
+</br> 
 
-## 🚀 Run tests
+## 🚀 Run Tests
 - To run the test suites, enter the following command:
 
 ```sh
