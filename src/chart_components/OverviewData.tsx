@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Col } from '@themesberg/react-bootstrap';
 import RealTimeChart from './RealTimeChart'
+import CounterWidget from '../components/Widget';
+
 
 export default function OverviewData({ overviewMetrics }): JSX.Element {
 
@@ -9,9 +12,17 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
     const [graphOffsetCommit, setOffsetCommit] = useState([])
     const [graphHeartbeat, setHeartbeat] = useState([])
     const [graphMetadata, setMetadata] = useState([])
-    const [cards, setCards] = useState([])
-
-
+    // const [cards, setCards] = useState([])
+    const overviewWidgets = overviewMetrics.data.cards.map(([request, value], i) => (
+        <Col xs={12} sm={6} xl={4} className='mb-4'>
+            <CounterWidget
+                  category='test'
+                  title={request}
+                  value={value}
+                  percentage={0.0}
+            />
+        </Col>
+    ))
     useEffect(() => {
         const dateOfMetric = new Date(overviewMetrics.time)
         setGraphFetch(prev => {
@@ -149,7 +160,7 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
             <RealTimeChart metrics={graphOffsetCommit} />
             <RealTimeChart metrics={graphHeartbeat} />
             <RealTimeChart metrics={graphMetadata} />
-
+            {overviewWidgets}
         </>
       );
 }
