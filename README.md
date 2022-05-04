@@ -4,7 +4,7 @@
   <a href="project documentation URL goes here" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/oslabs-beta/dangernoodle/blob/dev/LICENSE" target="_blank">
+  <a href="https://github.com/oslabs-beta/kafkanauts/blob/dev/LICENSE" target="_blank">
     <img alt="License: MIT License" src="https://img.shields.io/badge/License-MIT License-yellow.svg" />
   </a>
 </p>
@@ -51,7 +51,7 @@ npm run test
 
 ## 🚀 Guide to Contribution
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/oslabs-beta/dangernoodle/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/oslabs-beta/kafkanauts/issues). 
 
 ## 🚀 Show your support
 
@@ -59,7 +59,7 @@ Give a ⭐ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2022 [Kafkanauts](https://github.com/oslabs-beta/dangernoodle).<br />
-This project is [MIT License](https://github.com/oslabs-beta/dangernoodle/blob/dev/LICENSE) licensed.
+Copyright © 2022 [Kafkanauts](https://github.com/oslabs-beta/kafkanauts).<br />
+This project is [MIT License](https://github.com/oslabs-beta/kafkanauts/blob/dev/LICENSE) licensed.
 
 ***
