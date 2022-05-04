@@ -58,7 +58,7 @@ npm run test
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/oslabs-beta/kafkanauts/issues). 
 
-## 🚀 Show your support
+## 🚀 Thank You for Your Support
 
 Give a ⭐ if this project helped you!
 
