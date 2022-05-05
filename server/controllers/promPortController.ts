@@ -59,11 +59,7 @@ const promPortController = {
 
     res.locals.interval = 60;
     const endTime = res.locals.time;
-    console.log(`endTime: ${endTime}`);
-    // let startTime = new Date();
-    // console.log(`startTime: ${startTime}`);
     let difference = new Date().getTime() - new Date(endTime).getTime();
-    console.log('DIFFERENCE', difference);
     
     if (difference < 60000) {
       res.locals.interval = 1;
