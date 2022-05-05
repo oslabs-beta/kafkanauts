@@ -7,7 +7,6 @@ import { GeneralInfoForm } from "../components/sub-components/Form";
 
 import blankUser from "../assets/blank_user.png";
 
-
 export default () => {
   return (
     <>
