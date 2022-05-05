@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ZookeeperData({ avgLatency }): JSX.Element {
+export default function ZookeeperData({ avgLatency, health }): JSX.Element {
   return (
     avgLatency.isLoading ? 
     <>Loading</> : 
