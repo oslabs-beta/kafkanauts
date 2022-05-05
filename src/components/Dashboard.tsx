@@ -137,8 +137,8 @@ const Dashboard = () => {
                 avgLatency.isLoading
                 ? <>Loading</>
                 : <ZookeeperData
-                    avgLatency={avgLatency}
-                    health={zookeeperHealth}
+                    avgLatency={avgLatency.data}
+                    health={zookeeperHealth.data}
                 />
               }/>
               
