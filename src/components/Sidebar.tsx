@@ -25,7 +25,6 @@ const Sidebar = React.memo((props = {}) => {
           <span>
             {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
             {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
-
             {main ? <span className="sidebar-text" style={{fontSize: 18}}>{title}</span> : <span className="sidebar-text">{title}</span>}
           </span>
           {badgeText ? (
