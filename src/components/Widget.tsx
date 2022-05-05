@@ -24,17 +24,17 @@ export const CounterWidget = (props) => {
   const percentageColor = percentage < 0 ? 'text-danger' : 'text-success';
 
   return (
-    <Card border='light' className='shadow-sm widget-item' style={{ width: '18rem', borderWidth: 'medium'}}>
+    <Card border='light' className='shadow-sm widget-item' style={{ width: '20rem', borderWidth: 'medium'}}>
       <Card.Body>
         <Row className='d-block d-xl-flex align-items-center'>
-          <Col xs={12} xl={7} className='px-xl-0'>
+          <Col xs={12} xl={12} className='px-xl-0'>
             <div className='d-none d-sm-block'>
               <h5>{title}</h5>
               <h3 className='mb-1 justify-content-center'>{value}</h3>
             </div>
             <div className='small mt-2'>
               <FontAwesomeIcon icon={percentageIcon} className={`${percentageColor} me-1`} />
-              <span className={`${percentageColor} fw-bold`}>{percentage}%</span>
+              <span className={`${percentageColor} fw-bold`}>{percentage}</span>
             </div>
             <h6>{category}</h6>
           </Col>

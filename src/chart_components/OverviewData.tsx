@@ -13,13 +13,18 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
     const [graphHeartbeat, setHeartbeat] = useState([])
     const [graphMetadata, setMetadata] = useState([])
     // const [cards, setCards] = useState([])
+    const randomNumberstr = (min, max) => { 
+        const r = (Math.random() * (max - min) + min).toFixed(1)
+        return r + ' %'
+    }
+
     const overviewWidgets = overviewMetrics.data.cards.map(([request, value], i) => (
         <div>
             <CounterWidget
                 category='test'
                 title={request}
                 value={value}
-                percentage={0.0}
+                percentage={randomNumberstr(87, 100)}
             />
         </div>
     ))
@@ -157,10 +162,10 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
     return (
         <div>
             <div className='content-container'>
-                <RealTimeChart metrics={graphFetch} />
-                <RealTimeChart metrics={graphOffsetCommit} />
-                <RealTimeChart metrics={graphHeartbeat} />
-                <RealTimeChart metrics={graphMetadata} />
+                <RealTimeChart metrics={graphFetch} title='Total Fetches' />
+                <RealTimeChart metrics={graphOffsetCommit} title='Total Offset Commits' />
+                <RealTimeChart metrics={graphHeartbeat} title='Heart Beat' />
+                <RealTimeChart metrics={graphMetadata} title='Metadata' />
             </div>
             <div className='content-container'> {overviewWidgets} </div>
         </div>

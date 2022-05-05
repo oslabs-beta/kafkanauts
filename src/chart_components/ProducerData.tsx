@@ -35,7 +35,7 @@ export default function ProducerData({ producerTotalFailCount, producerMetrics }
     ) : (
     <div>
       <div className='content-container'>
-        <RealTimeChart metrics={chartData} />
+        <RealTimeChart metrics={chartData} title='Total Producer Requests & Time' />
       </div>
       <div className='content-container'>
         <div>

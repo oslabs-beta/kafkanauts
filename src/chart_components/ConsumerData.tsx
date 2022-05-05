@@ -45,7 +45,7 @@ export default function ConsumerData({ consumerLag }): JSX.Element {
     consumerLag.isLoading ? 
     <>Loading</> : 
     <div className='content-container'>
-      <RealTimeChart metrics={chartData} title={'consumer-graph'}/>
+      <RealTimeChart metrics={chartData} title={'Consumer Lag'}/>
     </div>
   );
 }

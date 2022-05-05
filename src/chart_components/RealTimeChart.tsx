@@ -37,6 +37,7 @@ export default function RealTimeChart(props): JSX.Element {
 
   return (
       <div className="chart-item">
+        {props.title ? <div className="chart-title">{props.title}</div> : ' '}
         <ResizableBox
           style={{
             background: "rgba(0, 27, 45, 0.9)",
