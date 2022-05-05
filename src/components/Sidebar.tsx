@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faHeartPulse } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
+import logo from '../assets/kafkanauts_175x175.png'
 
 const Sidebar = React.memo((props = {}) => {
   const location = useLocation();
@@ -39,7 +40,7 @@ const Sidebar = React.memo((props = {}) => {
 
   return (
     <>
-      <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none" title={'main-row'}>
+      <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none" title={''}>
         <Navbar.Toggle as={Button} aria-controls="main-navbar" >
           <span className="navbar-toggler-icon" />
         </Navbar.Toggle>
@@ -60,7 +61,7 @@ const Sidebar = React.memo((props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Kafka Monitor" link='/dashboard/overview'/>
+              <NavItem title="Kafkanauts" image ={logo} link='/dashboard/overview'/>
               <Dropdown.Divider className="my-3 border-white" />
               <NavItem title="Overview" icon={faChartPie} link='/dashboard/overview'/>
               <NavItem title="Partition" icon={faHeartPulse} link='/dashboard/partition' />
@@ -68,7 +69,10 @@ const Sidebar = React.memo((props = {}) => {
               <NavItem title="Producer" icon={faHandHoldingUsd} link='/dashboard/producer' />
               <NavItem title="Topics" icon={faCog} link='/dashboard/topic' />
               <NavItem title="Zookeeper" icon={faCalendarAlt} link='/dashboard/zookeeper' />
-              <NavItem title="Map"icon={faMapPin} link='/dashboard/map' />
+              <NavItem title="Create Cluster"icon={faMapPin} link='/dashboard/cluster' />
+              <Dropdown.Divider className="my-3 border-white" />
+              <NavItem title="Documentation"icon={faMapPin} link='/dashboard/docs' />
+
             </Nav>
           </div>
         </SimpleBar>
