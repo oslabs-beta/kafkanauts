@@ -42,7 +42,7 @@ export default function RealTimeChart(props): JSX.Element {
           borderRadius: "5px",
         }}
       >
-        <div style={{ width: "100%", height: "100%" }}>
+        <div style={{ width: "100%", height: "100%"}}>
           {data.length > 0 ? <Chart
             
             options={{

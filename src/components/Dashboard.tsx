@@ -64,69 +64,72 @@ const Dashboard = () => {
   ] = useQueries(queries)
 
   return (
-    <Container title={'dashboard'}>
-      <Row className='row flex-nowrap'>
-        <Col xs={4}>
-          <Sidebar />
-        </Col>
+    <div title={'dashboard'}>
+      <Row>
+        <Col xs={2}> <Sidebar /></Col>
         <Col>
-          <Routes>
-            <Route path="/partition" element={
-              partitionTotalCount.isLoading && partitionOfflineCount.isLoading && partitionUnderreplicated.isLoading && partitionActiveController.isLoading && partitionReqLatency.isLoading
-              ? <>Loading</>
-              : <PartitionData
-                  partitionTotalCount={partitionTotalCount.data}
-                  partitionOfflineCount={partitionOfflineCount.data}
-                  partitionUnderreplicated={partitionUnderreplicated.data}
-                  partitionActiveController={partitionActiveController.data}
-                  partitionReqLatency={partitionReqLatency.data}
-              />
-            }/>
+        <div>
+        <Routes>
+          <Route path="/partition" element={
+            partitionTotalCount.isLoading && partitionOfflineCount.isLoading && partitionUnderreplicated.isLoading && partitionActiveController.isLoading && partitionReqLatency.isLoading
+            ? <>Loading</>
+            : <PartitionData
+                partitionTotalCount={partitionTotalCount.data}
+                partitionOfflineCount={partitionOfflineCount.data}
+                partitionUnderreplicated={partitionUnderreplicated.data}
+                partitionActiveController={partitionActiveController.data}
+                partitionReqLatency={partitionReqLatency.data}
+            />
+          }/>
 
-            <Route path="/producer" element={
-              producerMetrics.isLoading && producerTotalFailCount.isLoading
-              ? <>Loading</>
-              : <ProducerData
-                  producerTotalFailCount={producerTotalFailCount}
-                  producerMetrics={producerMetrics}
-              />
-            }/>
+          <Route path="/producer" element={
+            producerMetrics.isLoading && producerTotalFailCount.isLoading
+            ? <>Loading</>
+            : <ProducerData
+                producerTotalFailCount={producerTotalFailCount}
+                producerMetrics={producerMetrics}
+            />
+          }/>
 
-            <Route path="/topic" element={
-              topicMetrics.isLoading && topicTotalCount.isLoading
-              ? <>Loading</>
-              : <InOutData
-                  topicMetrics={topicMetrics.data}
-                  topicTotalCount={topicTotalCount.data}
-              />
-            }/>
+          <Route path="/topic" element={
+            topicMetrics.isLoading && topicTotalCount.isLoading
+            ? <>Loading</>
+            : <InOutData
+                topicMetrics={topicMetrics.data}
+                topicTotalCount={topicTotalCount.data}
+            />
+          }/>
 
-            <Route path="/consumer" element={
-              consumerLag.isLoading
+          <Route path="/consumer" element={
+            consumerLag.isLoading
+            ? <>Loading</>
+            : <ConsumerData
+                consumerLag={consumerLag}
+            />
+          }/>
+          <Route path="/overview" element={
+            overviewMetrics.isLoading
               ? <>Loading</>
-              : <ConsumerData
-                  consumerLag={consumerLag}
+              : <OverviewData
+              overviewMetrics={overviewMetrics.data}
               />
-            }/>
-            <Route path="/overview" element={
-              overviewMetrics.isLoading
-                ? <>Loading</>
-                : <OverviewData
-                overviewMetrics={overviewMetrics.data}
-                />
-            } />
+          } />
 
-            <Route path="/zookeeper" element={
-              avgLatency.isLoading
-              ? <>Loading</>
-              : <ZookeeperData
-                  avgLatency={avgLatency}
-              />
-            }/>
-          </Routes>
+          <Route path="/zookeeper" element={
+            avgLatency.isLoading
+            ? <>Loading</>
+            : <ZookeeperData
+                avgLatency={avgLatency}
+            />
+          }/>
+        </Routes>
+      </div>
         </Col>
       </Row>
-    </Container>
+     
+
+      
+    </div>
   );
 };
 
