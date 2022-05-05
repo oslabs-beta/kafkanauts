@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card }  from '@themesberg/react-bootstrap';
+import { CounterWidget } from '../components/Widget';
 import './styles/PartitionData.scss'
 
 export default function PartitionData({partitionTotalCount, partitionOfflineCount, partitionUnderreplicated, partitionActiveController, partitionReqLatency}): JSX.Element {
@@ -9,27 +10,37 @@ export default function PartitionData({partitionTotalCount, partitionOfflineCoun
   const activeControllerCount = partitionActiveController.data.count
   const partitionLatencyArray = partitionReqLatency.data.requestLatency
 console.log('underreplicatedArray: ', underreplicatedArray)
-  const underreplicatedComponents = underreplicatedArray.map((el, i) => (
-    <div className='card-item'>
-      <Card key={i} border={'danger'} style={{ width: '18rem', borderWidth: 'medium'}}>
-        <Card.Header as={'h4'} >Underreplicated Partition Detected</Card.Header>
-        <Card.Body>
-          <Card.Title as={'h5'} >{el.topic}</Card.Title>
-          <Card.Text as={'h6'} >Partition: {el.partition}<br/>Underreplicated count: {el.count}</Card.Text>
-        </Card.Body>
-      </Card>
+  const underreplicatedComponents = underreplicatedArray.map((el, i) =>
+    <div key={i}>
+      <CounterWidget 
+        category={el.topic}
+        title={`Instance: ${partitionUnderreplicated.instance}`}
+        value={el.count}
+        percentage={`Job: ${partitionUnderreplicated.job}`}
+      />
     </div>
-  ))
+  )
+  if (underreplicatedComponents.length === 0) {
+    underreplicatedComponents.push(
+      <div>
+        <CounterWidget 
+          category='Underreplicated Partition'
+          title={`Instance: ${partitionUnderreplicated.instance}`}
+          value='0'
+          percentage={`Job: ${partitionUnderreplicated.job}`}
+        />
+    </div>
+    )
+  }
 
   const partitionLatencyComponents = partitionLatencyArray.map((el, i) => (
-    <div className='card-item'>
-      <Card key={i} border={el.latency > 1000 ? 'danger' : 'success'} style={{ width: '18rem', borderWidth: 'medium' }} >
-        <Card.Header as={'h4'} >Partition Latency</Card.Header>
-        <Card.Body>
-          <Card.Title as={'h5'} >{el.nameOfRequest}</Card.Title>
-          <Card.Text as={'h6'} >{el.latency.toLocaleString()} ms</Card.Text>
-        </Card.Body>
-      </Card>
+    <div key={i}>
+      <CounterWidget 
+        category={el.nameOfRequest}
+        title={`Instance: ${partitionReqLatency.instance}`}
+        value={el.latency}
+        percentage={`Job: ${partitionReqLatency.job}`}
+      />
     </div>
   ))
   return (
@@ -62,7 +73,7 @@ console.log('underreplicatedArray: ', underreplicatedArray)
       </Card>
       </div>
       {
-        // underreplicatedArray.length === 0 ? 'No underreplicated partitions' : underreplicatedComponents
+        underreplicatedComponents
       }
       <br/>
       {

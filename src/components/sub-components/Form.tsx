@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Row, Card, Form, Button } from '@themesberg/react-bootstrap';
 
-export const GeneralInfoForm = () => {
+export const GeneralInfoForm = ({ setShowAlert }) => {
   return (
     <Card border="light" className="bg-white shadow-sm mb-4">
       <Card.Body>
@@ -74,7 +74,7 @@ export const GeneralInfoForm = () => {
             </Col>
           </Row>
           <div className="mt-3">
-            <Button variant="primary" type="submit" onClick={() => alert('Kafka cluster initialized.')}>Create</Button>
+            <Button variant="primary" type="submit" onClick={() => {setShowAlert(true); window.scrollTo({ top: 0, left: 0, behavior: "smooth" });}}>Create</Button>
           </div>
         </Form>
       </Card.Body>

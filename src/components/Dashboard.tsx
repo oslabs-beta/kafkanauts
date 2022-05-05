@@ -49,6 +49,7 @@ const Dashboard = () => {
     '/consumer/consumer-lag',
     //'/consumer/consumer-total-time',
     '/zookeeper/avg-latency',
+    '/zookeeper/health',
     '/overview/overview-metrics',
     // add endpoint here and destructure result from the invocation of "useQueries" function below
   ]
@@ -74,6 +75,7 @@ const Dashboard = () => {
     consumerLag,
     //consumerTotalTime,
     avgLatency,
+    zookeeperHealth,
     overviewMetrics,
     // destructure result here
   ] = useQueries(queries)
@@ -135,7 +137,8 @@ const Dashboard = () => {
                 avgLatency.isLoading
                 ? <>Loading</>
                 : <ZookeeperData
-                    avgLatency={avgLatency}
+                    avgLatency={avgLatency.data}
+                    health={zookeeperHealth.data}
                 />
               }/>
               

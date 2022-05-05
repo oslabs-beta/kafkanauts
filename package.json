@@ -1,6 +1,6 @@
 {
-  "name": "kafka-monitor",
-  "version": "0.1.0",
+  "name": "kafkanauts",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@electron/remote": "^2.0.5",
@@ -40,7 +40,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:dev": "concurrently -k \"npm start\" \"nodemon public/server/server.js\"",
-    "build": "react-scripts build",
+    "build": "tsc",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "compile": "tsc && copyfiles -f public/index.html build",

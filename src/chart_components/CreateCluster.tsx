@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxOpen, faCartArrowDown, faChartPie, faChevronDown, faClipboard, faCommentDots, faFileAlt, faPlus, faRocket, faStore } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Button, Dropdown } from '@themesberg/react-bootstrap';
+import { Alert, Col, Row, Button, Dropdown } from '@themesberg/react-bootstrap';
 import { ChoosePhotoWidget, ProfileCardWidget } from "../components/Widget";
 import { GeneralInfoForm } from "../components/sub-components/Form";
 
 import blankUser from "../assets/blank_user.png";
 
-
 export default () => {
+  const [showAlert, setShowAlert] = useState(false);
   return (
     <>
+      <Alert
+        variant="success"
+        show={showAlert}
+        onClose={() => setShowAlert(false)}
+        >
+
+        <div className="d-flex justify-content-between">
+          <div>
+            <FontAwesomeIcon icon={faChartPie} className="me-1" />
+            <strong>Success!</strong> Cluster successfully created.
+          </div>
+          <Button variant="close" size="sm" onClick={() => setShowAlert(false)} />
+        </div>
+      </Alert>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <Dropdown>
           <Dropdown.Toggle as={Button} variant="secondary" className="text-dark me-2">
@@ -68,7 +82,7 @@ export default () => {
 
       <Row>
         <Col xs={12} xl={8}>
-          <GeneralInfoForm />
+          <GeneralInfoForm setShowAlert={setShowAlert}/>
         </Col>
 
         <Col xs={12} xl={4}>
