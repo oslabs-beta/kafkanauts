@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import RealTimeChart from './RealTimeChart'
+import { Col } from '@themesberg/react-bootstrap';
+import { CounterWidget } from '../components/Widget';
 
 export default function InOutData({ topicMetrics, topicTotalCount }): JSX.Element {
   const [inData, setInData] = useState([]);
@@ -76,13 +78,25 @@ export default function InOutData({ topicMetrics, topicTotalCount }): JSX.Elemen
 
 
   return (
-    <ul>
-      <li>Bytes In Graph <RealTimeChart metrics={inData}/></li>
-      <li>Bytes Out Graph <RealTimeChart metrics={outData}/></li>
-      <li>Total Topic Count: {topicTotalCount.data.numOfTopics}<br/>Instance: {topicTotalCount.instance}<br/>Job: {topicTotalCount.job}<br/></li>
-      <li>Total Bytes In: {(topicMetrics.data.totalBytesIn/1000).toLocaleString()} KBs</li>
-      <li>Total Bytes Out: {(topicMetrics.data.totalBytesOut/1000).toLocaleString()} KBs</li>
-      <li>Total Bytes Rejected: {(topicMetrics.data.bytesRejected/1000).toLocaleString()} KBs</li>
-    </ul>
+    <div>
+      <div className='content-container'>
+        <div>Bytes In Graph <RealTimeChart metrics={inData}/></div>
+        <div>Bytes Out Graph <RealTimeChart metrics={outData}/></div>
+      </div>
+      <div className='content-container'>
+        <div>
+        <CounterWidget
+              category='Total Topic Count'
+              title={`Instance: ${topicTotalCount.instance}`}
+              value={topicTotalCount.data.numOfTopics}
+              percentage={`Job: ${topicTotalCount.job}`}
+            />
+            </div>
+        {/* <div>Total Topic Count: {topicTotalCount.data.numOfTopics}<br/>Instance: {topicTotalCount.instance}<br/>Job: {topicTotalCount.job}<br/></div> */}
+        <div>Total Bytes In: {(topicMetrics.data.totalBytesIn/1000).toLocaleString()} KBs</div>
+        <div>Total Bytes Out: {(topicMetrics.data.totalBytesOut/1000).toLocaleString()} KBs</div>
+        <div>Total Bytes Rejected: {(topicMetrics.data.bytesRejected/1000).toLocaleString()} KBs</div>
+      </div>
+    </div>
   );
 }
