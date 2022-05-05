@@ -21,7 +21,7 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
     const overviewWidgets = overviewMetrics.data.cards.map(([request, value], i) => (
         <div>
             <CounterWidget
-                category='test'
+                category='Good Status'
                 title={request}
                 value={value}
                 percentage={randomNumberstr(87, 100)}
