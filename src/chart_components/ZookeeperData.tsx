@@ -48,18 +48,6 @@ export default function ZookeeperData({ avgLatency, health }): JSX.Element {
       </div>
       <div className='content-container'>
         {zkWidgets}
-        {/* <div>
-        <CounterWidget
-              category='Total Topic Count'
-              title={`Instance: ${topicTotalCount.instance}`}
-              value={topicTotalCount.data.numOfTopics}
-              percentage={`Job: ${topicTotalCount.job}`}
-            />
-            </div> */}
-        {/* <div>Total Topic Count: {topicTotalCount.data.numOfTopics}<br/>Instance: {topicTotalCount.instance}<br/>Job: {topicTotalCount.job}<br/></div> */}
-        {/* <div>Total Bytes In: {(topicMetrics.data.totalBytesIn/1000).toLocaleString()} KBs</div>
-        <div>Total Bytes Out: {(topicMetrics.data.totalBytesOut/1000).toLocaleString()} KBs</div>
-        <div>Total Bytes Rejected: {(topicMetrics.data.bytesRejected/1000).toLocaleString()} KBs</div> */}
       </div>
     </div>
   );

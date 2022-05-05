@@ -26,7 +26,41 @@ const zookeeperController = {
       ];
       const axiosGetAll = await Promise.all(zooMetrics);
       const destructureResults = axiosGetAll.map(promResult => promResult.data.data.result);
-      res.locals.zooMetrics = destructureResults;
+      const [[{ metric: { instance, job }, value: [ unixTime ] }]] = destructureResults;
+      const zkFormatted = {
+        instance,
+        job,
+        time: unixTime * 1000,
+        data: {
+          authFailures: 0,
+          disconnects: 0,
+          expires: 0,
+          readOnlyConnects: 0,
+          saslAuths: 0,
+        }
+      }
+      destructureResults.forEach(([el]) => {
+        switch (el.metric.__name__) {
+          case 'kafka_server_sessionexpirelistener_zookeeperauthfailures_total':
+            zkFormatted.data.authFailures = Number(el.value[1])
+            break
+          case 'kafka_server_sessionexpirelistener_zookeeperdisconnects_total':
+            zkFormatted.data.disconnects = Number(el.value[1])
+            break
+          case 'kafka_server_sessionexpirelistener_zookeeperexpires_total':
+            zkFormatted.data.expires = Number(el.value[1])
+            break
+          case 'kafka_server_sessionexpirelistener_zookeeperreadonlyconnects_total':
+            zkFormatted.data.readOnlyConnects = Number(el.value[1])
+            break
+          case 'kafka_server_sessionexpirelistener_zookeepersaslauthentications_total':
+            zkFormatted.data.saslAuths = Number(el.value[1])
+            break
+          default:
+            break
+        }
+      })
+      res.locals.zooMetrics = zkFormatted;
       return next();
     } catch(e) {
       return next(e)
