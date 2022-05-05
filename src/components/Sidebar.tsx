@@ -13,8 +13,7 @@ const Sidebar = React.memo((props = {}) => {
   const { pathname } = location;
 
   const NavItem = (props) => {
-    const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
-    // console.log( title, link, external, target, icon, image, badgeText, badgeBg, badgeColor)
+    const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary", main } = props;
     const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
     const navItemClassName = link === pathname ? "active" : "";
     const linkProps = external ? { href: link } : { as: Link, to: link };
@@ -27,7 +26,7 @@ const Sidebar = React.memo((props = {}) => {
             {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
             {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
 
-            <span className="sidebar-text">{title}</span>
+            {main ? <span className="sidebar-text" style={{fontSize: 18}}>{title}</span> : <span className="sidebar-text">{title}</span>}
           </span>
           {badgeText ? (
             <Badge pill bg={badgeBg} text={badgeColor} className="badge-md notification-count ms-2">{badgeText}</Badge>
@@ -61,7 +60,7 @@ const Sidebar = React.memo((props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Kafkanauts" image ={logo} link='/dashboard/overview'/>
+              <NavItem title="Kafkanauts" image={logo} link='/dashboard/overview' main/>
               <Dropdown.Divider className="my-3 border-white" />
               <NavItem title="Overview" icon={faChartPie} link='/dashboard/overview'/>
               <NavItem title="Partition" icon={faHeartPulse} link='/dashboard/partition' />
