@@ -58,7 +58,7 @@ npm run test
 
 ## 🚀 Guide to Contribution
 
-Contributions, issues and feature requests are welcome!<br />Feel free to fork and clone this repo, and check [issues page](https://github.com/kafkanauts-example-kafka-server/kafka/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to fork and clone this repo, and check [issues page](https://github.com/oslabs-beta/kafkanauts/issues). 
 
 ## 🚀 Thank You for Your Support
 
