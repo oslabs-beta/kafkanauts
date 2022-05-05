@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import { Col } from '@themesberg/react-bootstrap';
-import CounterWidget from '../components/Widget';
+import { CounterWidget } from '../components/Widget';
 import RealTimeChart from './RealTimeChart'
 
 export default function ProducerData({ producerTotalFailCount, producerMetrics }): JSX.Element {
