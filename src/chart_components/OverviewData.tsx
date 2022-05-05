@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Col } from '@themesberg/react-bootstrap';
 import RealTimeChart from './RealTimeChart'
 import { CounterWidget } from '../components/Widget';
-
+import './styles/Overview.scss';
 
 export default function OverviewData({ overviewMetrics }): JSX.Element {
 
@@ -16,10 +16,10 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
     const overviewWidgets = overviewMetrics.data.cards.map(([request, value], i) => (
         <Col xs={12} sm={6} xl={4} className='mb-4'>
             <CounterWidget
-                  category='test'
-                  title={request}
-                  value={value}
-                  percentage={0.0}
+                category='test'
+                title={request}
+                value={value}
+                percentage={0.0}
             />
         </Col>
     ))
@@ -32,13 +32,13 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                 if (indexOfRequest < 0) {
                     // if topic line doesnt exist in graph, then push the new line into "inData"
                     const newLine = {
-                    label: request,
-                    data: [
-                        {
-                            primary: dateOfMetric,
-                            secondary: value,
-                        }
-                    ],
+                        label: request,
+                        data: [
+                            {
+                                primary: dateOfMetric,
+                                secondary: value,
+                            }
+                        ],
                     }
                     shallowCopyofFetch.push(newLine)
                 } else {
@@ -48,7 +48,7 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                         secondary: value,
                     }
                     shallowCopyofFetch[indexOfRequest].data.push(dataPoint)
-            
+
                     if (shallowCopyofFetch[indexOfRequest].data.length > 100) {
                         shallowCopyofFetch[indexOfRequest].data.shift()
                     }
@@ -64,13 +64,13 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                 if (indexOfRequest < 0) {
                     // if topic line doesnt exist in graph, then push the new line into "inData"
                     const newLine = {
-                    label: request,
-                    data: [
-                        {
-                            primary: dateOfMetric,
-                            secondary: value,
-                        }
-                    ],
+                        label: request,
+                        data: [
+                            {
+                                primary: dateOfMetric,
+                                secondary: value,
+                            }
+                        ],
                     }
                     shallowCopyofOffset.push(newLine)
                 } else {
@@ -80,7 +80,7 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                         secondary: value,
                     }
                     shallowCopyofOffset[indexOfRequest].data.push(dataPoint)
-            
+
                     if (shallowCopyofOffset[indexOfRequest].data.length > 100) {
                         shallowCopyofOffset[indexOfRequest].data.shift()
                     }
@@ -95,13 +95,13 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                 if (indexOfRequest < 0) {
                     // if topic line doesnt exist in graph, then push the new line into "inData"
                     const newLine = {
-                    label: request,
-                    data: [
-                        {
-                            primary: dateOfMetric,
-                            secondary: value,
-                        }
-                    ],
+                        label: request,
+                        data: [
+                            {
+                                primary: dateOfMetric,
+                                secondary: value,
+                            }
+                        ],
                     }
                     shallowCopyofHeartbeat.push(newLine)
                 } else {
@@ -111,7 +111,7 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                         secondary: value,
                     }
                     shallowCopyofHeartbeat[indexOfRequest].data.push(dataPoint)
-            
+
                     if (shallowCopyofHeartbeat[indexOfRequest].data.length > 100) {
                         shallowCopyofHeartbeat[indexOfRequest].data.shift()
                     }
@@ -127,13 +127,13 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                 if (indexOfRequest < 0) {
                     // if topic line doesnt exist in graph, then push the new line into "inData"
                     const newLine = {
-                    label: request,
-                    data: [
-                        {
-                            primary: dateOfMetric,
-                            secondary: value,
-                        }
-                    ],
+                        label: request,
+                        data: [
+                            {
+                                primary: dateOfMetric,
+                                secondary: value,
+                            }
+                        ],
                     }
                     shallowCopyofMetadata.push(newLine)
                 } else {
@@ -143,7 +143,7 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                         secondary: value,
                     }
                     shallowCopyofMetadata[indexOfRequest].data.push(dataPoint)
-            
+
                     if (shallowCopyofMetadata[indexOfRequest].data.length > 100) {
                         shallowCopyofMetadata[indexOfRequest].data.shift()
                     }
@@ -155,12 +155,14 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
 
     }, [overviewMetrics]);
     return (
-        <>
-            <RealTimeChart metrics={graphFetch} />
-            <RealTimeChart metrics={graphOffsetCommit} />
-            <RealTimeChart metrics={graphHeartbeat} />
-            <RealTimeChart metrics={graphMetadata} />
-            {overviewWidgets}
-        </>
-      );
+        <div>
+            <div className='content-container'>
+                <RealTimeChart metrics={graphFetch} />
+                <RealTimeChart metrics={graphOffsetCommit} />
+                <RealTimeChart metrics={graphHeartbeat} />
+                <RealTimeChart metrics={graphMetadata} />
+            </div>
+            <div className='content-container'> {overviewWidgets} </div>
+        </div>
+    );
 }
