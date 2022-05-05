@@ -1,58 +1,166 @@
 import React, { useState, useEffect } from 'react'
+import { Col } from '@themesberg/react-bootstrap';
 import RealTimeChart from './RealTimeChart'
+import CounterWidget from '../components/Widget';
+
 
 export default function OverviewData({ overviewMetrics }): JSX.Element {
 
-    const initialTime = new Date(new Date().getTime() - 100000)
-    console.log('overviewMetrics', overviewMetrics);
-    
-    const [chartData, setChartData] = useState([
-        { data: [{ primary: initialTime, secondary: 0 }], label: "ApiVersions" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "CreateTopics" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "Fetch" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "FetchConsumer" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "FindCoordinator" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "Heartbeat" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "JoinGroup" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "LeaderAndIsr" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "Metadata" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "OffsetCommit" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "OffsetFetch" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "Produce" },
-        { data: [{ primary: initialTime, secondary: 0 }], label: "SyncGroup" },
-    ]);
-
+    // const initialTime = new Date(new Date().getTime() - 100000)
+    // console.log('overviewMetrics', overviewMetrics);
+    const [graphFetch, setGraphFetch] = useState([])
+    const [graphOffsetCommit, setOffsetCommit] = useState([])
+    const [graphHeartbeat, setHeartbeat] = useState([])
+    const [graphMetadata, setMetadata] = useState([])
+    // const [cards, setCards] = useState([])
+    const overviewWidgets = overviewMetrics.data.cards.map(([request, value], i) => (
+        <Col xs={12} sm={6} xl={4} className='mb-4'>
+            <CounterWidget
+                  category='test'
+                  title={request}
+                  value={value}
+                  percentage={0.0}
+            />
+        </Col>
+    ))
     useEffect(() => {
-        if (overviewMetrics.data) {
-            
-            for (let i = 0; i < 10 && i < overviewMetrics.data.length; i++) {
-                if (chartData[i].data.length === 10) {
-                    chartData[i].data.shift()
-                }
-                chartData[i].data.push(
-                    {
-                        primary: new Date(overviewMetrics.data[i].value[0] * 1000),
-                        secondary: parseInt(overviewMetrics.data[i].value[1])
+        const dateOfMetric = new Date(overviewMetrics.time)
+        setGraphFetch(prev => {
+            const shallowCopyofFetch = [...prev]
+            overviewMetrics.data.graph1.forEach(([request, value]) => {
+                const indexOfRequest = shallowCopyofFetch.findIndex(el => el.label === request)
+                if (indexOfRequest < 0) {
+                    // if topic line doesnt exist in graph, then push the new line into "inData"
+                    const newLine = {
+                    label: request,
+                    data: [
+                        {
+                            primary: dateOfMetric,
+                            secondary: value,
+                        }
+                    ],
                     }
-                )
-                // console.log('this is ow', chartData[i]);
-                // console.log('this is ow', chartData[i].data.length);
-            }
-            setChartData([...chartData])
+                    shallowCopyofFetch.push(newLine)
+                } else {
+                    // if topic line already exists in graph, then just push new data point into "inData"
+                    const dataPoint = {
+                        primary: dateOfMetric,
+                        secondary: value,
+                    }
+                    shallowCopyofFetch[indexOfRequest].data.push(dataPoint)
             
-        }
-    }, [overviewMetrics.data]);
-    // return <>hi</>
+                    if (shallowCopyofFetch[indexOfRequest].data.length > 100) {
+                        shallowCopyofFetch[indexOfRequest].data.shift()
+                    }
+                }
+            })
+            return shallowCopyofFetch
+        })
+
+        setOffsetCommit(prev => {
+            const shallowCopyofOffset = [...prev]
+            overviewMetrics.data.graph2.forEach(([request, value]) => {
+                const indexOfRequest = shallowCopyofOffset.findIndex(el => el.label === request)
+                if (indexOfRequest < 0) {
+                    // if topic line doesnt exist in graph, then push the new line into "inData"
+                    const newLine = {
+                    label: request,
+                    data: [
+                        {
+                            primary: dateOfMetric,
+                            secondary: value,
+                        }
+                    ],
+                    }
+                    shallowCopyofOffset.push(newLine)
+                } else {
+                    // if topic line already exists in graph, then just push new data point into "inData"
+                    const dataPoint = {
+                        primary: dateOfMetric,
+                        secondary: value,
+                    }
+                    shallowCopyofOffset[indexOfRequest].data.push(dataPoint)
+            
+                    if (shallowCopyofOffset[indexOfRequest].data.length > 100) {
+                        shallowCopyofOffset[indexOfRequest].data.shift()
+                    }
+                }
+            })
+            return shallowCopyofOffset
+        })
+        setHeartbeat(prev => {
+            const shallowCopyofHeartbeat = [...prev]
+            overviewMetrics.data.graph3.forEach(([request, value]) => {
+                const indexOfRequest = shallowCopyofHeartbeat.findIndex(el => el.label === request)
+                if (indexOfRequest < 0) {
+                    // if topic line doesnt exist in graph, then push the new line into "inData"
+                    const newLine = {
+                    label: request,
+                    data: [
+                        {
+                            primary: dateOfMetric,
+                            secondary: value,
+                        }
+                    ],
+                    }
+                    shallowCopyofHeartbeat.push(newLine)
+                } else {
+                    // if topic line already exists in graph, then just push new data point into "inData"
+                    const dataPoint = {
+                        primary: dateOfMetric,
+                        secondary: value,
+                    }
+                    shallowCopyofHeartbeat[indexOfRequest].data.push(dataPoint)
+            
+                    if (shallowCopyofHeartbeat[indexOfRequest].data.length > 100) {
+                        shallowCopyofHeartbeat[indexOfRequest].data.shift()
+                    }
+                }
+            })
+            return shallowCopyofHeartbeat
+        })
+
+        setMetadata(prev => {
+            const shallowCopyofMetadata = [...prev]
+            overviewMetrics.data.graph4.forEach(([request, value]) => {
+                const indexOfRequest = shallowCopyofMetadata.findIndex(el => el.label === request)
+                if (indexOfRequest < 0) {
+                    // if topic line doesnt exist in graph, then push the new line into "inData"
+                    const newLine = {
+                    label: request,
+                    data: [
+                        {
+                            primary: dateOfMetric,
+                            secondary: value,
+                        }
+                    ],
+                    }
+                    shallowCopyofMetadata.push(newLine)
+                } else {
+                    // if topic line already exists in graph, then just push new data point into "inData"
+                    const dataPoint = {
+                        primary: dateOfMetric,
+                        secondary: value,
+                    }
+                    shallowCopyofMetadata[indexOfRequest].data.push(dataPoint)
+            
+                    if (shallowCopyofMetadata[indexOfRequest].data.length > 100) {
+                        shallowCopyofMetadata[indexOfRequest].data.shift()
+                    }
+                }
+            })
+            return shallowCopyofMetadata
+        })
+
+
+    }, [overviewMetrics]);
     return (
-        <ul>
-          <li>
-            {
-              overviewMetrics.isLoading ? 
-              'Loading' : 
-              'Total Failed Producer Requests: ' 
-            }
-          </li>
-          <li><RealTimeChart metrics={chartData} /></li>
-        </ul>
+        <>
+            <RealTimeChart metrics={graphFetch} />
+            <RealTimeChart metrics={graphOffsetCommit} />
+            <RealTimeChart metrics={graphHeartbeat} />
+            <RealTimeChart metrics={graphMetadata} />
+            {overviewWidgets}
+        </>
       );
 }

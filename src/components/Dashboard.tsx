@@ -41,7 +41,7 @@ const Dashboard = () => {
   const queries: Queries[] = endpoints.map(endpoint => ({
     queryKey: endpoint,
     queryFn: () => axiosClient.get(endpoint).then(res => res.data),
-    refetchInterval: 1000,
+    refetchInterval: 2000,
     refetchIntervalInBackground: true,
   }))
 
@@ -64,9 +64,9 @@ const Dashboard = () => {
   ] = useQueries(queries)
 
   return (
-    <Container fluid>
+    <Container title={'dashboard'}>
       <Row className='row flex-nowrap'>
-        <Col>
+        <Col xs={4}>
           <Sidebar />
         </Col>
         <Col>
@@ -112,7 +112,7 @@ const Dashboard = () => {
               overviewMetrics.isLoading
                 ? <>Loading</>
                 : <OverviewData
-                overviewMetrics={overviewMetrics}
+                overviewMetrics={overviewMetrics.data}
                 />
             } />
 

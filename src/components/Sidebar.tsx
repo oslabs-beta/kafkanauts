@@ -7,7 +7,7 @@ import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSi
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const Sidebar = (props = {}) => {
+const Sidebar = React.memo((props = {}) => {
   const location = useLocation();
   const { pathname } = location;
 
@@ -39,13 +39,13 @@ const Sidebar = (props = {}) => {
 
   return (
     <>
-      <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none">
+      <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none" title={'main-row'}>
         <Navbar.Toggle as={Button} aria-controls="main-navbar" >
           <span className="navbar-toggler-icon" />
         </Navbar.Toggle>
       </Navbar>
       <CSSTransition timeout={300} classNames="sidebar-transition">
-        <SimpleBar className={`collapse sidebar d-md-block bg-primary text-white`}>
+        <SimpleBar className={`collapse sidebar d-sm-block bg-primary text-white`}>
           <div className="sidebar-inner px-4 pt-3">
             <div className="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
               <div className="d-flex align-items-center">
@@ -75,6 +75,6 @@ const Sidebar = (props = {}) => {
       </CSSTransition>
     </>
   );
-};
+});
 
 export default Sidebar;
