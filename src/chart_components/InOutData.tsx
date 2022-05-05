@@ -80,8 +80,8 @@ export default function InOutData({ topicMetrics, topicTotalCount }): JSX.Elemen
   return (
     <div>
       <div className='content-container'>
-        <div>Bytes In Graph <RealTimeChart metrics={inData}/></div>
-        <div>Bytes Out Graph <RealTimeChart metrics={outData}/></div>
+        <RealTimeChart metrics={inData} title='Bytes In Graph'/>
+        <RealTimeChart metrics={outData} title='Bytes Out Graph' />
       </div>
       <div className='content-container'>
         <div>
@@ -90,12 +90,36 @@ export default function InOutData({ topicMetrics, topicTotalCount }): JSX.Elemen
               title={`Instance: ${topicTotalCount.instance}`}
               value={topicTotalCount.data.numOfTopics}
               percentage={`Job: ${topicTotalCount.job}`}
-            />
+            />     
+            </div>
+            <div>
+        <CounterWidget
+              category='Total Bytes In'
+              title={`Instance: ${topicTotalCount.instance}`}
+              value={(topicMetrics.data.totalBytesIn/1000).toLocaleString()}
+              percentage={`Job: ${topicTotalCount.job}`}
+            />     
+            </div>
+            <div>
+        <CounterWidget
+              category='Total Bytes Out'
+              title={`Instance: ${topicTotalCount.instance}`}
+              value={(topicMetrics.data.totalBytesOut/1000).toLocaleString()}
+              percentage={`Job: ${topicTotalCount.job}`}
+            />     
+            </div>
+            <div>
+        <CounterWidget
+              category='Total Bytes Rejected'
+              title={`Instance: ${topicTotalCount.instance}`}
+              value={(topicMetrics.data.bytesRejected/1000).toLocaleString()}
+              percentage={`Job: ${topicTotalCount.job}`}
+            />     
             </div>
         {/* <div>Total Topic Count: {topicTotalCount.data.numOfTopics}<br/>Instance: {topicTotalCount.instance}<br/>Job: {topicTotalCount.job}<br/></div> */}
-        <div>Total Bytes In: {(topicMetrics.data.totalBytesIn/1000).toLocaleString()} KBs</div>
+        {/* <div>Total Bytes In: {(topicMetrics.data.totalBytesIn/1000).toLocaleString()} KBs</div>
         <div>Total Bytes Out: {(topicMetrics.data.totalBytesOut/1000).toLocaleString()} KBs</div>
-        <div>Total Bytes Rejected: {(topicMetrics.data.bytesRejected/1000).toLocaleString()} KBs</div>
+        <div>Total Bytes Rejected: {(topicMetrics.data.bytesRejected/1000).toLocaleString()} KBs</div> */}
       </div>
     </div>
   );

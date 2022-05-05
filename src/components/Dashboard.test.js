@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { act } from 'react-dom/test-utils';
-import Dashboard from './Dashboard'
+import Dashboard from './Dashboard';
 
 describe('Dashboard Component', () => {
   const queryClient = new QueryClient()
