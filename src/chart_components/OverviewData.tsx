@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Col } from '@themesberg/react-bootstrap';
 import RealTimeChart from './RealTimeChart'
-import CounterWidget from '../components/Widget';
+import { CounterWidget } from '../components/Widget';
 import './styles/Overview.scss';
 
 export default function OverviewData({ overviewMetrics }): JSX.Element {
