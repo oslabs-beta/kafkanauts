@@ -1,12 +1,7 @@
 .content-container {
-    display:flex;
-    flex-wrap:wrap;
-    overflow-y:hidden;
-  }
-
-.content-item{
-    width:33.33%;
-  background: blue;
-  min-height: 100px;
-  float:left;
+  display:flex;
+  flex-wrap:wrap;
+  overflow-y:hidden;
+  padding-bottom: 10px;
 }
+

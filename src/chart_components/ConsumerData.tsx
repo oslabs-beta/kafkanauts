@@ -44,12 +44,8 @@ export default function ConsumerData({ consumerLag }): JSX.Element {
   return (
     consumerLag.isLoading ? 
     <>Loading</> : 
-    <ul>
-      {/* <li>Consumer Lag: {consumerLagMetric} </li> */}
-      <li><RealTimeChart metrics={chartData} title={'consumer-graph'}/></li>
-      {/* <li><RealTimeChart metrics={metrics} /></li> */}
-      {/* <li>Consumer Total Time: {consumerTotalTime.data[0].value[1]} </li> */}
-      {/* <li><RealTimeChart metrics={metrics} /></li> */}
-    </ul>
+    <div className='content-container'>
+      <RealTimeChart metrics={chartData} title={'consumer-graph'}/>
+    </div>
   );
 }

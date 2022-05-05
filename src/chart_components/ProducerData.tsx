@@ -32,15 +32,22 @@ export default function ProducerData({ producerTotalFailCount, producerMetrics }
   return (
     producerTotalFailCount.isLoading ? (
       <>Loading</>
-    ) : (<div>
-      <Col xs={12} sm={6} xl={4} className='mb-4'>
-        <CounterWidget
-          category='Producer'
-          title='Total Failed Producer Requests'
-          value={producerTotalFailCount.data[0].value[1]}
-          percentage={0.0}
-        />
-      </Col><li><RealTimeChart metrics={chartData} /></li></div>
+    ) : (
+    <div>
+      <div className='content-container'>
+        <RealTimeChart metrics={chartData} />
+      </div>
+      <div className='content-container'>
+        <div>
+          <CounterWidget
+            category='Producer'
+            title='Total Failed Producer Requests'
+            value={producerTotalFailCount.data[0].value[1]}
+            percentage={0.0}
+          />
+        </div>
+      </div>
+    </div>
     ))
 
 
