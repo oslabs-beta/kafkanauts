@@ -17,3 +17,10 @@ body {
     bottom: 0.5rem;
     right: 0.5rem;
   }
+
+  .content-container {
+    display:flex;
+    flex-wrap:wrap;
+    overflow-y:hidden;
+    padding-bottom: 10px;
+  }

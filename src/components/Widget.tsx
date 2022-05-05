@@ -14,8 +14,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 // import { faAngular, faBootstrap, faReact, faVuejs } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Card, Image, Button, ListGroup, ProgressBar } from '@themesberg/react-bootstrap';
-import BlankUser from '../assets/blank_user.png'
+import BlankUser from '../assets/blank_user.png';
 // import { CircleChart, BarChart, SalesValueChart, SalesValueChartphone } from "./Charts";
+import '../chart_components/styles/Widget.scss';
 
 export const CounterWidget = (props) => {
   const { category, title, value, percentage } = props;
@@ -23,7 +24,7 @@ export const CounterWidget = (props) => {
   const percentageColor = percentage < 0 ? 'text-danger' : 'text-success';
 
   return (
-    <Card border='light' className='shadow-sm' style={{ width: '18rem', borderWidth: 'medium' }}>
+    <Card border='light' className='shadow-sm widget-item' style={{ width: '18rem', borderWidth: 'medium'}}>
       <Card.Body>
         <Row className='d-block d-xl-flex align-items-center'>
           <Col xs={12} xl={7} className='px-xl-0'>

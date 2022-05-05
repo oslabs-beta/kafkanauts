@@ -1,6 +1,7 @@
 import ResizableBox from "../ResizableBox";
 import React, {useEffect, useState} from "react";
 import { AxisOptions, Chart } from "react-charts";
+import "./styles/RealTimeChart.scss";
 
 export default function RealTimeChart(props): JSX.Element {
 
@@ -35,26 +36,28 @@ export default function RealTimeChart(props): JSX.Element {
   )
 
   return (
-      <ResizableBox
-        style={{
-          background: "rgba(0, 27, 45, 0.9)",
-          padding: ".5rem",
-          borderRadius: "5px",
-        }}
-      >
-        <div style={{ width: "100%", height: "100%"}}>
-          {data.length > 0 ? <Chart
-            
-            options={{
-              data,
-              primaryAxis,
-              secondaryAxes,
-              dark: true,
-              
-            }}
-          /> : " "}
-         
-        </div>
-      </ResizableBox>
+      <div className="chart-item">
+        <ResizableBox
+          style={{
+            background: "rgba(0, 27, 45, 0.9)",
+            padding: ".5rem",
+            borderRadius: "5px"
+          }}
+        >
+          <div style={{ width: "100%", height: "100%"}}>
+            {data.length > 0 ? <Chart
+    
+              options={{
+                data,
+                primaryAxis,
+                secondaryAxes,
+                dark: true,
+                
+              }}
+            /> : " "}
+          
+          </div>
+        </ResizableBox>
+      </div>
   );
 }

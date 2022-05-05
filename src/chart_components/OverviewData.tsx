@@ -14,14 +14,14 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
     const [graphMetadata, setMetadata] = useState([])
     // const [cards, setCards] = useState([])
     const overviewWidgets = overviewMetrics.data.cards.map(([request, value], i) => (
-        <Col xs={12} sm={6} xl={4} className='mb-4'>
+        <div>
             <CounterWidget
                 category='test'
                 title={request}
                 value={value}
                 percentage={0.0}
             />
-        </Col>
+        </div>
     ))
     useEffect(() => {
         const dateOfMetric = new Date(overviewMetrics.time)
