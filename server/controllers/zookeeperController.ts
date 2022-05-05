@@ -13,6 +13,25 @@ const zookeeperController = {
     } catch (e) {
       return next(e);
     }
+  },
+  async restOfZookeeperMetrics(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { port } = res.locals;
+      const zooMetrics = [
+        axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_sessionexpirelistener_zookeeperauthfailures_total`), 
+        axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_sessionexpirelistener_zookeeperdisconnects_total`),
+        axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_sessionexpirelistener_zookeeperexpires_total`), 
+        axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_sessionexpirelistener_zookeeperreadonlyconnects_total`),
+        axios.get(`http://localhost:${port}/api/v1/query?query=kafka_server_sessionexpirelistener_zookeepersaslauthentications_total`), 
+      ];
+      const axiosGetAll = await Promise.all(zooMetrics);
+      const destructureResults = axiosGetAll.map(promResult => promResult.data.data.result);
+      res.locals.zooMetrics = destructureResults;
+      return next();
+    } catch(e) {
+      return next(e)
+    }
+
   }
 };
 
