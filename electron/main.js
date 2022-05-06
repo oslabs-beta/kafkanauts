@@ -1,5 +1,4 @@
-const { app, BrowserWindow } = require('electron')
-
+const { app, BrowserWindow, shell } = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
 require('../public/server/server.js')
@@ -16,7 +15,11 @@ function createWindow() {
       enableRemoteModule: true
     }
   })
-
+  
+  win.webContents.on('new-window', function(e, url) {
+    e.preventDefault();
+    shell.openExternal(url);
+});
   win.loadURL(
     isDev
       ? 'http://localhost:3000'
