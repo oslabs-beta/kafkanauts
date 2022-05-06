@@ -70,7 +70,7 @@ npm run test
 * 👨‍🚀 [David Lee](https://github.com/davidlee7731) | david.lee@kafkanauts.com
 * 👩‍🚀 [Jane Park](https://github.com/janesunpark) | jane.park@kafkanauts.com
 
-* LinkedIn: [@LinkedIn username](https://linkedin.com/in/LinkedIn username)
+* LinkedIn: [@kafkanauts](https://www.linkedin.com/company/kafkanauts/)
 
 ## 🚀 Guide to Contribution
 
