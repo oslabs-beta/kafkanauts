@@ -87,7 +87,8 @@ const Dashboard = () => {
       <main className="content">
         <NavBar />
         <ScrollToTop />
-        <div className='content-wrap'>
+      
+        <div className='content-wrap' >
           <Routes>
             <Route path="/partition" element={
               partitionTotalCount.isLoading && partitionOfflineCount.isLoading && partitionUnderreplicated.isLoading && partitionActiveController.isLoading && partitionReqLatency.isLoading
