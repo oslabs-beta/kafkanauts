@@ -16,7 +16,6 @@ import NavBar from './sub-components/NavBar'
 import Footer from './sub-components/Footer'
 import Documentation from '../chart_components/Documentation';
 import ScrollToTop from './sub-components/ScrollToTop'
-// import TopicData from '../chart_components/TopicData';
 
 
 const axiosClient = axios.create({

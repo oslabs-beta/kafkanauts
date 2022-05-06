@@ -1,23 +1,23 @@
-import BlankUser from "./blank_user.png"
+import BlankUser from "./kafkanauts_175x175.png"
 
 export default [
     {
         "id": 1,
         "read": false,
         "image": BlankUser,
-        "sender": "Jose Leos",
+        "sender": "Cluster 1",
         "time": "a few moments ago",
         "link": "#",
-        "message": `Added you to an event "Project stand-up" tomorrow at 12:30 AM.`
+        "message": `Health report normal`
     },
     {
         "id": 2,
         "read": false,
         "image": BlankUser,
-        "sender": "Neil Sims",
+        "sender": "Warning",
         "time": "2 hrs ago",
         "link": "#",
-        "message": `You've been assigned a task for "Awesome new project".`
+        "message": `Underreplicated partition detected in broker.`
     },
     {
         "id": 3,
