@@ -1,5 +1,5 @@
 <p align="center">
-<!--   <img src="https://imgur.com/a/vhetsjz" width="300" height="300"> -->
+  <img src="https://i.imgur.com/PGcnitN.png" width="300" height="300">
   <h1 align="center"><strong>Kafkanauts</strong></h1>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="project documentation URL goes here" target="_blank">
