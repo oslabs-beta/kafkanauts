@@ -42,6 +42,11 @@ npm start
 * Enter the Prometheus port where your Kafka server is running.
 * Browse displays for real-time metrics.
 
+
+
+https://user-images.githubusercontent.com/80846303/167050464-550cbfe2-1c75-4667-bb6e-953090b9babb.mov
+
+
 * To run the desktop version of the application:
 
 ```sh
