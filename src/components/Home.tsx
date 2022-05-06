@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileExport, faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 // Be sure to convert react-bootstrap imports to more specified location to decrease imported object size
 import { Col, Row, Form, Button, Container, InputGroup } from '@themesberg/react-bootstrap';
+// import splash from '../assets/kafkanauts_bgLogin.png'
 
 interface HomeState {
   port: Port,
@@ -47,7 +48,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
+    <div className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5" >
       <Container>
         <Row className="justify-content-center">
           <Col xs={12} className="d-flex align-items-center justify-content-center">
