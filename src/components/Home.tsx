@@ -36,7 +36,7 @@ const Home: React.FC = () => {
         nickname: input.nickname,
         time: new Date().toISOString(),
       })
-      .then((res) => { navigate('/dashboard') })
+      .then((res) => { navigate('/dashboard/overview') })
       .catch((err) => {
         setInput({
           ...input,

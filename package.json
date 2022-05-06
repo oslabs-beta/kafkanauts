@@ -35,7 +35,7 @@
     "sass": "^1.50.0",
     "simplebar-react": "^2.3.6"
   },
-  "main": "public/main.js",
+  "main": "electron/main.js",
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
