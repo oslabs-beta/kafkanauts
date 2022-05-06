@@ -23,27 +23,27 @@ export default [
         "id": 3,
         "read": false,
         "image": BlankUser,
-        "sender": "Roberta Casas",
+        "sender": "Network Latency",
         "time": "5 hrs ago",
         "link": "#",
-        "message": `Tagged you in a document called "First quarter financial plans".`
+        "message": `No abnormalities detected in network latency.`
     },
     {
         "id": 4,
         "read": true,
         "image": BlankUser,
-        "sender": "Joseph Garth",
+        "sender": "admin",
         "time": "1 day ago",
         "link": "#",
-        "message": `New message: "Hey, what's up? All set for the presentation?"`
+        "message": `Login detected`
     },
     {
         "id": 5,
         "read": true,
         "image": BlankUser,
-        "sender": "Jose Leos",
+        "sender": "Cluster created",
         "time": "2 days ago",
         "link": "#",
-        "message": `New message: "We need to improve the UI/UX for the landing page."`
+        "message": `New message: "Cluster initialized."`
     },
 ]
