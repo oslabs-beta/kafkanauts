@@ -16,6 +16,7 @@
 
 * #### Real-time metrics for improved analytics
 * #### Readable graphical displays for enhanced UI
+* #### Desktop version available in Electron
 * #### A demo Kafka cluster to test out the app
 
 ## 🚀 Table of Contents
@@ -40,6 +41,15 @@ npm start
 ```
 * Enter the Prometheus port where your Kafka server is running.
 * Browse displays for real-time metrics.
+
+* To run the desktop version of the application:
+
+```sh
+npm install
+npm run build
+npm run electon
+
+```
 
 ## 🚀 Run Tests
 - To run the test suites, enter the following command:
