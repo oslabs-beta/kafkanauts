@@ -15,7 +15,7 @@
 
 * #### Real-time metrics for improved analytics
 * #### Readable graphical displays for enhanced UI
-* #### A sample Kafka cluster to test out the app
+* #### A demo Kafka cluster to test out the app
 
 ## 🚀 Table of Contents
 
@@ -28,7 +28,7 @@
 
 ## 🚀 Installation
 
-<br><p align="center">Kafkanauts requires a Kafka cluster configured with Kafka.js and Prometheus to pull advanced metrics</p></br>
+<br><p align="center">Kafkanauts requires a Kafka cluster configured with Kafka.js and Prometheus to pull advanced metrics. If you need an example server, click [here](https://github.com/kafkanauts-example-kafka-server/kafka).</p></br>
 * To downlaod our application, please run the following commands in the respective order:
 
 ```sh

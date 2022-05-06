@@ -16,14 +16,15 @@ import NavBar from './sub-components/NavBar'
 import Footer from './sub-components/Footer'
 import Documentation from '../chart_components/Documentation';
 import ScrollToTop from './sub-components/ScrollToTop'
-
+// import TopicData from '../chart_components/TopicData';
+import './Dashboard.scss';
 
 const axiosClient = axios.create({
   baseURL: 'http://localhost:8080/api/',
 });
 
 const Dashboard = () => {
-  
+
   const localStorageIsSettingsVisible = () => {
     return localStorage.getItem('settingsVisible') !== 'false'
   }
@@ -80,82 +81,83 @@ const Dashboard = () => {
   ] = useQueries(queries)
 
   return (
-    <Container fluid >
-          <Sidebar />
-        
-          <main className="content">
-          <NavBar />
-          <ScrollToTop/>
-            <Routes>
-              <Route path="/partition" element={
-                partitionTotalCount.isLoading && partitionOfflineCount.isLoading && partitionUnderreplicated.isLoading && partitionActiveController.isLoading && partitionReqLatency.isLoading
+    <Container fluid>
+      <Sidebar />
+
+      <main className="content">
+        <NavBar />
+        <ScrollToTop />
+      
+        <div className='content-wrap' >
+          <Routes>
+            <Route path="/partition" element={
+              partitionTotalCount.isLoading && partitionOfflineCount.isLoading && partitionUnderreplicated.isLoading && partitionActiveController.isLoading && partitionReqLatency.isLoading
                 ? <>Loading</>
                 : <PartitionData
-                    partitionTotalCount={partitionTotalCount.data}
-                    partitionOfflineCount={partitionOfflineCount.data}
-                    partitionUnderreplicated={partitionUnderreplicated.data}
-                    partitionActiveController={partitionActiveController.data}
-                    partitionReqLatency={partitionReqLatency.data}
+                  partitionTotalCount={partitionTotalCount.data}
+                  partitionOfflineCount={partitionOfflineCount.data}
+                  partitionUnderreplicated={partitionUnderreplicated.data}
+                  partitionActiveController={partitionActiveController.data}
+                  partitionReqLatency={partitionReqLatency.data}
                 />
-              }/>
+            } />
 
-              <Route path="/producer" element={
-                producerMetrics.isLoading && producerTotalFailCount.isLoading
+            <Route path="/producer" element={
+              producerMetrics.isLoading && producerTotalFailCount.isLoading
                 ? <>Loading</>
                 : <ProducerData
-                    producerTotalFailCount={producerTotalFailCount}
-                    producerMetrics={producerMetrics}
+                  producerTotalFailCount={producerTotalFailCount}
+                  producerMetrics={producerMetrics}
                 />
-              }/>
+            } />
 
-              <Route path="/topic" element={
-                topicMetrics.isLoading && topicTotalCount.isLoading
+            <Route path="/topic" element={
+              topicMetrics.isLoading && topicTotalCount.isLoading
                 ? <>Loading</>
                 : <InOutData
-                    topicMetrics={topicMetrics.data}
-                    topicTotalCount={topicTotalCount.data}
+                  topicMetrics={topicMetrics.data}
+                  topicTotalCount={topicTotalCount.data}
                 />
-              }/>
+            } />
 
-              <Route path="/consumer" element={
-                consumerLag.isLoading
+            <Route path="/consumer" element={
+              consumerLag.isLoading
                 ? <>Loading</>
                 : <ConsumerData
-                    consumerLag={consumerLag}
+                  consumerLag={consumerLag}
                 />
-              }/>
-              <Route path="/overview" element={
-                overviewMetrics.isLoading
-                  ? <>Loading</>
-                  : <OverviewData
+            } />
+            <Route path="/overview" element={
+              overviewMetrics.isLoading
+                ? <>Loading</>
+                : <OverviewData
                   overviewMetrics={overviewMetrics.data}
-                  />
-              } />
+                />
+            } />
 
-              <Route path="/zookeeper" element={
-                avgLatency.isLoading
+            <Route path="/zookeeper" element={
+              avgLatency.isLoading
                 ? <>Loading</>
                 : <ZookeeperData
-                    avgLatency={avgLatency.data}
-                    health={zookeeperHealth.data}
+                  avgLatency={avgLatency.data}
+                  health={zookeeperHealth.data}
                 />
-              }/>
-              
-              <Route path="/cluster" element={
-                avgLatency.isLoading
+            } />
+
+            <Route path="/cluster" element={
+              avgLatency.isLoading
                 ? <>Loading</>
-                : <CreateCluster/>
-              }/>
-               <Route path="/docs" element={
-                avgLatency.isLoading
+                : <CreateCluster />
+            } />
+            <Route path="/docs" element={
+              avgLatency.isLoading
                 ? <>Loading</>
-                : <Documentation/>
-              }/>
-            </Routes>
-            <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
-          </main>
-        
-      
+                : <Documentation />
+            } />
+          </Routes>
+        </div>
+        <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
+      </main>
     </Container>
   );
 };

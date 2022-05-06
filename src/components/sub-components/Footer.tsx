@@ -3,6 +3,7 @@ import { Row, Col, Card, Button } from '@themesberg/react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCogs, faDownload, faRocket } from "@fortawesome/free-solid-svg-icons";
 import GitHubButton from 'react-github-btn';
+import './Footer.scss';
 
 export default (props) => {
   const currentYear = new Date().getFullYear()
@@ -13,7 +14,7 @@ export default (props) => {
   }
 
   return (
-    <div>
+    <div className="">
       {showSettings ? (
         <Card className="theme-settings">
           <Card.Body className="pt-4">

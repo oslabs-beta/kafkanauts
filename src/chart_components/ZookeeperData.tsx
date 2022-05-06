@@ -44,7 +44,7 @@ export default function ZookeeperData({ avgLatency, health }): JSX.Element {
   return (
     <div>
       <div className='content-container'>
-        <div>ZooKeeper Latency Graph <RealTimeChart metrics={latencyData}/></div>
+        <RealTimeChart metrics={latencyData} title='ZooKeeper Latency Graph'/>
       </div>
       <div className='content-container'>
         {zkWidgets}
