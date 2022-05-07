@@ -3,19 +3,6 @@ import RealTimeChart from './RealTimeChart'
 
 export default function ConsumerData({ consumerLag }): JSX.Element {
   
-  // const dataObj = consumerLag.data;
-  // let consumerLagMetric;
-
-  // for (let prop in dataObj) {
-  //   if (dataObj.hasOwnProperty(prop)) {
-  //     //let lastIdx = data
-  //     consumerLagMetric = dataObj[prop].values[0][1];
-  //   }
-  // }
-
-  // console.log('this is consumerlag', consumerLag.data[0].values[1])
-
-  
   const initialTime = new Date(new Date().getTime() - 100000)
   const [chartData, setChartData] = useState([
 
