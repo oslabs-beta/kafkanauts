@@ -60,7 +60,7 @@ npm run electon
 - To run the test suites, enter the following command:
 
 ```sh
-npm run test
+npm test
 ```
 
 ## 🚀 Engineering Team
