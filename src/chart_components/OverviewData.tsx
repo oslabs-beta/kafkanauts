@@ -13,10 +13,12 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
     const [graphHeartbeat, setHeartbeat] = useState([])
     const [graphMetadata, setMetadata] = useState([])
     // const [cards, setCards] = useState([])
-    const randomNumberstr = (min, max) => { 
-        const r = (Math.random() * (max - min) + min).toFixed(1)
-        return r + ' %'
-    }
+  
+    // random number generator for widget testing purposes
+    // const randomNumberstr = (min, max) => { 
+    //     const r = (Math.random() * (max - min) + min).toFixed(1)
+    //     return r + ' %'
+    // }
 
     const overviewWidgets = overviewMetrics.data.cards.map(([request, value], i) => (
         <div>
@@ -24,7 +26,7 @@ export default function OverviewData({ overviewMetrics }): JSX.Element {
                 category='Good Status'
                 title={request}
                 value={value}
-                percentage={randomNumberstr(87, 100)}
+                percentage={0.0}
             />
         </div>
     ))
