@@ -17,12 +17,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use('/build', express.static(path.join(__dirname, '../build')));
-//   app.get('/', (req, res) =>
-//     res.status(200).sendFile(path.join(__dirname, '../public/index.html'))
-//   );
-// }
 app.use('/api/prom-port', promPortRouter);
 app.use('/api/consumer', consumerRouter);
 app.use('/api/partition', partitionRouter);
@@ -33,7 +27,7 @@ app.use('/api/overview', overviewRouter);
 
 app.use((req, res) => res.sendStatus(404));
 
-//global error handler
+
 app.use((err: ServerError, req: Request, res: Response, next: NextFunction) => {
   return res.status(err.status ?? 500).json(err.message ?? 'Internal Server Error');
 })

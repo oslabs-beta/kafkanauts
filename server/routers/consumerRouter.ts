@@ -8,8 +8,4 @@ router.get('/consumer-lag', promPortController.getSavedPortFromElectronStore, pr
   return res.status(200).json(res.locals.consumerLag);
 });
 
-// router.get('/consumer-total-time', promPortController.getSavedPortFromElectronStore, promPortController.getSavedStartTimeFromElectronStore, promPortController.getSavedIntervalFromElectronStore, consumerController.consumerTotalTime, (req: Request, res: Response) => {
-//   return res.status(200).json(res.locals.consumerTotalTime);
-// });
-
 export default router;

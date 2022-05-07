@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import RealTimeChart from './RealTimeChart'
-import { Col } from '@themesberg/react-bootstrap';
 import { CounterWidget } from '../components/Widget';
 
 export default function InOutData({ topicMetrics, topicTotalCount }): JSX.Element {
@@ -116,10 +115,6 @@ export default function InOutData({ topicMetrics, topicTotalCount }): JSX.Elemen
               percentage={`Job: ${topicTotalCount.job}`}
             />     
             </div>
-        {/* <div>Total Topic Count: {topicTotalCount.data.numOfTopics}<br/>Instance: {topicTotalCount.instance}<br/>Job: {topicTotalCount.job}<br/></div> */}
-        {/* <div>Total Bytes In: {(topicMetrics.data.totalBytesIn/1000).toLocaleString()} KBs</div>
-        <div>Total Bytes Out: {(topicMetrics.data.totalBytesOut/1000).toLocaleString()} KBs</div>
-        <div>Total Bytes Rejected: {(topicMetrics.data.bytesRejected/1000).toLocaleString()} KBs</div> */}
       </div>
     </div>
   );

@@ -1,20 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faHeartPulse } from "@fortawesome/free-solid-svg-icons";
-import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
+import { faChartPie, faCog, faHandHoldingUsd, faTimes, faCalendarAlt, faMapPin, faInbox, faHeartPulse } from "@fortawesome/free-solid-svg-icons";
+import { Nav, Badge, Image, Button, Dropdown, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../assets/kafkanauts_175x175.png'
 
+
+//creates a Sidebar component that has a React.memo function that skips rendering if its props have not changed 
+//React.memo accepts an empty obj as props 
 const Sidebar = React.memo((props = {}) => {
+
   const location = useLocation();
   const { pathname } = location;
 
+  //function NavItem accepts arg in props and returns a rendering component 
   const NavItem = (props) => {
+
+    //props is defined as an object with the following variables and values 
     const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary", main } = props;
+    //sets classNames as the badgeText which is either the string defined belwo or an empty string 
     const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
+    //checks navItemClassName if the value of link is strictly equal to the pathname, if it is, set navItemClassName as "active" or set its value as an empty string
     const navItemClassName = link === pathname ? "active" : "";
     const linkProps = external ? { href: link } : { as: Link, to: link };
 

@@ -3,17 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAngleDown,
   faAngleUp,
-  faChartArea,
-  faChartBar,
-  faChartLine,
-  faFlagUsa,
-  faFolderOpen,
-  faGlobeEurope,
   faPaperclip,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 // import { faAngular, faBootstrap, faReact, faVuejs } from "@fortawesome/free-brands-svg-icons";
-import { Col, Row, Card, Image, Button, ListGroup, ProgressBar } from '@themesberg/react-bootstrap';
+import { Col, Row, Card, Image, Button } from '@themesberg/react-bootstrap';
 import BlankUser from '../assets/blank_user.png';
 // import { CircleChart, BarChart, SalesValueChart, SalesValueChartphone } from "./Charts";
 import '../chart_components/styles/Widget.scss';

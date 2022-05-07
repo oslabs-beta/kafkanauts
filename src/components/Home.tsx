@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Port, Nickname, Time } from '../../types';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileExport, faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
-// Be sure to convert react-bootstrap imports to more specified location to decrease imported object size
 import { Col, Row, Form, Button, Container, InputGroup } from '@themesberg/react-bootstrap';
-// import splash from '../assets/kafkanauts_bgLogin.png'
 
+//defines the types of values in state, with the types imported from types file 
 interface HomeState {
   port: Port,
   nickname: Nickname,
@@ -16,27 +14,38 @@ interface HomeState {
   portError: boolean
 }
 
+//a variable called Home is defined as a TypeScript React functional component that accepts anonymous arg
 const Home: React.FC = () => {
+  //uses TypeScript generics to set the interface HomeState as the prop so that whatever the state is, it follows the types defined in HomeState
   const [ input, setInput ] = useState<HomeState>({
+
+    //sets the values of state accordingly 
     port: '',
     nickname: '',
     time: null,
     portError: false,
   })
+  
+  //useNavigate is called to be used for navigating to different pages
   const navigate = useNavigate();
 
+  //function handleOnChange uses the HTML input value associated with the event as an arg
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //updates the state with the input value 
     setInput({ ...input, [e.currentTarget.name]: e.currentTarget.value, portError: false});
   };
 
+  //defines submit function that gets triggered with an event 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //creates an axios request that sends the obj to the prom-port api back end 
     axios
       .post('http://localhost:8080/api/prom-port', {
         port: input.port,
         nickname: input.nickname,
         time: new Date().toISOString(),
       })
+      //reroutes the login page to dashboard
       .then((res) => { navigate('/dashboard/overview') })
       .catch((err) => {
         setInput({
@@ -47,6 +56,7 @@ const Home: React.FC = () => {
       });
   };
 
+  //renders the home/login page 
   return (
     <div className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5" >
       <Container>

@@ -23,12 +23,6 @@ export type EventHandlers = {
   onClick: (e: React.ChangeEventHandler<HTMLInputElement>) => void
 }
 
-// export interface QueryProps extends State {
-//   query: string;
-//   port: Port; 
-//   nickname: Nickname;
-//   handleOnClick(query: string, port: Port): void;
-// };
 
 
 export interface ProducerController {
